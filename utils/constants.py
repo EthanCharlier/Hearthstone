@@ -1,7 +1,5 @@
 # Database path
-HEROES_DB_PATH = "../database/heroes.json"
-UNITS_DB_PATH = "../database/units.json"
-SPELLS_DB_PATH = "../database/spells.json"
+DATABASE_PATH = "../database/hearthstone_database.json"
 
 # Default Hero Stats
 HERO_STARTING_HEALTH = 30

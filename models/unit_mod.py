@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 
 # Imports
-from tinydb import TinyDB, Query
 
 # Constants Imports
-from utils.constants import UNITS_DB_PATH
+from utils.constants import DATABASE_PATH
 
 # Modules Imports
 from models.card_mod import Card
-from utils.database_utils import DatabaseUtils
+from utils.database_utils import Database
 
 # Enum Imports
 from utils.card_type_enum import CardType
@@ -96,8 +95,15 @@ class Unit(Card):
         self.armor = armor
         self.effects = effects
 
-        with DatabaseUtils.initialize_database(UNITS_DB_PATH) as units_db:
-            units_db.insert(self.to_dict())
+        self.save_to_table()
+
+    def save_to_table(self) -> None:
+        """
+        Saves the current Unit instance to a single table within the hearthstone_database.json file.
+        """
+        units_db = Database.initialize_database(DATABASE_PATH)
+        Database.insert_data_to_table(units_db, "Spells", [self.to_dict()])
+        units_db.close()
 
     def to_dict(self) -> dict:
         """

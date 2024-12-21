@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 
 # Imports
-from tinydb import TinyDB, Query
 
 # Constants Imports
-from utils.constants import SPELLS_DB_PATH
+from utils.constants import DATABASE_PATH
 
 # Modules Imports
 from models.card_mod import Card
-from utils.database_utils import DatabaseUtils
+from utils.database_utils import Database
 
 # Enum Imports
 from utils.card_type_enum import CardType
@@ -65,8 +64,15 @@ class Spell(Card):
         
         self.effects = effects
 
-        with DatabaseUtils.initialize_database(SPELLS_DB_PATH) as spells_db:
-            spells_db.insert(self.to_dict())
+        self.save_to_table()
+
+    def save_to_table(self) -> None:
+        """
+        Saves the current Spell instance to a single table within the hearthstone_database.json file.
+        """
+        spells_db = Database.initialize_database(DATABASE_PATH)
+        Database.insert_data_to_table(spells_db, "Spells", [self.to_dict()])
+        spells_db.close()
 
     def to_dict(self) -> dict:
         """

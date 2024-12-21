@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
 # Imports
-from tinydb import TinyDB, Query
 
 # Modules Imports
-from utils.database_utils import DatabaseUtils
+from utils.database_utils import Database
 
 # Constants Imports
-from utils.constants import HEROES_DB_PATH, HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR
+from utils.constants import DATABASE_PATH, HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR
 
 # Enum Imports
 from utils.hero_class_enum import HeroClass
@@ -95,8 +94,15 @@ class Hero():
         self.mana = mana
         self.armor = armor
 
-        with DatabaseUtils.initialize_database(HEROES_DB_PATH) as heroes_db:
-            heroes_db.insert(self.to_dict())
+        self.save_to_table()
+
+    def save_to_table(self) -> None:
+        """
+        Saves the current Hero instance to a single table within the hearthstone_database.json file.
+        """
+        heroes_db = Database.initialize_database(DATABASE_PATH)
+        Database.insert_data_to_table(heroes_db, "Heroes", [self.to_dict()])
+        heroes_db.close()
 
     def to_dict(self) -> dict:
         """
