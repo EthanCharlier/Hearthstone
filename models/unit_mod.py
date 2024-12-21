@@ -10,9 +10,9 @@ from models.card_mod import Card
 from utils.database_utils import Database
 
 # Enum Imports
-from utils.card_type_enum import CardType
-from utils.rarity_enum import Rarity
-from utils.race_enum import Race
+from enums.card_type_enum import CardType
+from enums.rarity_enum import Rarity
+from enums.race_enum import Race
 
 # Class
 class Unit(Card):

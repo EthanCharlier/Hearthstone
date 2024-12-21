@@ -4,13 +4,13 @@
 
 # Modules Imports
 from utils.database_utils import Database
+from utils.hero_power import HeroPower, HERO_CLASS_TO_POWER
 
 # Constants Imports
 from utils.constants import DATABASE_PATH, HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR
 
 # Enum Imports
-from utils.hero_class_enum import HeroClass
-from utils.hero_power import HeroPower, HERO_CLASS_TO_POWER
+from enums.hero_class_enum import HeroClass
 
 # Class
 class Hero():

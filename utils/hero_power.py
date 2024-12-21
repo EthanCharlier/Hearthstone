@@ -4,7 +4,7 @@
 from enum import Enum
 
 # Enum Imports
-from utils.hero_class_enum import HeroClass
+from enums.hero_class_enum import HeroClass
 
 # Class
 class HeroPower(Enum):

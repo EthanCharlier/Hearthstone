@@ -7,9 +7,9 @@ import unittest
 from models.unit_mod import Unit
 
 # Enum Imports
-from utils.card_type_enum import CardType
-from utils.rarity_enum import Rarity
-from utils.race_enum import Race
+from enums.card_type_enum import CardType
+from enums.rarity_enum import Rarity
+from enums.race_enum import Race
 
 # Class
 class TestUnit(unittest.TestCase):

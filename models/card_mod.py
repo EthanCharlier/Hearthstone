@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 # Enum Imports
-from utils.card_type_enum import CardType
-from utils.rarity_enum import Rarity
+from enums.card_type_enum import CardType
+from enums.rarity_enum import Rarity
 
 # Class
 class Card():
