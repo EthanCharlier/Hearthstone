@@ -7,11 +7,11 @@ import unittest
 from models.hero_mod import Hero
 
 # Constants Imports
-from utils.constants import HEROES_DB_PATH, HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR
+from utils.constants import HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR
 
 # Enum Imports
 from utils.hero_class_enum import HeroClass
-from utils.hero_power import HeroPower, HERO_CLASS_TO_POWER
+from utils.hero_power import HeroPower
 
 # Class
 class TestHero(unittest.TestCase):

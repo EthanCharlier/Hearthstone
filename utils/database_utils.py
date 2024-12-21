@@ -2,6 +2,7 @@
 
 # Imports
 import os
+from typing import Any
 from tinydb import TinyDB
 
 # Class
@@ -42,7 +43,7 @@ class Database:
         return TinyDB(file_path)
 
     @staticmethod
-    def initialize_table(db: TinyDB, table_name: str) -> TinyDB.Table:
+    def initialize_table(db: TinyDB, table_name: str) -> Any:
         """
         Retrieves or creates a specific table within the TinyDB database.
 
