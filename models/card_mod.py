@@ -13,7 +13,7 @@ class Card():
     Attributes:
         id (int): The unique identifier for the card.
         name (str): The name of the card.
-        cost (int): The mana or resource cost to play the card, cannot be negative.
+        cost (int): The mana or resource cost to play the card, cannot be negative, 10 is the maximum.
         description (str): A textual description of the card's effects or abilities.
         card_type (CardType): The type of the card (e.g., Unit, Spell).
         card_rarity (Rarity): The rarity of the card (e.g., Common, Rare, Epic, Legendary).
@@ -22,6 +22,7 @@ class Card():
         ValueError: If `card_type` is not an instance of `CardType`.
         ValueError: If `card_rarity` is not an instance of `Rarity`.
         ValueError: If `cost` is negative.
+        ValueError: If `cost` is greater than 10.
     """
 
     def __init__(self,
@@ -38,7 +39,7 @@ class Card():
         Args:
             id (int): A unique identifier for the card.
             name (str): The name of the card.
-            cost (int): The mana or resource cost required to play this card, cannot be negative.
+            cost (int): The mana or resource cost required to play this card, cannot be negative, 10 is the maximum.
             description (str): A description of the card's effects or abilities.
             card_type (CardType): The type of the card, which should be one of the options defined in the CardType enum.
             card_rarity (Rarity): The rarity of the card, which should be one of the options defined in the Rarity enum.
@@ -47,12 +48,15 @@ class Card():
             ValueError: If `card_type` is not an instance of `CardType`.
             ValueError: If `card_rarity` is not an instance of `Rarity`.
             ValueError: If `cost` is negative.
+            ValueError: If `cost` is greater than 10.
         """
         self.id = id
         self.name = name
 
         if cost < 0:
             raise ValueError(f"Invalid cost: {cost}. Cost cannot be negative.")
+        elif cost > 10:
+            raise ValueError(f"Invalid cost: {cost}. Cost cannot be greater than 10.")
         self.cost = cost
 
         self.description = description

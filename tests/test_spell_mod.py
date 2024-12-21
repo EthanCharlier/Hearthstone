@@ -79,6 +79,21 @@ class TestSpell(unittest.TestCase):
                 effects=self.default_effects
             )
 
+    def test_spell_creation_negative_cost_2(self):
+        """
+        Test that a ValueError is raised when the cost is negative.
+        """
+        with self.assertRaises(ValueError):
+            Spell(
+                id=self.default_id,
+                name=self.default_name,
+                cost=11,  # Invalid cost
+                description=self.default_description,
+                card_type=self.default_card_type,
+                card_rarity=self.default_rarity,
+                effects=self.default_effects
+            )
+
     def test_spell_to_dict(self):
         """
         Test the to_dict method to ensure it returns the correct dictionary representation.

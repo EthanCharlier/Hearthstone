@@ -25,7 +25,7 @@ class Hero():
         hero_class (HeroClass): The class of the hero (e.g., Mage, Warrior).
         hero_power (HeroPower): The power associated with the hero class.
         health (int): The starting health of the hero (default: `HERO_STARTING_HEALTH`, cannot be negative).
-        mana (int): The starting mana of the hero (default: `HERO_STARTING_MANA`, cannot be negative).
+        mana (int): The starting mana of the hero (default: `HERO_STARTING_MANA`, cannot be negative, 10 is the maximum).
         armor (int): The starting armor of the hero (default: `HERO_STARTING_ARMOR`, cannot be negative).
 
     Raises:
@@ -34,6 +34,7 @@ class Hero():
         ValueError: If the provided `hero_power` does not match the expected power 
                     for the given `hero_class` as defined in `HERO_CLASS_TO_POWER`.
         ValueError: If `health`, `mana`, or `armor` is negative.
+        ValueError: If `mana` is greater than 10.
     """
 
     def __init__(self, 
@@ -56,7 +57,7 @@ class Hero():
             hero_class (HeroClass): The class of the hero, which must be a valid `HeroClass` enum.
             hero_power (HeroPower): The power associated with the hero class, which must be a valid `HeroPower` enum.
             health (int): The starting health of the hero (default: `HERO_STARTING_HEALTH`, cannot be negative).
-            mana (int): The starting mana of the hero (default: `HERO_STARTING_MANA`, cannot be negative).
+            mana (int): The starting mana of the hero (default: `HERO_STARTING_MANA`, cannot be negative, 10 is the maximum).
             armor (int): The starting armor of the hero (default: `HERO_STARTING_ARMOR`, cannot be negative).
 
         Raises:
@@ -65,6 +66,7 @@ class Hero():
             ValueError: If the provided `hero_power` does not match the expected 
                         power for the given `hero_class` as defined in `HERO_CLASS_TO_POWER`.
             ValueError: If `health`, `mana`, or `armor` is negative.
+            ValueError: If `mana` is greater than 10.
         """
         self.id = id
         self.name = name
@@ -87,6 +89,8 @@ class Hero():
             raise ValueError(f"Invalid health: {health}. Health cannot be negative.")
         if mana < 0:
             raise ValueError(f"Invalid mana: {mana}. Mana cannot be negative.")
+        elif mana > 10:
+            raise ValueError(f"Invalid mana: {mana}. Mana cannot be greater than 10.")
         if armor < 0:
             raise ValueError(f"Invalid armor: {armor}. Armor cannot be negative.")
 

@@ -119,6 +119,22 @@ class TestHero(unittest.TestCase):
                 armor=self.default_armor
             )
 
+    def test_hero_creation_negative_mana_2(self):
+        """
+        Test that a ValueError is raised when mana is negative.
+        """
+        with self.assertRaises(ValueError):
+            Hero(
+                id=self.default_id,
+                name=self.default_name,
+                description=self.default_description,
+                hero_class=self.default_class,
+                hero_power=self.default_power,
+                health=self.default_health,
+                mana=11,  # Invalid mana
+                armor=self.default_armor
+            )
+
     def test_hero_creation_negative_armor(self):
         """
         Test that a ValueError is raised when armor is negative.

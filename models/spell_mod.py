@@ -23,7 +23,7 @@ class Spell(Card):
     Attributes:
         id (int): Unique identifier for the card.
         name (str): Name of the card.
-        cost (int): Mana or resource cost to play the card, cannot be negative.
+        cost (int): Mana or resource cost to play the card, cannot be negative, 10 is the maximum.
         description (str): Textual description of the card's effects or abilities.
         card_type (CardType): The type of the card (should always be `CardType.SPELL` for this class).
         card_rarity (Rarity): The rarity of the card (e.g., Common, Rare, Epic, Legendary).
@@ -48,7 +48,7 @@ class Spell(Card):
         Args:
             id (int): A unique identifier for the spell card.
             name (str): The name of the spell card.
-            cost (int): The mana or resource cost to play this card, cannot be negative.
+            cost (int): The mana or resource cost to play this card, cannot be negative, 10 is the maximum.
             description (str): A description of the spell's effects or abilities.
             card_type (CardType): The type of the card, which must be `CardType.SPELL`.
             card_rarity (Rarity): The rarity of the card, which must be a valid `Rarity` enum.

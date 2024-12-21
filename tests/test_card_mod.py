@@ -88,6 +88,20 @@ class TestCard(unittest.TestCase):
                 card_rarity=self.default_rarity
             )
 
+    def test_card_creation_negative_cost_2(self):
+        """
+        Test that a ValueError is raised when the cost is negative.
+        """
+        with self.assertRaises(ValueError):
+            Card(
+                id=self.default_id,
+                name=self.default_name,
+                cost=11,  # Invalid cost
+                description=self.default_description,
+                card_type=self.default_card_type,
+                card_rarity=self.default_rarity
+            )
+
     def test_card_to_dict(self):
         """
         Test the to_dict method to ensure it returns the correct dictionary representation.
