@@ -2,13 +2,15 @@
 
 # Imports
 import unittest
+import json
+from utils.validation_utils import validate_hero
 
 # Modules Imports
 from models.hero_mod import Hero
-from utils.hero_power import HeroPower
+from enums.hero_power_enum import HeroPower
 
 # Constants Imports
-from utils.constants import HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR
+from utils.constants import HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR, HEROES_DB_PATH
 
 # Enum Imports
 from enums.hero_class_enum import HeroClass
@@ -177,6 +179,17 @@ class TestHero(unittest.TestCase):
         }
         self.assertEqual(hero.to_dict(), expected_dict)
 
+    def test_heroes_json(self):
+        """
+        Test the heroes.json file to ensure that all heroes a correctly define.
+        """
+        with open(HEROES_DB_PATH, "r") as file:
+            heroes_json = json.load(file)
+        
+        for hero_class, heroes in heroes_json.items():
+            for hero_data in heroes:
+                with self.subTest(hero=hero_data["name"]):
+                    self.assertTrue(validate_hero(hero_data))
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,452 @@
+{
+  "DRUID": [
+    {
+      "id": 1,
+      "name": "Malfurion Stormrage",
+      "description": "Nature will rise against you!",
+      "hero_class": "Druid",
+      "hero_power": "Shapeshift",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 2,
+      "name": "Lunara",
+      "description": "Nature will rise against you!",
+      "hero_class": "Druid",
+      "hero_power": "Shapeshift",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 3,
+      "name": "Elise Starseeker",
+      "description": "Nature will rise against you!",
+      "hero_class": "Druid",
+      "hero_power": "Shapeshift",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 4,
+      "name": "Shan'do Malfurion",
+      "description": "Nature will rise against you!",
+      "hero_class": "Druid",
+      "hero_power": "Shapeshift",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 5,
+      "name": "Dame Hazelbark",
+      "description": "Nature will rise against you!",
+      "hero_class": "Druid",
+      "hero_power": "Shapeshift",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ],
+  "HUNTER": [
+    {
+      "id": 6,
+      "name": "Rexxar",
+      "description": "Let the hunt begin!",
+      "hero_class": "Hunter",
+      "hero_power": "Steady Shot",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 7,
+      "name": "Alleria Windrunner",
+      "description": "Let the hunt begin!",
+      "hero_class": "Hunter",
+      "hero_power": "Steady Shot",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 8,
+      "name": "Wanderer Rexxar",
+      "description": "Let the hunt begin!",
+      "hero_class": "Hunter",
+      "hero_power": "Steady Shot",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 9,
+      "name": "Sylvanas Windrunner",
+      "description": "Let the hunt begin!",
+      "hero_class": "Hunter",
+      "hero_power": "Steady Shot",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ],
+  "MAGE": [
+    {
+      "id": 10,
+      "name": "Jaina Proudmoore",
+      "description": "My magic will tear you apart!",
+      "hero_class": "Mage",
+      "hero_power": "Fireblast",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 11,
+      "name": "Medivh",
+      "description": "My magic will tear you apart!",
+      "hero_class": "Mage",
+      "hero_power": "Fireblast",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 12,
+      "name": "Khadgar",
+      "description": "My magic will tear you apart!",
+      "hero_class": "Mage",
+      "hero_power": "Fireblast",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 13,
+      "name": "Fire Mage Jaina",
+      "description": "My magic will tear you apart!",
+      "hero_class": "Mage",
+      "hero_power": "Fireblast",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ],
+  "PALADIN": [
+    {
+      "id": 14,
+      "name": "Uther Lightbrinder",
+      "description": "The Light protects those who wield it.",
+      "hero_class": "Paladin",
+      "hero_power": "Reinforce",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 15,
+      "name": "Lady Liadrin",
+      "description": "The Light protects those who wield it.",
+      "hero_class": "Paladin",
+      "hero_power": "Reinforce",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 16,
+      "name": "Prince Arthas",
+      "description": "The Light protects those who wield it.",
+      "hero_class": "Paladin",
+      "hero_power": "Reinforce",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 17,
+      "name": "Sir Annoy-O",
+      "description": "The Light protects those who wield it.",
+      "hero_class": "Paladin",
+      "hero_power": "Reinforce",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 18,
+      "name": "Lightforged Uther",
+      "description": "The Light protects those who wield it.",
+      "hero_class": "Paladin",
+      "hero_power": "Reinforce",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ],
+  "PRIEST": [
+    {
+      "id": 19,
+      "name": "Anduin Wrynn",
+      "description": "Light smiles upon the just!",
+      "hero_class": "Priest",
+      "hero_power": "Lesser Heal",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 20,
+      "name": "Tyrande Whisperwind",
+      "description": "Light smiles upon the just!",
+      "hero_class": "Priest",
+      "hero_power": "Lesser Heal",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 21,
+      "name": "Madame Lazul",
+      "description": "Light smiles upon the just!",
+      "hero_class": "Priest",
+      "hero_power": "Lesser Heal",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 22,
+      "name": "King Anduin",
+      "description": "Light smiles upon the just!",
+      "hero_class": "Priest",
+      "hero_power": "Lesser Heal",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ],
+  "ROGUE": [
+    {
+      "id": 23,
+      "name": "Valeera Sanguinar",
+      "description": "Watch your back!",
+      "hero_class": "Rogue",
+      "hero_power": "Dagger Mastery",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 24,
+      "name": "Maiev Shadowsong",
+      "description": "Watch your back!",
+      "hero_class": "Rogue",
+      "hero_power": "Dagger Mastery",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 25,
+      "name": "Cap'n Valeera",
+      "description": "Watch your back!",
+      "hero_class": "Rogue",
+      "hero_power": "Dagger Mastery",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ],
+  "SHAMAN": [
+    {
+      "id": 26,
+      "name": "Thrall",
+      "description": "Storm, earth and fire, heed my call!",
+      "hero_class": "Shaman",
+      "hero_power": "Totemic Call",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 27,
+      "name": "Morgl the Oracle",
+      "description": "Storm, earth and fire, heed my call!",
+      "hero_class": "Shaman",
+      "hero_power": "Totemic Call",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 28,
+      "name": "King Rastakhan",
+      "description": "Storm, earth and fire, heed my call!",
+      "hero_class": "Shaman",
+      "hero_power": "Totemic Call",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 29,
+      "name": "The Thunder King",
+      "description": "Storm, earth and fire, heed my call!",
+      "hero_class": "Shaman",
+      "hero_power": "Totemic Call",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 30,
+      "name": "Warchief Thrall",
+      "description": "Storm, earth and fire, heed my call!",
+      "hero_class": "Shaman",
+      "hero_power": "Totemic Call",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ],
+  "WARLOCK": [
+    {
+      "id": 31,
+      "name": "Gul'dan",
+      "description": "I am your nightmare!",
+      "hero_class": "Warlock",
+      "hero_power": "Life Tap",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 32,
+      "name": "Nemsy Necrofizzle",
+      "description": "I am your nightmare!",
+      "hero_class": "Warlock",
+      "hero_power": "Life Tap",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 33,
+      "name": "Mecha-Jaraxxus",
+      "description": "I am your nightmare!",
+      "hero_class": "Warlock",
+      "hero_power": "Life Tap",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 34,
+      "name": "Shadow Gul'dan",
+      "description": "I am your nightmare!",
+      "hero_class": "Warlock",
+      "hero_power": "Life Tap",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ],
+  "WARRIOR": [
+    {
+      "id": 35,
+      "name": "Garrosh Hellscream",
+      "description": "Victory or death!",
+      "hero_class": "Warrior",
+      "hero_power": "Armor Up!",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 36,
+      "name": "Magni Bronzebeard",
+      "description": "Victory or death!",
+      "hero_class": "Warrior",
+      "hero_power": "Armor Up!",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 37,
+      "name": "Corrupt Garrosh",
+      "description": "Victory or death!",
+      "hero_class": "Warrior",
+      "hero_power": "Armor Up!",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 38,
+      "name": "Deathwing",
+      "description": "Victory or death!",
+      "hero_class": "Warrior",
+      "hero_power": "Armor Up!",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ],
+  "DEMON_HUNTER": [
+    {
+      "id": 39,
+      "name": "Illidan Stormrage",
+      "description": "You are not prepared!",
+      "hero_class": "Demon Hunter",
+      "hero_power": "Demon Claws",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 40,
+      "name": "Aranna Starseeker",
+      "description": "You are not prepared!",
+      "hero_class": "Demon Hunter",
+      "hero_power": "Demon Claws",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 41,
+      "name": "Initiate Kurtrus",
+      "description": "You are not prepared!",
+      "hero_class": "Demon Hunter",
+      "hero_power": "Demon Claws",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 42,
+      "name": "Omen",
+      "description": "You are not prepared!",
+      "hero_class": "Demon Hunter",
+      "hero_power": "Demon Claws",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    },
+    {
+      "id": 43,
+      "name": "Halveria Darkraven",
+      "description": "You are not prepared!",
+      "hero_class": "Demon Hunter",
+      "hero_power": "Demon Claws",
+      "health": 30,
+      "mana": 1,
+      "armor": 0
+    }
+  ]
+}
