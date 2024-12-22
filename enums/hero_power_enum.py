@@ -16,7 +16,7 @@ class HeroPower(Enum):
     STEADY_SHOT = "Steady Shot"  # Hunter: Deal 2 damage to enemy hero.
     REINFORCE = "Reinforce"  # Paladin: Summon a 1/1 Silver Hand Recruit.
     LESSER_HEAL = "Lesser Heal"  # Priest: Restore 2 health.
-    DAGGER_MASTER = "Dagger Mastery"  # Rogue: Equip a 1/2 dagger.
+    DAGGER_MASTERY = "Dagger Mastery"  # Rogue: Equip a 1/2 dagger.
     TOTEMIC_CALL = "Totemic Call"  # Shaman: Summon a random totem.
     LIFE_TAP = "Life Tap"  # Warlock: Draw a card and take 2 damage.
     DEMON_CLAWS = "Demon Claws"  # Demon Hunter: Gain 1 attack.
@@ -28,7 +28,7 @@ HERO_CLASS_TO_POWER = {
     HeroClass.HUNTER: HeroPower.STEADY_SHOT,
     HeroClass.PALADIN: HeroPower.REINFORCE,
     HeroClass.PRIEST: HeroPower.LESSER_HEAL,
-    HeroClass.ROGUE: HeroPower.DAGGER_MASTER,
+    HeroClass.ROGUE: HeroPower.DAGGER_MASTERY,
     HeroClass.SHAMAN: HeroPower.TOTEMIC_CALL,
     HeroClass.WARLOCK: HeroPower.LIFE_TAP,
     HeroClass.DEMON_HUNTER: HeroPower.DEMON_CLAWS,
