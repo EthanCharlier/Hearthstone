@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 
 # Imports
+import json
 import unittest
 
 # Modules Imports
 from modules.unit_mod import Unit
+from tests.models.unit_model import create_unit_by_model
+
+# Constants Imports
+from utils.constants import UNITS_DB_PATH
 
 # Enum Imports
 from enums.card_type_enum import CardType
@@ -188,6 +193,24 @@ class TestUnit(unittest.TestCase):
             "effects": self.default_effects,
         }
         self.assertEqual(unit.to_dict(), expected_dict)
+
+    def test_units_json(self):
+        """
+        Test the units.json file to ensure that all units a correctly define.
+        """
+        with open(UNITS_DB_PATH, "r") as file:
+            units_json = json.load(file)
+
+        print(units_json)
+
+        # for hero_class, heroes in heroes_json.items():
+        #     for hero_data in heroes:
+        #         with self.subTest(hero=hero_data["name"]):
+        #             try:
+        #                 hero = create_hero_by_model(hero_data)
+        #                 self.assertIsNotNone(hero)
+        #             except Exception as e:
+        #                 self.fail(f"Hero creation failed for {hero_data['name']} with error: {e}")
 
 
 if __name__ == "__main__":

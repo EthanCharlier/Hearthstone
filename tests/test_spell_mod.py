@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 
 # Imports
+import json
 import unittest
 
 # Modules Imports
 from modules.spell_mod import Spell
+from tests.models.spell_model import create_spell_by_model
+
+# Constants Imports
+from utils.constants import SPELLS_DB_PATH
 
 # Enum Imports
 from enums.card_type_enum import CardType
@@ -117,6 +122,24 @@ class TestSpell(unittest.TestCase):
             "effects": self.default_effects,
         }
         self.assertEqual(spell.to_dict(), expected_dict)
+
+    def test_spells_json(self):
+        """
+        Test the spells.json file to ensure that all spells a correctly define.
+        """
+        with open(SPELLS_DB_PATH, "r") as file:
+            spells_json = json.load(file)
+
+        print(spells_json)
+
+        # for hero_class, heroes in heroes_json.items():
+        #     for hero_data in heroes:
+        #         with self.subTest(hero=hero_data["name"]):
+        #             try:
+        #                 hero = create_hero_by_model(hero_data)
+        #                 self.assertIsNotNone(hero)
+        #             except Exception as e:
+        #                 self.fail(f"Hero creation failed for {hero_data['name']} with error: {e}")
 
 
 if __name__ == "__main__":

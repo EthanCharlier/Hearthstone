@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 # Imports
-import unittest
 import json
+import unittest
 from tests.models.hero_model import create_hero_by_model
 
 # Modules Imports
