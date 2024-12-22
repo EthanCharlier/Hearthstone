@@ -3,8 +3,7 @@
 # Imports
 import unittest
 import json
-
-from tests.models.hero_model import validate_hero
+from tests.models.hero_model import create_hero_by_model
 
 # Modules Imports
 from modules.hero_mod import Hero
@@ -186,25 +185,12 @@ class TestHero(unittest.TestCase):
         """
         with open(HEROES_DB_PATH, "r") as file:
             heroes_json = json.load(file)
-        
-        # for hero_class, heroes in heroes_json.items():
-        #     for hero_data in heroes:
-        #         with self.subTest(hero=hero_data["name"]):
-        #             self.assertTrue(validate_hero(hero_data))
 
         for hero_class, heroes in heroes_json.items():
             for hero_data in heroes:
                 with self.subTest(hero=hero_data["name"]):
                     try:
-                        hero = Hero(
-                            id = hero_data["id"],
-                            name = hero_data["name"],
-                            description = hero_data["description"],
-                            hero_class = HeroClass[hero_data["hero_class"]],
-                            hero_power = HeroPower[hero_data["hero_power"]],
-                            health = hero_data["health"],
-                            mana = hero_data["mana"],
-                            armor = hero_data["armor"])
+                        hero = create_hero_by_model(hero_data)
                         self.assertIsNotNone(hero)
                     except Exception as e:
                         self.fail(f"Hero creation failed for {hero_data['name']} with error: {e}")

@@ -10,18 +10,15 @@ from enums.hero_class_enum import HeroClass
 from enums.hero_power_enum import HeroPower
 
 # Script
-def validate_hero(data: dict) -> bool:
-    try:
-        Hero(
-            id=int(data["id"]),
-            name=str(data["name"]),
-            description=str(data["description"]),
-            hero_class=HeroClass["MAGE"],
-            hero_power=HeroPower["FIREBLAST"],
-            health=int(data["health"]),
-            mana=int(data["mana"]),
-            armor=int(data["armor"])
-        )
-        return True
-    except (KeyError, ValueError, TypeError):
-        return False
+def create_hero_by_model(data: dict) -> bool:
+    hero = Hero(
+            id = data["id"],
+            name = data["name"],
+            description = data["description"],
+            hero_class = HeroClass[data["hero_class"]],
+            hero_power = HeroPower[data["hero_power"]],
+            health = data["health"],
+            mana = data["mana"],
+            armor = data["armor"]
+            )
+    return hero
