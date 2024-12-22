@@ -4,7 +4,7 @@
 import unittest
 
 # Modules Imports
-from models.unit_mod import Unit
+from modules.unit_mod import Unit
 
 # Enum Imports
 from enums.card_type_enum import CardType

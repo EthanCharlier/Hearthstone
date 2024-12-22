@@ -4,7 +4,7 @@
 import unittest
 
 # Modules Imports
-from models.spell_mod import Spell
+from modules.spell_mod import Spell
 
 # Enum Imports
 from enums.card_type_enum import CardType

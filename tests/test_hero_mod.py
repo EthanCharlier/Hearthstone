@@ -3,10 +3,10 @@
 # Imports
 import unittest
 import json
-from utils.validation_utils import validate_hero
+from tests.models.hero_model import validate_hero
 
 # Modules Imports
-from models.hero_mod import Hero
+from modules.hero_mod import Hero
 from enums.hero_power_enum import HeroPower
 
 # Constants Imports

@@ -3,7 +3,7 @@
 # Imports
 
 # Modules Imports
-from models.hero_mod import Hero
+from modules.hero_mod import Hero
 
 # Enum Imports
 from enums.hero_class_enum import HeroClass

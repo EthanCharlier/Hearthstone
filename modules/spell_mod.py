@@ -6,7 +6,7 @@
 from utils.constants import DATABASE_PATH
 
 # Modules Imports
-from models.card_mod import Card
+from modules.card_mod import Card
 from utils.database_utils import Database
 
 # Enum Imports
