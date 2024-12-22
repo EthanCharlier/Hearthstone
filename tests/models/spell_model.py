@@ -6,6 +6,7 @@
 from modules.spell_mod import Spell
 
 # Enum Imports
+from enums.card_class_enum import CardClass
 from enums.card_type_enum import CardType
 from enums.rarity_enum import Rarity
 
@@ -16,6 +17,7 @@ def create_spell_by_model(data: dict) -> Spell:
         name = data["name"],
         cost = data["cost"],
         description = data["description"],
+        card_class = CardClass[data["card_class"]],
         card_type = CardType[data["card_type"]],
         card_rarity = Rarity[data["card_rarity"]],
         effects = data["effects"]

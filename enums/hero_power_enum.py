@@ -4,7 +4,7 @@
 from enum import Enum
 
 # Enum Imports
-from enums.hero_class_enum import HeroClass
+from enums.card_class_enum import CardClass
 
 # Class
 class HeroPower(Enum):
@@ -22,14 +22,14 @@ class HeroPower(Enum):
     DEMON_CLAWS = "Demon Claws"  # Demon Hunter: Gain 1 attack.
 
 HERO_CLASS_TO_POWER = {
-    HeroClass.MAGE: HeroPower.FIREBLAST,
-    HeroClass.WARRIOR: HeroPower.ARMOR_UP,
-    HeroClass.DRUID: HeroPower.SHAPESHIFT,
-    HeroClass.HUNTER: HeroPower.STEADY_SHOT,
-    HeroClass.PALADIN: HeroPower.REINFORCE,
-    HeroClass.PRIEST: HeroPower.LESSER_HEAL,
-    HeroClass.ROGUE: HeroPower.DAGGER_MASTERY,
-    HeroClass.SHAMAN: HeroPower.TOTEMIC_CALL,
-    HeroClass.WARLOCK: HeroPower.LIFE_TAP,
-    HeroClass.DEMON_HUNTER: HeroPower.DEMON_CLAWS,
+    CardClass.MAGE: HeroPower.FIREBLAST,
+    CardClass.WARRIOR: HeroPower.ARMOR_UP,
+    CardClass.DRUID: HeroPower.SHAPESHIFT,
+    CardClass.HUNTER: HeroPower.STEADY_SHOT,
+    CardClass.PALADIN: HeroPower.REINFORCE,
+    CardClass.PRIEST: HeroPower.LESSER_HEAL,
+    CardClass.ROGUE: HeroPower.DAGGER_MASTERY,
+    CardClass.SHAMAN: HeroPower.TOTEMIC_CALL,
+    CardClass.WARLOCK: HeroPower.LIFE_TAP,
+    CardClass.DEMON_HUNTER: HeroPower.DEMON_CLAWS,
 }

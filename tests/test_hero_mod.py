@@ -12,7 +12,7 @@ from modules.hero_mod import Hero
 from utils.constants import HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR, HEROES_DB_PATH
 
 # Enum Imports
-from enums.hero_class_enum import HeroClass
+from enums.card_class_enum import CardClass
 from enums.hero_power_enum import HeroPower
 
 # Class
@@ -28,7 +28,7 @@ class TestHero(unittest.TestCase):
         self.default_id = 1
         self.default_name = "Jaina Proudmoore"
         self.default_description = "A powerful sorceress and master of the arcane arts."
-        self.default_class = HeroClass.MAGE
+        self.default_class = CardClass.MAGE
         self.default_power = HeroPower.FIREBLAST
         self.default_health = HERO_STARTING_HEALTH
         self.default_mana = HERO_STARTING_MANA
@@ -82,7 +82,7 @@ class TestHero(unittest.TestCase):
                 id=self.default_id,
                 name=self.default_name,
                 description=self.default_description,
-                hero_class=HeroClass.MAGE,
+                hero_class=CardClass.MAGE,
                 hero_power=HeroPower.ARMOR_UP,  # Invalid power for Mage
                 health=self.default_health,
                 mana=self.default_mana,

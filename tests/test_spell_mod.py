@@ -12,6 +12,7 @@ from tests.models.spell_model import create_spell_by_model
 from utils.constants import SPELLS_DB_PATH
 
 # Enum Imports
+from enums.card_class_enum import CardClass
 from enums.card_type_enum import CardType
 from enums.rarity_enum import Rarity
 
@@ -29,6 +30,7 @@ class TestSpell(unittest.TestCase):
         self.default_name = "Fireball"
         self.default_cost = 4
         self.default_description = "Deal 6 damage."
+        self.default_card_class = CardClass.MAGE
         self.default_card_type = CardType.SPELL
         self.default_rarity = Rarity.COMMON
         self.default_effects = ["Deal 6 damage"]
@@ -42,6 +44,7 @@ class TestSpell(unittest.TestCase):
             name=self.default_name,
             cost=self.default_cost,
             description=self.default_description,
+            card_class=self.default_card_class,
             card_type=self.default_card_type,
             card_rarity=self.default_rarity,
             effects=self.default_effects
@@ -50,9 +53,26 @@ class TestSpell(unittest.TestCase):
         self.assertEqual(spell.name, self.default_name)
         self.assertEqual(spell.cost, self.default_cost)
         self.assertEqual(spell.description, self.default_description)
+        self.assertEqual(spell.card_class, self.default_card_class)
         self.assertEqual(spell.card_type, self.default_card_type)
         self.assertEqual(spell.card_rarity, self.default_rarity)
         self.assertEqual(spell.effects, self.default_effects)
+
+    def test_spell_creation_invalid_class(self):
+        """
+        Test that a ValueError is raised when an invalid card class is provided.
+        """
+        with self.assertRaises(ValueError):
+            Spell(
+                id=self.default_id,
+                name=self.default_name,
+                cost=self.default_cost,
+                description=self.default_description,
+                card_class="InvalidClass",  # Invalid card class
+                card_type=self.default_card_type,
+                card_rarity=self.default_rarity,
+                effects=self.default_effects
+            )
 
     def test_spell_creation_invalid_card_type(self):
         """
@@ -64,6 +84,7 @@ class TestSpell(unittest.TestCase):
                 name=self.default_name,
                 cost=self.default_cost,
                 description=self.default_description,
+                card_class=self.default_card_class,
                 card_type=CardType.UNIT,  # Invalid card type
                 card_rarity=self.default_rarity,
                 effects=self.default_effects
@@ -79,14 +100,15 @@ class TestSpell(unittest.TestCase):
                 name=self.default_name,
                 cost=-1,  # Invalid cost
                 description=self.default_description,
+                card_class=self.default_card_class,
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 effects=self.default_effects
             )
 
-    def test_spell_creation_negative_cost_2(self):
+    def test_spell_creation_cost_too_high(self):
         """
-        Test that a ValueError is raised when the cost is negative.
+        Test that a ValueError is raised when the cost is greater than 10.
         """
         with self.assertRaises(ValueError):
             Spell(
@@ -94,6 +116,7 @@ class TestSpell(unittest.TestCase):
                 name=self.default_name,
                 cost=11,  # Invalid cost
                 description=self.default_description,
+                card_class=self.default_card_class,
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 effects=self.default_effects
@@ -108,6 +131,7 @@ class TestSpell(unittest.TestCase):
             name=self.default_name,
             cost=self.default_cost,
             description=self.default_description,
+            card_class=self.default_card_class,
             card_type=self.default_card_type,
             card_rarity=self.default_rarity,
             effects=self.default_effects
@@ -117,6 +141,7 @@ class TestSpell(unittest.TestCase):
             "name": self.default_name,
             "cost": self.default_cost,
             "description": self.default_description,
+            "card_class": self.default_card_class.value,
             "card_type": self.default_card_type.value,
             "card_rarity": self.default_rarity.value,
             "effects": self.default_effects,
@@ -125,7 +150,7 @@ class TestSpell(unittest.TestCase):
 
     def test_spells_json(self):
         """
-        Test the spells.json file to ensure that all spells a correctly define.
+        Test the spells.json file to ensure that all spells are correctly defined.
         """
         with open(SPELLS_DB_PATH, "r") as file:
             spells_json = json.load(file)

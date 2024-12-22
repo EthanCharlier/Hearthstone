@@ -4,7 +4,7 @@
 from enum import Enum
 
 # Class
-class HeroClass(Enum):
+class CardClass(Enum):
     """
     """
     DRUID = "Druid"
@@ -17,3 +17,4 @@ class HeroClass(Enum):
     WARLOCK = "Warlock"
     WARRIOR = "Warrior"
     DEMON_HUNTER = "Demon Hunter"
+    NEUTRAL = "Neutral"
