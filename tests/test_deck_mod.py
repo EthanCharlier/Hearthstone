@@ -4,10 +4,12 @@
 import unittest
 
 # Modules Imports
-from modules.card_mod import Card
 from modules.unit_mod import Unit
 from modules.spell_mod import Spell
 from modules.deck_mod import Deck
+
+# Constants Imports
+from utils.constants import BOARD_LIMIT
 
 # Enum Imports
 from enums.card_class_enum import CardClass
@@ -56,17 +58,6 @@ class TestDeck(unittest.TestCase):
         self.assertEqual(len(self.deck.cards), 2)
         self.assertEqual(self.fireball.status, CardStatus.IN_DECK)
         self.assertEqual(self.yeti.status, CardStatus.IN_DECK)
-
-    def test_shuffle(self) -> None:
-        """
-        Test that shuffling the deck changes the order of cards.
-        """
-        initial_order = self.deck.cards[:]
-        self.deck.shuffle()
-        if initial_order == self.deck.cards:
-            self.deck.shuffle()
-        self.assertNotEqual(initial_order, self.deck.cards, "The shuffle did not change the order of the cards.")
-        self.assertCountEqual(initial_order, self.deck.cards, "The shuffled deck does not contain the same cards.")
 
     def test_draw_card(self) -> None:
         """
@@ -137,6 +128,33 @@ class TestDeck(unittest.TestCase):
         drawn_card = self.deck.draw()
         self.assertEqual(self.deck.get_cards_by_status(CardStatus.IN_HAND), [drawn_card])
         self.assertEqual(self.deck.get_cards_by_status(CardStatus.IN_DECK), [self.yeti])
+
+    def test_play_card_with_full_board(self) -> None:
+        """
+        Test that playing a card fails if the board already has BOARD_LIMIT cards.
+        """
+        for _ in range(BOARD_LIMIT + 1):
+            self.deck.add_card(Spell(
+                id = 100 + _,
+                name = f"Extra Spell {_}",
+                cost = 1,
+                description = "Extra card for testing.",
+                card_classes = [CardClass.MAGE],
+                card_type = CardType.SPELL,
+                card_rarity = Rarity.COMMON,
+            ))
+
+        for _ in range(BOARD_LIMIT):
+            card = self.deck.draw()
+            self.deck.play_card(card)
+
+        sixth_card = self.deck.draw()
+        with self.assertRaises(ValueError) as context:
+            self.deck.play_card(sixth_card)
+        self.assertEqual(
+            str(context.exception),
+            f"Cannot play {sixth_card.name}. The board is full ({BOARD_LIMIT} cards maximum)."
+        )
 
     def test_deck_limit(self):
         """

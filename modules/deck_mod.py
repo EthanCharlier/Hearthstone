@@ -6,6 +6,9 @@ import random
 # Modules Imports
 from modules.card_mod import Card
 
+# Constants Imports
+from utils.constants import HAND_LIMIT, BOARD_LIMIT
+
 # Enum Imports
 from enums.card_status_enum import CardStatus
 
@@ -20,7 +23,7 @@ class Deck:
         graveyard (list[Card]): Cards that have been played or destroyed.
     """
 
-    def __init__(self, cards: list[Card], hand: list[Card] = None, graveyard: list[Card] = None) -> None:
+    def __init__(self, cards: list[Card], hand: list[Card] = None, board: list[Card] = None, graveyard: list[Card] = None) -> None:
         """
         Initialize the Deck.
 
@@ -35,6 +38,7 @@ class Deck:
             raise ValueError("A deck cannot contain more than 30 cards.")
         self.cards = cards
         self.hand = hand or []
+        self.board = hand or []
         self.graveyard = graveyard or []
 
         for card in self.cards:
@@ -61,6 +65,8 @@ class Deck:
         """
         if not self.cards:
             raise ValueError("Cannot draw from an empty deck.")
+        if len(self.hand) >= HAND_LIMIT:
+             raise ValueError(f"Hand limit reached.")
         card = self.cards.pop(0)
         card.status = CardStatus.IN_HAND
         self.hand.append(card)
@@ -76,10 +82,13 @@ class Deck:
         Raises:
             ValueError: If the card is not in the player's hand.
         """
+        if len(self.board) >= BOARD_LIMIT:
+            raise ValueError(f"Cannot play {card.name}. The board is full ({BOARD_LIMIT} cards maximum).")
         if card.status != CardStatus.IN_HAND:
             raise ValueError("The card must be in hand to be played.")
         card.status = CardStatus.ON_BOARD
         self.hand.remove(card)
+        self.board.append(card)
 
     def move_to_graveyard(self, card: Card) -> None:
         """
