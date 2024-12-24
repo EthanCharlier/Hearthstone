@@ -232,17 +232,14 @@ class TestUnit(unittest.TestCase):
         with open(UNITS_DB_PATH, "r") as file:
             units_json = json.load(file)
 
-        print(units_json)
-
-        # for hero_class, heroes in heroes_json.items():
-        #     for hero_data in heroes:
-        #         with self.subTest(hero=hero_data["name"]):
-        #             try:
-        #                 hero = create_hero_by_model(hero_data)
-        #                 self.assertIsNotNone(hero)
-        #             except Exception as e:
-        #                 self.fail(f"Hero creation failed for {hero_data['name']} with error: {e}")
-
+        for unit_class, units in units_json.items():
+            for unit_data in units:
+                with self.subTest(unit=unit_data["name"]):
+                    try:
+                        unit = create_unit_by_model(unit_data)
+                        self.assertIsNotNone(unit)
+                    except Exception as e:
+                        self.fail(f"Unit creation failed for {unit_data['name']} with error: {e}")
 
 if __name__ == "__main__":
     unittest.main()

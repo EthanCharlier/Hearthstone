@@ -155,17 +155,14 @@ class TestSpell(unittest.TestCase):
         with open(SPELLS_DB_PATH, "r") as file:
             spells_json = json.load(file)
 
-        print(spells_json)
-
-        # for hero_class, heroes in heroes_json.items():
-        #     for hero_data in heroes:
-        #         with self.subTest(hero=hero_data["name"]):
-        #             try:
-        #                 hero = create_hero_by_model(hero_data)
-        #                 self.assertIsNotNone(hero)
-        #             except Exception as e:
-        #                 self.fail(f"Hero creation failed for {hero_data['name']} with error: {e}")
-
+        for spell_class, spells in spells_json.items():
+            for spell_data in spells:
+                with self.subTest(spell=spell_data["name"]):
+                    try:
+                        spell = create_spell_by_model(spell_data)
+                        self.assertIsNotNone(spell)
+                    except Exception as e:
+                        self.fail(f"Spell creation failed for {spell_data['name']} with error: {e}")
 
 if __name__ == "__main__":
     unittest.main()
