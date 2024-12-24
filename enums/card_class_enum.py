@@ -17,4 +17,5 @@ class CardClass(Enum):
     WARLOCK = "Warlock"
     WARRIOR = "Warrior"
     DEMON_HUNTER = "Demon Hunter"
+    DEATH_KNIGHT = "Death Knight"
     NEUTRAL = "Neutral"
