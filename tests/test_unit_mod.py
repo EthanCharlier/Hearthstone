@@ -16,6 +16,7 @@ from enums.card_class_enum import CardClass
 from enums.card_type_enum import CardType
 from enums.rarity_enum import Rarity
 from enums.race_enum import Race
+from enums.card_status_enum import CardStatus
 
 # Class
 class TestUnit(unittest.TestCase):
@@ -35,6 +36,7 @@ class TestUnit(unittest.TestCase):
         self.default_card_type = CardType.UNIT
         self.default_rarity = Rarity.COMMON
         self.default_race = Race.ALL
+        self.default_status = CardStatus.IN_DECK
         self.default_attack = 4
         self.default_health = 5
         self.default_armor = 0
@@ -45,18 +47,19 @@ class TestUnit(unittest.TestCase):
         Test that a Unit can be successfully created with valid attributes.
         """
         unit = Unit(
-            id=self.default_id,
-            name=self.default_name,
-            cost=self.default_cost,
-            description=self.default_description,
-            card_classes=self.default_card_classes,
-            card_type=self.default_card_type,
-            card_rarity=self.default_rarity,
-            unit_race=self.default_race,
-            attack=self.default_attack,
-            health=self.default_health,
-            armor=self.default_armor,
-            effects=self.default_effects
+            id = self.default_id,
+            name = self.default_name,
+            cost = self.default_cost,
+            description = self.default_description,
+            card_classes = self.default_card_classes,
+            card_type = self.default_card_type,
+            card_rarity = self.default_rarity,
+            unit_race = self.default_race,
+            status = self.default_status,
+            attack = self.default_attack,
+            health = self.default_health,
+            armor = self.default_armor,
+            effects = self.default_effects
         )
         self.assertEqual(unit.id, self.default_id)
         self.assertEqual(unit.name, self.default_name)
@@ -66,10 +69,32 @@ class TestUnit(unittest.TestCase):
         self.assertEqual(unit.card_type, self.default_card_type)
         self.assertEqual(unit.card_rarity, self.default_rarity)
         self.assertEqual(unit.unit_race, self.default_race)
+        self.assertEqual(unit.status, self.default_status)
         self.assertEqual(unit.attack, self.default_attack)
         self.assertEqual(unit.health, self.default_health)
         self.assertEqual(unit.armor, self.default_armor)
         self.assertEqual(unit.effects, self.default_effects)
+
+    def test_unit_creation_invalid_status(self) -> None:
+        """
+        Test that a ValueError is raised when invalid card classes are provided.
+        """
+        with self.assertRaises(ValueError):
+            Unit(
+                id = self.default_id,
+                name = self.default_name,
+                cost = self.default_cost,
+                description = self.default_description,
+                card_classes = self.default_card_classes,
+                card_type = self.default_card_type,
+                card_rarity = self.default_rarity,
+                unit_race = self.default_race,
+                status = "InvalidStatus",  # Invalid status
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor,
+                effects = self.default_effects
+            )
 
     def test_unit_creation_invalid_classes(self) -> None:
         """
@@ -77,18 +102,19 @@ class TestUnit(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             Unit(
-                id=self.default_id,
-                name=self.default_name,
-                cost=self.default_cost,
-                description=self.default_description,
-                card_classes=["InvalidClass"],  # Invalid card class
-                card_type=self.default_card_type,
-                card_rarity=self.default_rarity,
-                unit_race=self.default_race,
-                attack=self.default_attack,
-                health=self.default_health,
-                armor=self.default_armor,
-                effects=self.default_effects
+                id = self.default_id,
+                name = self.default_name,
+                cost = self.default_cost,
+                description = self.default_description,
+                card_classes = ["InvalidClass"],  # Invalid card class
+                card_type = self.default_card_type,
+                card_rarity = self.default_rarity,
+                unit_race = self.default_race,
+                status = self.default_status,
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor,
+                effects = self.default_effects
             )
 
     def test_unit_creation_invalid_card_type(self) -> None:
@@ -97,18 +123,19 @@ class TestUnit(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             Unit(
-                id=self.default_id,
-                name=self.default_name,
-                cost=self.default_cost,
-                description=self.default_description,
-                card_classes=self.default_card_classes,
-                card_type=CardType.SPELL,  # Invalid card type
-                card_rarity=self.default_rarity,
-                unit_race=self.default_race,
-                attack=self.default_attack,
-                health=self.default_health,
-                armor=self.default_armor,
-                effects=self.default_effects
+                id = self.default_id,
+                name = self.default_name,
+                cost = self.default_cost,
+                description = self.default_description,
+                card_classes = self.default_card_classes,
+                card_type = CardType.SPELL,  # Invalid card type
+                card_rarity = self.default_rarity,
+                unit_race = self.default_race,
+                status = self.default_status,
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor,
+                effects = self.default_effects
             )
 
     def test_unit_creation_invalid_race(self) -> None:
@@ -117,18 +144,19 @@ class TestUnit(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             Unit(
-                id=self.default_id,
-                name=self.default_name,
-                cost=self.default_cost,
-                description=self.default_description,
-                card_classes=self.default_card_classes,
-                card_type=self.default_card_type,
-                card_rarity=self.default_rarity,
-                unit_race="InvalidRace",  # Invalid race
-                attack=self.default_attack,
-                health=self.default_health,
-                armor=self.default_armor,
-                effects=self.default_effects
+                id = self.default_id,
+                name = self.default_name,
+                cost = self.default_cost,
+                description = self.default_description,
+                card_classes = self.default_card_classes,
+                card_type = self.default_card_type,
+                card_rarity = self.default_rarity,
+                unit_race = "InvalidRace",  # Invalid race
+                status = self.default_status,
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor,
+                effects = self.default_effects
             )
 
     def test_unit_creation_negative_attack(self) -> None:
@@ -137,18 +165,19 @@ class TestUnit(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             Unit(
-                id=self.default_id,
-                name=self.default_name,
-                cost=self.default_cost,
-                description=self.default_description,
-                card_classes=self.default_card_classes,
-                card_type=self.default_card_type,
-                card_rarity=self.default_rarity,
-                unit_race=self.default_race,
-                attack=-1,  # Invalid attack
-                health=self.default_health,
-                armor=self.default_armor,
-                effects=self.default_effects
+                id = self.default_id,
+                name = self.default_name,
+                cost = self.default_cost,
+                description = self.default_description,
+                card_classes = self.default_card_classes,
+                card_type = self.default_card_type,
+                card_rarity = self.default_rarity,
+                unit_race = self.default_race,
+                status = self.default_status,
+                attack = -1,  # Invalid attack
+                health = self.default_health,
+                armor = self.default_armor,
+                effects = self.default_effects
             )
 
     def test_unit_creation_negative_health(self) -> None:
@@ -157,18 +186,19 @@ class TestUnit(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             Unit(
-                id=self.default_id,
-                name=self.default_name,
-                cost=self.default_cost,
-                description=self.default_description,
-                card_classes=self.default_card_classes,
-                card_type=self.default_card_type,
-                card_rarity=self.default_rarity,
-                unit_race=self.default_race,
-                attack=self.default_attack,
-                health=-1,  # Invalid health
-                armor=self.default_armor,
-                effects=self.default_effects
+                id = self.default_id,
+                name = self.default_name,
+                cost = self.default_cost,
+                description = self.default_description,
+                card_classes = self.default_card_classes,
+                card_type = self.default_card_type,
+                card_rarity = self.default_rarity,
+                unit_race = self.default_race,
+                status = self.default_status,
+                attack = self.default_attack,
+                health = -1,  # Invalid health
+                armor = self.default_armor,
+                effects = self.default_effects
             )
 
     def test_unit_creation_negative_armor(self) -> None:
@@ -177,18 +207,19 @@ class TestUnit(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             Unit(
-                id=self.default_id,
-                name=self.default_name,
-                cost=self.default_cost,
-                description=self.default_description,
-                card_classes=self.default_card_classes,
-                card_type=self.default_card_type,
-                card_rarity=self.default_rarity,
-                unit_race=self.default_race,
-                attack=self.default_attack,
-                health=self.default_health,
-                armor=-5,  # Invalid armor
-                effects=self.default_effects
+                id = self.default_id,
+                name = self.default_name,
+                cost = self.default_cost,
+                description = self.default_description,
+                card_classes = self.default_card_classes,
+                card_type = self.default_card_type,
+                card_rarity = self.default_rarity,
+                unit_race = self.default_race,
+                status = self.default_status,
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = -5,  # Invalid armor
+                effects = self.default_effects
             )
 
     def test_unit_to_dict(self) -> None:
@@ -196,18 +227,19 @@ class TestUnit(unittest.TestCase):
         Test the to_dict method to ensure it returns the correct dictionary representation.
         """
         unit = Unit(
-            id=self.default_id,
-            name=self.default_name,
-            cost=self.default_cost,
-            description=self.default_description,
-            card_classes=self.default_card_classes,
-            card_type=self.default_card_type,
-            card_rarity=self.default_rarity,
-            unit_race=self.default_race,
-            attack=self.default_attack,
-            health=self.default_health,
-            armor=self.default_armor,
-            effects=self.default_effects
+            id = self.default_id,
+            name = self.default_name,
+            cost = self.default_cost,
+            description = self.default_description,
+            card_classes = self.default_card_classes,
+            card_type = self.default_card_type,
+            card_rarity = self.default_rarity,
+            unit_race = self.default_race,
+            status = self.default_status,
+            attack = self.default_attack,
+            health = self.default_health,
+            armor = self.default_armor,
+            effects = self.default_effects
         )
         expected_dict = {
             "id": self.default_id,
@@ -218,6 +250,7 @@ class TestUnit(unittest.TestCase):
             "card_type": self.default_card_type.value,
             "card_rarity": self.default_rarity.value,
             "unit_race": self.default_race.value,
+            "status": self.default_status.value,
             "attack": self.default_attack,
             "health": self.default_health,
             "armor": self.default_armor,
@@ -234,7 +267,7 @@ class TestUnit(unittest.TestCase):
 
         for unit_class, units in units_json.items():
             for unit_data in units:
-                with self.subTest(unit=unit_data["name"]):
+                with self.subTest(unit = unit_data["name"]):
                     try:
                         unit = create_unit_by_model(unit_data)
                         self.assertIsNotNone(unit)

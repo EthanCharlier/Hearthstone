@@ -13,6 +13,7 @@ from utils.database_utils import Database
 from enums.card_class_enum import CardClass
 from enums.card_type_enum import CardType
 from enums.rarity_enum import Rarity
+from enums.card_status_enum import CardStatus
 
 # Class
 class Spell(Card):
@@ -29,6 +30,7 @@ class Spell(Card):
         card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
         card_type (CardType): The type of the card (should always be `CardType.SPELL` for this class).
         card_rarity (Rarity): The rarity of the card (e.g., Common, Rare, Epic, Legendary).
+        status (CardStatus): The current status of the card (e.g., IN_DECK, IN_HAND).
         effects (list): A list of effects or abilities that the spell performs (default: empty list).
 
     Raises:
@@ -43,6 +45,7 @@ class Spell(Card):
                 card_classes: list[CardClass], 
                 card_type: CardType, 
                 card_rarity: Rarity, 
+                status: CardStatus = CardStatus.IN_DECK, 
                 effects: list = []
                 ) -> None:
         """
@@ -56,12 +59,13 @@ class Spell(Card):
             card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
             card_type (CardType): The type of the card, which must be `CardType.SPELL`.
             card_rarity (Rarity): The rarity of the card, which must be a valid `Rarity` enum.
+            status (CardStatus): The current status of the card (e.g., IN_DECK, IN_HAND).
             effects (list): A list of special effects or abilities the spell performs (default: empty list).
 
         Raises:
             ValueError: If `card_type` is not `CardType.SPELL`.
         """
-        super().__init__(id, name, cost, description, card_classes, card_type, card_rarity)
+        super().__init__(id, name, cost, description, card_classes, card_type, card_rarity, status)
 
         if not isinstance(card_type, CardType) or card_type != CardType.SPELL:
             raise ValueError(f"Invalid card type: {card_type}. Must be CardType.SPELL.")
@@ -91,6 +95,7 @@ class Spell(Card):
                   - Card classes
                   - Card type
                   - Card rarity
+                  - Status
                   - Effects
         """
         return {
@@ -101,5 +106,6 @@ class Spell(Card):
             "card_classes": [cls.value for cls in self.card_classes],
             "card_type": self.card_type.value,
             "card_rarity": self.card_rarity.value,
+            "status": self.status.value,
             "effects": self.effects,
         }

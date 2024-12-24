@@ -14,6 +14,7 @@ from enums.card_class_enum import CardClass
 from enums.card_type_enum import CardType
 from enums.rarity_enum import Rarity
 from enums.race_enum import Race
+from enums.card_status_enum import CardStatus
 
 # Class
 class Unit(Card):
@@ -30,7 +31,8 @@ class Unit(Card):
         card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
         card_type (CardType): The type of the card (should always be `CardType.UNIT` for this class).
         card_rarity (Rarity): The rarity of the card (e.g., Common, Rare, Epic, Legendary).
-        unit_race (Race): The race or category of the unit (e.g., Beast, Dragon).
+        unit_race (Race): The race of the unit, which must be a valid `Race` enum.
+            status (CardStatus): The current status of the card (e.g., IN_DECK, IN_HAND).
         attack (int): The attack value of the unit (default: 0, cannot be negative).
         health (int): The health value of the unit (default: 0, cannot be negative).
         armor (int): The armor value of the unit (default: 0, cannot be negative).
@@ -51,10 +53,11 @@ class Unit(Card):
                 card_type: CardType, 
                 card_rarity: Rarity, 
                 unit_race: Race, 
+                status: CardStatus = CardStatus.IN_DECK, 
                 attack: int = 0, 
                 health: int = 0, 
                 armor: int = 0, 
-                effects: list = []
+                effects: list = [],
                 ) -> None:
         """
         Initializes a Unit card with its attributes.
@@ -68,6 +71,7 @@ class Unit(Card):
             card_type (CardType): The type of the card, which must be `CardType.UNIT`.
             card_rarity (Rarity): The rarity of the card, which must be a valid `Rarity` enum.
             unit_race (Race): The race of the unit, which must be a valid `Race` enum.
+            status (CardStatus): The current status of the card (e.g., IN_DECK, IN_HAND).
             attack (int): The attack value of the unit (default: 0, cannot be negative).
             health (int): The health value of the unit (default: 0, cannot be negative).
             armor (int): The armor value of the unit (default: 0, cannot be negative).
@@ -78,7 +82,7 @@ class Unit(Card):
             ValueError: If `unit_race` is not an instance of `Race`.
             ValueError: If `attack`, `health`, or `armor` is negative.
         """
-        super().__init__(id, name, cost, description, card_classes, card_type, card_rarity)
+        super().__init__(id, name, cost, description, card_classes, card_type, card_rarity, status)
 
         if not isinstance(card_type, CardType) or card_type != CardType.UNIT:
             raise ValueError(f"Invalid card type: {card_type}. Must be CardType.UNIT.")
@@ -122,6 +126,7 @@ class Unit(Card):
                   - Card classes
                   - Card type
                   - Card rarity
+                  - Status
                   - Unit race
                   - Attack
                   - Health
@@ -136,6 +141,7 @@ class Unit(Card):
             "card_classes": [cls.value for cls in self.card_classes],
             "card_type": self.card_type.value,
             "card_rarity": self.card_rarity.value,
+            "status": self.status.value,
             "unit_race": self.unit_race.value,
             "attack": self.attack,
             "health": self.health,

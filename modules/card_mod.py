@@ -4,6 +4,7 @@
 from enums.card_class_enum import CardClass
 from enums.card_type_enum import CardType
 from enums.rarity_enum import Rarity
+from enums.card_status_enum import CardStatus
 
 # Class
 class Card():
@@ -19,11 +20,13 @@ class Card():
         card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
         card_type (CardType): The type of the card (e.g., Unit, Spell).
         card_rarity (Rarity): The rarity of the card (e.g., Common, Rare, Epic, Legendary).
+        status (CardStatus): The status of the card (e.g, in_deck, in_hand, on_board, in_graveyard)
 
     Raises:
         ValueError: If `card_class` is not an instance of `CardClass`.
         ValueError: If `card_type` is not an instance of `CardType`.
         ValueError: If `card_rarity` is not an instance of `Rarity`.
+        ValueError: If `status` is not an instance of `CardStatus`.
         ValueError: If `cost` is negative.
         ValueError: If `cost` is greater than 10.
     """
@@ -35,7 +38,8 @@ class Card():
                 description: str, 
                 card_classes: list[CardClass], 
                 card_type: CardType, 
-                card_rarity: Rarity
+                card_rarity: Rarity,
+                status: CardStatus = CardStatus.IN_DECK
                 ) -> None:
         """
         Initializes a Card object with its attributes.
@@ -48,11 +52,13 @@ class Card():
             card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
             card_type (CardType): The type of the card, which should be one of the options defined in the CardType enum.
             card_rarity (Rarity): The rarity of the card, which should be one of the options defined in the Rarity enum.
+            status (CardStatus): The status of the card which should be one of the options defined in the CardStatus enum.
 
         Raises:
             ValueError: If `card_classes` is not all elements in are instance of `CardClass`.
             ValueError: If `card_type` is not an instance of `CardType`.
             ValueError: If `card_rarity` is not an instance of `Rarity`.
+            ValueError: If `status` is not an instance of `CardStatus`.
             ValueError: If `cost` is negative.
             ValueError: If `cost` is greater than 10.
         """
@@ -78,6 +84,10 @@ class Card():
         if not isinstance(card_rarity, Rarity):
             raise ValueError(f"Invalid rarity: {card_rarity}. Must be a Rarity enum.")
         self.card_rarity = card_rarity
+        
+        if not isinstance(status, CardStatus):
+            raise ValueError(f"Invalid status: {status}. Must be a CardStatus enum.")
+        self.status = status
 
     def to_dict(self) -> dict:
         """
@@ -92,6 +102,7 @@ class Card():
                   - Card classes
                   - Card type
                   - Card rarity
+                  - Status
         """
         return {
             "id": self.id,
@@ -101,4 +112,5 @@ class Card():
             "card_classes": [cls.value for cls in self.card_classes],
             "card_type": self.card_type.value,
             "card_rarity": self.card_rarity.value,
+            "status": self.status.value,
         }
