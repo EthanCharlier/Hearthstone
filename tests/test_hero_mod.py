@@ -9,7 +9,7 @@ from tests.models.hero_model import create_hero_by_model
 from modules.hero_mod import Hero
 
 # Constants Imports
-from utils.constants import HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR, HEROES_DB_PATH
+from utils.constants import HERO_STARTING_ATTACK, HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR, HEROES_DB_PATH
 
 # Enum Imports
 from enums.card_class_enum import CardClass
@@ -30,6 +30,7 @@ class TestHero(unittest.TestCase):
         self.default_description = "A powerful sorceress and master of the arcane arts."
         self.default_class = CardClass.MAGE
         self.default_power = HeroPower.FIREBLAST
+        self.default_attack = HERO_STARTING_ATTACK
         self.default_health = HERO_STARTING_HEALTH
         self.default_mana = HERO_STARTING_MANA
         self.default_armor = HERO_STARTING_ARMOR
@@ -44,6 +45,7 @@ class TestHero(unittest.TestCase):
             description=self.default_description,
             hero_class=self.default_class,
             hero_power=self.default_power,
+            attack=self.default_attack,
             health=self.default_health,
             mana=self.default_mana,
             armor=self.default_armor
@@ -53,9 +55,27 @@ class TestHero(unittest.TestCase):
         self.assertEqual(hero.description, self.default_description)
         self.assertEqual(hero.hero_class, self.default_class)
         self.assertEqual(hero.hero_power, self.default_power)
+        self.assertEqual(hero.attack, self.default_attack)
         self.assertEqual(hero.health, self.default_health)
         self.assertEqual(hero.mana, self.default_mana)
         self.assertEqual(hero.armor, self.default_armor)
+
+    def test_hero_creation_invalid_attack(self):
+        """
+        Test that a ValueError is raised when attack is negative.
+        """
+        with self.assertRaises(ValueError):
+            Hero(
+                id=self.default_id,
+                name=self.default_name,
+                description=self.default_description,
+                hero_class=self.default_class,
+                hero_power=self.default_power,
+                attack=-1,  # Invalid attack
+                health=self.default_health,
+                mana=self.default_mana,
+                armor=self.default_armor
+            )
 
     def test_hero_creation_invalid_class(self):
         """
@@ -121,7 +141,7 @@ class TestHero(unittest.TestCase):
                 armor=self.default_armor
             )
 
-    def test_hero_creation_negative_mana_2(self):
+    def test_hero_creation_invalid_mana_exceeding(self):
         """
         Test that a ValueError is raised when mana is negative.
         """
@@ -163,6 +183,7 @@ class TestHero(unittest.TestCase):
             description=self.default_description,
             hero_class=self.default_class,
             hero_power=self.default_power,
+            attack=self.default_attack,
             health=self.default_health,
             mana=self.default_mana,
             armor=self.default_armor
@@ -173,6 +194,7 @@ class TestHero(unittest.TestCase):
             "description": self.default_description,
             "hero_class": self.default_class.value,
             "hero_power": self.default_power.value,
+            "attack": self.default_attack,
             "health": self.default_health,
             "mana": self.default_mana,
             "armor": self.default_armor,

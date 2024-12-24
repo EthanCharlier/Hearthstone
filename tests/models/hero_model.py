@@ -17,6 +17,7 @@ def create_hero_by_model(data: dict) -> Hero:
         description = data["description"],
         hero_class = CardClass[data["hero_class"]],
         hero_power = HeroPower[data["hero_power"]],
+        attack = data["attack"],
         health = data["health"],
         mana = data["mana"],
         armor = data["armor"]

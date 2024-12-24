@@ -6,6 +6,7 @@
       "description": "Nature will rise against you!",
       "hero_class": "DRUID",
       "hero_power": "SHAPESHIFT",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -16,6 +17,7 @@
       "description": "Nature will rise against you!",
       "hero_class": "DRUID",
       "hero_power": "SHAPESHIFT",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -26,6 +28,7 @@
       "description": "Nature will rise against you!",
       "hero_class": "DRUID",
       "hero_power": "SHAPESHIFT",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -36,6 +39,7 @@
       "description": "Nature will rise against you!",
       "hero_class": "DRUID",
       "hero_power": "SHAPESHIFT",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -46,6 +50,7 @@
       "description": "Nature will rise against you!",
       "hero_class": "DRUID",
       "hero_power": "SHAPESHIFT",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -58,6 +63,7 @@
       "description": "Let the hunt begin!",
       "hero_class": "HUNTER",
       "hero_power": "STEADY_SHOT",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -68,6 +74,7 @@
       "description": "Let the hunt begin!",
       "hero_class": "HUNTER",
       "hero_power": "STEADY_SHOT",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -78,6 +85,7 @@
       "description": "Let the hunt begin!",
       "hero_class": "HUNTER",
       "hero_power": "STEADY_SHOT",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -88,6 +96,7 @@
       "description": "Let the hunt begin!",
       "hero_class": "HUNTER",
       "hero_power": "STEADY_SHOT",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -100,6 +109,7 @@
       "description": "My magic will tear you apart!",
       "hero_class": "MAGE",
       "hero_power": "FIREBLAST",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -110,6 +120,7 @@
       "description": "My magic will tear you apart!",
       "hero_class": "MAGE",
       "hero_power": "FIREBLAST",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -120,6 +131,7 @@
       "description": "My magic will tear you apart!",
       "hero_class": "MAGE",
       "hero_power": "FIREBLAST",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -130,6 +142,7 @@
       "description": "My magic will tear you apart!",
       "hero_class": "MAGE",
       "hero_power": "FIREBLAST",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -142,6 +155,7 @@
       "description": "The Light protects those who wield it.",
       "hero_class": "PALADIN",
       "hero_power": "REINFORCE",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -152,6 +166,7 @@
       "description": "The Light protects those who wield it.",
       "hero_class": "PALADIN",
       "hero_power": "REINFORCE",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -162,6 +177,7 @@
       "description": "The Light protects those who wield it.",
       "hero_class": "PALADIN",
       "hero_power": "REINFORCE",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -172,6 +188,7 @@
       "description": "The Light protects those who wield it.",
       "hero_class": "PALADIN",
       "hero_power": "REINFORCE",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -182,6 +199,7 @@
       "description": "The Light protects those who wield it.",
       "hero_class": "PALADIN",
       "hero_power": "REINFORCE",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -194,6 +212,7 @@
       "description": "Light smiles upon the just!",
       "hero_class": "PRIEST",
       "hero_power": "LESSER_HEAL",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -204,6 +223,7 @@
       "description": "Light smiles upon the just!",
       "hero_class": "PRIEST",
       "hero_power": "LESSER_HEAL",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -214,6 +234,7 @@
       "description": "Light smiles upon the just!",
       "hero_class": "PRIEST",
       "hero_power": "LESSER_HEAL",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -224,6 +245,7 @@
       "description": "Light smiles upon the just!",
       "hero_class": "PRIEST",
       "hero_power": "LESSER_HEAL",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -236,6 +258,7 @@
       "description": "Watch your back!",
       "hero_class": "ROGUE",
       "hero_power": "DAGGER_MASTERY",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -246,6 +269,7 @@
       "description": "Watch your back!",
       "hero_class": "ROGUE",
       "hero_power": "DAGGER_MASTERY",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -256,6 +280,7 @@
       "description": "Watch your back!",
       "hero_class": "ROGUE",
       "hero_power": "DAGGER_MASTERY",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -268,6 +293,7 @@
       "description": "Storm, earth and fire, heed my call!",
       "hero_class": "SHAMAN",
       "hero_power": "TOTEMIC_CALL",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -278,6 +304,7 @@
       "description": "Storm, earth and fire, heed my call!",
       "hero_class": "SHAMAN",
       "hero_power": "TOTEMIC_CALL",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -288,6 +315,7 @@
       "description": "Storm, earth and fire, heed my call!",
       "hero_class": "SHAMAN",
       "hero_power": "TOTEMIC_CALL",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -298,6 +326,7 @@
       "description": "Storm, earth and fire, heed my call!",
       "hero_class": "SHAMAN",
       "hero_power": "TOTEMIC_CALL",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -308,6 +337,7 @@
       "description": "Storm, earth and fire, heed my call!",
       "hero_class": "SHAMAN",
       "hero_power": "TOTEMIC_CALL",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -320,6 +350,7 @@
       "description": "I am your nightmare!",
       "hero_class": "WARLOCK",
       "hero_power": "LIFE_TAP",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -330,6 +361,7 @@
       "description": "I am your nightmare!",
       "hero_class": "WARLOCK",
       "hero_power": "LIFE_TAP",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -340,6 +372,7 @@
       "description": "I am your nightmare!",
       "hero_class": "WARLOCK",
       "hero_power": "LIFE_TAP",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -350,6 +383,7 @@
       "description": "I am your nightmare!",
       "hero_class": "WARLOCK",
       "hero_power": "LIFE_TAP",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -362,6 +396,7 @@
       "description": "Victory or death!",
       "hero_class": "WARRIOR",
       "hero_power": "ARMOR_UP",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -372,6 +407,7 @@
       "description": "Victory or death!",
       "hero_class": "WARRIOR",
       "hero_power": "ARMOR_UP",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -382,6 +418,7 @@
       "description": "Victory or death!",
       "hero_class": "WARRIOR",
       "hero_power": "ARMOR_UP",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -392,6 +429,7 @@
       "description": "Victory or death!",
       "hero_class": "WARRIOR",
       "hero_power": "ARMOR_UP",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -404,6 +442,7 @@
       "description": "You are not prepared!",
       "hero_class": "DEMON_HUNTER",
       "hero_power": "DEMON_CLAWS",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -414,6 +453,7 @@
       "description": "You are not prepared!",
       "hero_class": "DEMON_HUNTER",
       "hero_power": "DEMON_CLAWS",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -424,6 +464,7 @@
       "description": "You are not prepared!",
       "hero_class": "DEMON_HUNTER",
       "hero_power": "DEMON_CLAWS",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -434,6 +475,7 @@
       "description": "You are not prepared!",
       "hero_class": "DEMON_HUNTER",
       "hero_power": "DEMON_CLAWS",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
@@ -444,6 +486,7 @@
       "description": "You are not prepared!",
       "hero_class": "DEMON_HUNTER",
       "hero_power": "DEMON_CLAWS",
+      "attack": 0,
       "health": 30,
       "mana": 1,
       "armor": 0
