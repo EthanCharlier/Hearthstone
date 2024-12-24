@@ -63,7 +63,10 @@ class TestDeck(unittest.TestCase):
         """
         initial_order = self.deck.cards[:]
         self.deck.shuffle()
-        self.assertNotEqual(initial_order, self.deck.cards)
+        if initial_order == self.deck.cards:
+            self.deck.shuffle()
+        self.assertNotEqual(initial_order, self.deck.cards, "The shuffle did not change the order of the cards.")
+        self.assertCountEqual(initial_order, self.deck.cards, "The shuffled deck does not contain the same cards.")
 
     def test_draw_card(self) -> None:
         """
@@ -114,7 +117,6 @@ class TestDeck(unittest.TestCase):
         """
         self.deck.remove_card(self.fireball)
         self.assertNotIn(self.fireball, self.deck.cards)
-
     
     def test_reset_deck(self) -> None:
         """

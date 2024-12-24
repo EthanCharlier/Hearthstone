@@ -7,7 +7,7 @@ from utils.database_utils import Database
 from enums.hero_power_enum import HeroPower, HERO_CLASS_TO_POWER
 
 # Constants Imports
-from utils.constants import DATABASE_PATH, HERO_STARTING_ATTACK, HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR
+from utils.constants import DATABASE_PATH, HERO_STARTING_ATTACK, HERO_STARTING_HEALTH, HERO_STARTING_MANA, HERO_STARTING_ARMOR, HERO_MAXIMUM_ATTACK, HERO_MAXIMUM_HEALTH, HERO_MAXIMUM_ARMOR, HERO_MAXIMUM_MANA
 
 # Enum Imports
 from enums.card_class_enum import CardClass
@@ -24,10 +24,10 @@ class Hero():
         description (str): A brief description or lore about the hero.
         hero_class (CardClass): The class of the hero (e.g., Mage, Warrior).
         hero_power (HeroPower): The power associated with the hero class.
-        attack (int): The attack value of the unit (default: 0, cannot be negative).
-        health (int): The starting health of the hero (default: `HERO_STARTING_HEALTH`, cannot be negative).
-        mana (int): The starting mana of the hero (default: `HERO_STARTING_MANA`, cannot be negative, 10 is the maximum).
-        armor (int): The starting armor of the hero (default: `HERO_STARTING_ARMOR`, cannot be negative).
+        attack (int): The attack value of the unit (default: 0, cannot be negative, HERO_MAXIMUM_ATTACK is the maximum).
+        health (int): The starting health of the hero (default: `HERO_STARTING_HEALTH`, cannot be negative, HERO_MAXIMUM_HEALTH is the maximum).
+        mana (int): The starting mana of the hero (default: `HERO_STARTING_MANA`, cannot be negative, HERO_MAXIMUM_MANA is the maximum).
+        armor (int): The starting armor of the hero (default: `HERO_STARTING_ARMOR`, cannot be negative, HERO_MAXIMUM_ARMOR is the maximum).
 
     Raises:
         ValueError: If `hero_class` is not an instance of `CardClass`.
@@ -35,7 +35,10 @@ class Hero():
         ValueError: If the provided `hero_power` does not match the expected power 
                     for the given `hero_class` as defined in `HERO_CLASS_TO_POWER`.
         ValueError: If `attack`, `health`, `mana`, or `armor` is negative.
-        ValueError: If `mana` is greater than 10.
+        ValueError: If `attack` is greater than HERO_MAXIMUM_ATTACK.
+        ValueError: If `health` is greater than HERO_MAXIMUM_HEALTH.
+        ValueError: If `mana` is greater than HERO_MAXIMUM_MANA.
+        ValueError: If `armor` is greater than HERO_MAXIMUM_ARMOR.
     """
 
     def __init__(self, 
@@ -58,10 +61,10 @@ class Hero():
             description (str): A description or lore text for the hero.
             hero_class (CardClass): The class of the hero, which must be a valid `CardClass` enum.
             hero_power (HeroPower): The power associated with the hero class, which must be a valid `HeroPower` enum.
-            attack (int): The attack value of the unit (default: 0, cannot be negative).
-            health (int): The starting health of the hero (default: `HERO_STARTING_HEALTH`, cannot be negative).
-            mana (int): The starting mana of the hero (default: `HERO_STARTING_MANA`, cannot be negative, 10 is the maximum).
-            armor (int): The starting armor of the hero (default: `HERO_STARTING_ARMOR`, cannot be negative).
+            attack (int): The attack value of the unit (default: 0, cannot be negative, HERO_MAXIMUM_ATTACK is the maximum).
+            health (int): The starting health of the hero (default: `HERO_STARTING_HEALTH`, cannot be negative, HERO_MAXIMUM_HEALTH is the maximum).
+            mana (int): The starting mana of the hero (default: `HERO_STARTING_MANA`, cannot be negative, HERO_MAXIMUM_MANA is the maximum).
+            armor (int): The starting armor of the hero (default: `HERO_STARTING_ARMOR`, cannot be negative, HERO_MAXIMUM_ARMOR is the maximum).
 
         Raises:
             ValueError: If `hero_class` is not a valid `CardClass` enum.
@@ -69,7 +72,10 @@ class Hero():
             ValueError: If the provided `hero_power` does not match the expected 
                         power for the given `hero_class` as defined in `HERO_CLASS_TO_POWER`.
             ValueError: If `attack`, `health`, `mana`, or `armor` is negative.
-            ValueError: If `mana` is greater than 10.
+            ValueError: If `attack` is greater than HERO_MAXIMUM_ATTACK.
+            ValueError: If `health` is greater than HERO_MAXIMUM_HEALTH.
+            ValueError: If `mana` is greater than HERO_MAXIMUM_MANA.
+            ValueError: If `armor` is greater than HERO_MAXIMUM_ARMOR.
         """
         self.id = id
         self.name = name
@@ -90,14 +96,23 @@ class Hero():
 
         if attack < 0:
             raise ValueError(f"Invalid attack: {attack}. Attack cannot be negative.")
+        elif HERO_MAXIMUM_ATTACK is not None and attack > HERO_MAXIMUM_ATTACK:
+            raise ValueError(f"Invalid attack: {attack}. Attack cannot be greater than {HERO_MAXIMUM_ATTACK}.")
+        
         if health < 0:
             raise ValueError(f"Invalid health: {health}. Health cannot be negative.")
+        elif HERO_MAXIMUM_HEALTH is not None and health > HERO_MAXIMUM_HEALTH:
+            raise ValueError(f"Invalid health: {health}. Health cannot be greater than {HERO_MAXIMUM_HEALTH}.")
+        
         if mana < 0:
             raise ValueError(f"Invalid mana: {mana}. Mana cannot be negative.")
-        elif mana > 10:
-            raise ValueError(f"Invalid mana: {mana}. Mana cannot be greater than 10.")
+        elif HERO_MAXIMUM_MANA is not None and mana > HERO_MAXIMUM_MANA:
+            raise ValueError(f"Invalid mana: {mana}. Mana cannot be greater than {HERO_MAXIMUM_MANA}.")
+        
         if armor < 0:
             raise ValueError(f"Invalid armor: {armor}. Armor cannot be negative.")
+        elif HERO_MAXIMUM_ARMOR is not None and armor > HERO_MAXIMUM_ARMOR:
+            raise ValueError(f"Invalid armor: {armor}. Armor cannot be greater than {HERO_MAXIMUM_ARMOR}.")
 
         self.attack = attack
         self.health = health
