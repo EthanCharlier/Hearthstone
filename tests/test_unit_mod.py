@@ -23,7 +23,7 @@ class TestUnit(unittest.TestCase):
     Unit tests for the Unit class.
     """
 
-    def setUp(self):
+    def setUp(self) -> None:
         """
         Sets up default values for testing.
         """
@@ -40,7 +40,7 @@ class TestUnit(unittest.TestCase):
         self.default_armor = 0
         self.default_effects = []
 
-    def test_unit_creation_valid(self):
+    def test_unit_creation_valid(self) -> None:
         """
         Test that a Unit can be successfully created with valid attributes.
         """
@@ -71,7 +71,7 @@ class TestUnit(unittest.TestCase):
         self.assertEqual(unit.armor, self.default_armor)
         self.assertEqual(unit.effects, self.default_effects)
 
-    def test_unit_creation_invalid_class(self):
+    def test_unit_creation_invalid_class(self) -> None:
         """
         Test that a ValueError is raised when an invalid card class is provided.
         """
@@ -91,7 +91,7 @@ class TestUnit(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_unit_creation_invalid_card_type(self):
+    def test_unit_creation_invalid_card_type(self) -> None:
         """
         Test that a ValueError is raised when an invalid card type is provided.
         """
@@ -111,7 +111,7 @@ class TestUnit(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_unit_creation_invalid_race(self):
+    def test_unit_creation_invalid_race(self) -> None:
         """
         Test that a ValueError is raised when an invalid race is provided.
         """
@@ -131,7 +131,7 @@ class TestUnit(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_unit_creation_negative_attack(self):
+    def test_unit_creation_negative_attack(self) -> None:
         """
         Test that a ValueError is raised when attack is negative.
         """
@@ -151,7 +151,7 @@ class TestUnit(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_unit_creation_negative_health(self):
+    def test_unit_creation_negative_health(self) -> None:
         """
         Test that a ValueError is raised when health is negative.
         """
@@ -171,7 +171,7 @@ class TestUnit(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_unit_creation_negative_armor(self):
+    def test_unit_creation_negative_armor(self) -> None:
         """
         Test that a ValueError is raised when armor is negative.
         """
@@ -191,7 +191,7 @@ class TestUnit(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_unit_to_dict(self):
+    def test_unit_to_dict(self) -> None:
         """
         Test the to_dict method to ensure it returns the correct dictionary representation.
         """
@@ -225,7 +225,7 @@ class TestUnit(unittest.TestCase):
         }
         self.assertEqual(unit.to_dict(), expected_dict)
 
-    def test_units_json(self):
+    def test_units_json(self) -> None:
         """
         Test the units.json file to ensure that all units are correctly defined.
         """

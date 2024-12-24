@@ -22,7 +22,7 @@ class TestSpell(unittest.TestCase):
     Unit tests for the Spell class.
     """
 
-    def setUp(self):
+    def setUp(self) -> None:
         """
         Sets up default values for testing.
         """
@@ -35,7 +35,7 @@ class TestSpell(unittest.TestCase):
         self.default_rarity = Rarity.COMMON
         self.default_effects = ["Deal 6 damage"]
 
-    def test_spell_creation_valid(self):
+    def test_spell_creation_valid(self) -> None:
         """
         Test that a Spell can be successfully created with valid attributes.
         """
@@ -58,7 +58,7 @@ class TestSpell(unittest.TestCase):
         self.assertEqual(spell.card_rarity, self.default_rarity)
         self.assertEqual(spell.effects, self.default_effects)
 
-    def test_spell_creation_invalid_class(self):
+    def test_spell_creation_invalid_class(self) -> None:
         """
         Test that a ValueError is raised when an invalid card class is provided.
         """
@@ -74,7 +74,7 @@ class TestSpell(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_spell_creation_invalid_card_type(self):
+    def test_spell_creation_invalid_card_type(self) -> None:
         """
         Test that a ValueError is raised when an invalid card type is provided.
         """
@@ -90,7 +90,7 @@ class TestSpell(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_spell_creation_negative_cost(self):
+    def test_spell_creation_negative_cost(self) -> None:
         """
         Test that a ValueError is raised when the cost is negative.
         """
@@ -106,7 +106,7 @@ class TestSpell(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_spell_creation_cost_too_high(self):
+    def test_spell_creation_cost_too_high(self) -> None:
         """
         Test that a ValueError is raised when the cost is greater than 10.
         """
@@ -122,7 +122,7 @@ class TestSpell(unittest.TestCase):
                 effects=self.default_effects
             )
 
-    def test_spell_to_dict(self):
+    def test_spell_to_dict(self) -> None:
         """
         Test the to_dict method to ensure it returns the correct dictionary representation.
         """
@@ -148,7 +148,7 @@ class TestSpell(unittest.TestCase):
         }
         self.assertEqual(spell.to_dict(), expected_dict)
 
-    def test_spells_json(self):
+    def test_spells_json(self) -> None:
         """
         Test the spells.json file to ensure that all spells are correctly defined.
         """

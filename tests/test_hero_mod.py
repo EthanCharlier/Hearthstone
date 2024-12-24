@@ -21,7 +21,7 @@ class TestHero(unittest.TestCase):
     Unit tests for the Hero class.
     """
 
-    def setUp(self):
+    def setUp(self) -> None:
         """
         Sets up default values for testing.
         """
@@ -35,7 +35,7 @@ class TestHero(unittest.TestCase):
         self.default_mana = HERO_STARTING_MANA
         self.default_armor = HERO_STARTING_ARMOR
 
-    def test_hero_creation_valid(self):
+    def test_hero_creation_valid(self) -> None:
         """
         Test that a Hero can be successfully created with valid attributes.
         """
@@ -60,7 +60,7 @@ class TestHero(unittest.TestCase):
         self.assertEqual(hero.mana, self.default_mana)
         self.assertEqual(hero.armor, self.default_armor)
 
-    def test_hero_creation_invalid_attack(self):
+    def test_hero_creation_invalid_attack(self) -> None:
         """
         Test that a ValueError is raised when attack is negative.
         """
@@ -77,7 +77,7 @@ class TestHero(unittest.TestCase):
                 armor=self.default_armor
             )
 
-    def test_hero_creation_invalid_class(self):
+    def test_hero_creation_invalid_class(self) -> None:
         """
         Test that a ValueError is raised when an invalid hero class is provided.
         """
@@ -93,7 +93,7 @@ class TestHero(unittest.TestCase):
                 armor=self.default_armor
             )
 
-    def test_hero_creation_invalid_power(self):
+    def test_hero_creation_invalid_power(self) -> None:
         """
         Test that a ValueError is raised when the hero power does not match the hero class.
         """
@@ -109,7 +109,7 @@ class TestHero(unittest.TestCase):
                 armor=self.default_armor
             )
 
-    def test_hero_creation_negative_health(self):
+    def test_hero_creation_negative_health(self) -> None:
         """
         Test that a ValueError is raised when health is negative.
         """
@@ -125,7 +125,7 @@ class TestHero(unittest.TestCase):
                 armor=self.default_armor
             )
 
-    def test_hero_creation_negative_mana(self):
+    def test_hero_creation_negative_mana(self) -> None:
         """
         Test that a ValueError is raised when mana is negative.
         """
@@ -141,7 +141,7 @@ class TestHero(unittest.TestCase):
                 armor=self.default_armor
             )
 
-    def test_hero_creation_invalid_mana_exceeding(self):
+    def test_hero_creation_invalid_mana_exceeding(self) -> None:
         """
         Test that a ValueError is raised when mana is negative.
         """
@@ -157,7 +157,7 @@ class TestHero(unittest.TestCase):
                 armor=self.default_armor
             )
 
-    def test_hero_creation_negative_armor(self):
+    def test_hero_creation_negative_armor(self) -> None:
         """
         Test that a ValueError is raised when armor is negative.
         """
@@ -173,7 +173,7 @@ class TestHero(unittest.TestCase):
                 armor=-1  # Invalid armor
             )
 
-    def test_hero_to_dict(self):
+    def test_hero_to_dict(self) -> None:
         """
         Test the to_dict method to ensure it returns the correct dictionary representation.
         """
@@ -201,7 +201,7 @@ class TestHero(unittest.TestCase):
         }
         self.assertEqual(hero.to_dict(), expected_dict)
 
-    def test_heroes_json(self):
+    def test_heroes_json(self) -> None:
         """
         Test the heroes.json file to ensure that all heroes a correctly define.
         """

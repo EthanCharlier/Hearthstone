@@ -17,7 +17,7 @@ class TestCard(unittest.TestCase):
     Unit tests for the Card class.
     """
 
-    def setUp(self):
+    def setUp(self) -> None:
         """
         Sets up default values for testing.
         """
@@ -29,7 +29,7 @@ class TestCard(unittest.TestCase):
         self.default_card_type = CardType.SPELL
         self.default_rarity = Rarity.COMMON
 
-    def test_card_creation_valid(self):
+    def test_card_creation_valid(self) -> None:
         """
         Test that a Card can be successfully created with valid attributes.
         """
@@ -50,7 +50,7 @@ class TestCard(unittest.TestCase):
         self.assertEqual(card.card_type, self.default_card_type)
         self.assertEqual(card.card_rarity, self.default_rarity)
 
-    def test_card_creation_invalid_class(self):
+    def test_card_creation_invalid_class(self) -> None:
         """
         Test that a ValueError is raised when an invalid card class is provided.
         """
@@ -65,7 +65,7 @@ class TestCard(unittest.TestCase):
                 card_rarity=self.default_rarity
             )
 
-    def test_card_creation_invalid_type(self):
+    def test_card_creation_invalid_type(self) -> None:
         """
         Test that a ValueError is raised when an invalid card type is provided.
         """
@@ -80,7 +80,7 @@ class TestCard(unittest.TestCase):
                 card_rarity=self.default_rarity
             )
 
-    def test_card_creation_invalid_rarity(self):
+    def test_card_creation_invalid_rarity(self) -> None:
         """
         Test that a ValueError is raised when an invalid card rarity is provided.
         """
@@ -95,7 +95,7 @@ class TestCard(unittest.TestCase):
                 card_rarity="InvalidRarity"  # Invalid rarity
             )
 
-    def test_card_creation_negative_cost(self):
+    def test_card_creation_negative_cost(self) -> None:
         """
         Test that a ValueError is raised when the cost is negative.
         """
@@ -110,7 +110,7 @@ class TestCard(unittest.TestCase):
                 card_rarity=self.default_rarity
             )
 
-    def test_card_creation_cost_too_high(self):
+    def test_card_creation_cost_too_high(self) -> None:
         """
         Test that a ValueError is raised when the cost is greater than 10.
         """
@@ -125,7 +125,7 @@ class TestCard(unittest.TestCase):
                 card_rarity=self.default_rarity
             )
 
-    def test_card_to_dict(self):
+    def test_card_to_dict(self) -> None:
         """
         Test the to_dict method to ensure it returns the correct dictionary representation.
         """
