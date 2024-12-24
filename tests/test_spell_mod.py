@@ -30,7 +30,7 @@ class TestSpell(unittest.TestCase):
         self.default_name = "Fireball"
         self.default_cost = 4
         self.default_description = "Deal 6 damage."
-        self.default_card_class = CardClass.MAGE
+        self.default_card_classes = [CardClass.MAGE]
         self.default_card_type = CardType.SPELL
         self.default_rarity = Rarity.COMMON
         self.default_effects = ["Deal 6 damage"]
@@ -44,7 +44,7 @@ class TestSpell(unittest.TestCase):
             name=self.default_name,
             cost=self.default_cost,
             description=self.default_description,
-            card_class=self.default_card_class,
+            card_classes=self.default_card_classes,
             card_type=self.default_card_type,
             card_rarity=self.default_rarity,
             effects=self.default_effects
@@ -53,14 +53,14 @@ class TestSpell(unittest.TestCase):
         self.assertEqual(spell.name, self.default_name)
         self.assertEqual(spell.cost, self.default_cost)
         self.assertEqual(spell.description, self.default_description)
-        self.assertEqual(spell.card_class, self.default_card_class)
+        self.assertEqual(spell.card_classes, self.default_card_classes)
         self.assertEqual(spell.card_type, self.default_card_type)
         self.assertEqual(spell.card_rarity, self.default_rarity)
         self.assertEqual(spell.effects, self.default_effects)
 
-    def test_spell_creation_invalid_class(self) -> None:
+    def test_spell_creation_invalid_classes(self) -> None:
         """
-        Test that a ValueError is raised when an invalid card class is provided.
+        Test that a ValueError is raised when any invalid card class is provided.
         """
         with self.assertRaises(ValueError):
             Spell(
@@ -68,7 +68,7 @@ class TestSpell(unittest.TestCase):
                 name=self.default_name,
                 cost=self.default_cost,
                 description=self.default_description,
-                card_class="InvalidClass",  # Invalid card class
+                card_classes=["InvalidClass"],  # Invalid card class
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 effects=self.default_effects
@@ -84,7 +84,7 @@ class TestSpell(unittest.TestCase):
                 name=self.default_name,
                 cost=self.default_cost,
                 description=self.default_description,
-                card_class=self.default_card_class,
+                card_classes=self.default_card_classes,
                 card_type=CardType.UNIT,  # Invalid card type
                 card_rarity=self.default_rarity,
                 effects=self.default_effects
@@ -100,7 +100,7 @@ class TestSpell(unittest.TestCase):
                 name=self.default_name,
                 cost=-1,  # Invalid cost
                 description=self.default_description,
-                card_class=self.default_card_class,
+                card_classes=self.default_card_classes,
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 effects=self.default_effects
@@ -116,7 +116,7 @@ class TestSpell(unittest.TestCase):
                 name=self.default_name,
                 cost=11,  # Invalid cost
                 description=self.default_description,
-                card_class=self.default_card_class,
+                card_classes=self.default_card_classes,
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 effects=self.default_effects
@@ -131,7 +131,7 @@ class TestSpell(unittest.TestCase):
             name=self.default_name,
             cost=self.default_cost,
             description=self.default_description,
-            card_class=self.default_card_class,
+            card_classes=self.default_card_classes,
             card_type=self.default_card_type,
             card_rarity=self.default_rarity,
             effects=self.default_effects
@@ -141,7 +141,7 @@ class TestSpell(unittest.TestCase):
             "name": self.default_name,
             "cost": self.default_cost,
             "description": self.default_description,
-            "card_class": self.default_card_class.value,
+            "card_classes": [cls.value for cls in self.default_card_classes],
             "card_type": self.default_card_type.value,
             "card_rarity": self.default_rarity.value,
             "effects": self.default_effects,

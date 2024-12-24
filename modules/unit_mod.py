@@ -27,7 +27,7 @@ class Unit(Card):
         name (str): Name of the card.
         cost (int): Mana or resource cost to play the card, cannot be negative, 10 is the maximum.
         description (str): Textual description of the card's effects or abilities.
-        card_class (CardClass): The class associated with the card (e.g., Mage, Warrior).
+        card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
         card_type (CardType): The type of the card (should always be `CardType.UNIT` for this class).
         card_rarity (Rarity): The rarity of the card (e.g., Common, Rare, Epic, Legendary).
         unit_race (Race): The race or category of the unit (e.g., Beast, Dragon).
@@ -47,7 +47,7 @@ class Unit(Card):
                 name: str, 
                 cost: int, 
                 description: str, 
-                card_class: CardClass, 
+                card_classes: list[CardClass], 
                 card_type: CardType, 
                 card_rarity: Rarity, 
                 unit_race: Race, 
@@ -64,7 +64,7 @@ class Unit(Card):
             name (str): The name of the unit card.
             cost (int): The mana or resource cost to play this card, cannot be negative, 10 is the maximum.
             description (str): A description of the unit's effects or abilities.
-            card_class (CardClass): The class associated with the card (e.g., Mage, Warrior).
+            card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
             card_type (CardType): The type of the card, which must be `CardType.UNIT`.
             card_rarity (Rarity): The rarity of the card, which must be a valid `Rarity` enum.
             unit_race (Race): The race of the unit, which must be a valid `Race` enum.
@@ -78,7 +78,7 @@ class Unit(Card):
             ValueError: If `unit_race` is not an instance of `Race`.
             ValueError: If `attack`, `health`, or `armor` is negative.
         """
-        super().__init__(id, name, cost, description, card_class, card_type, card_rarity)
+        super().__init__(id, name, cost, description, card_classes, card_type, card_rarity)
 
         if not isinstance(card_type, CardType) or card_type != CardType.UNIT:
             raise ValueError(f"Invalid card type: {card_type}. Must be CardType.UNIT.")
@@ -119,7 +119,7 @@ class Unit(Card):
                   - Name
                   - Cost
                   - Description
-                  - Card class
+                  - Card classes
                   - Card type
                   - Card rarity
                   - Unit race
@@ -133,7 +133,7 @@ class Unit(Card):
             "name": self.name,
             "cost": self.cost,
             "description": self.description,
-            "card_class": self.card_class.value,
+            "card_classes": [cls.value for cls in self.card_classes],
             "card_type": self.card_type.value,
             "card_rarity": self.card_rarity.value,
             "unit_race": self.unit_race.value,

@@ -13,12 +13,21 @@ from enums.race_enum import Race
 
 # Script
 def create_unit_by_model(data: dict) -> Unit:
+    """
+    Create a Unit object from a dictionary model.
+
+    Args:
+        data (dict): A dictionary containing all necessary fields to create a Unit.
+
+    Returns:
+        Unit: An instance of the Unit class.
+    """
     unit = Unit(
         id = data["id"],
         name = data["name"],
         cost = data["cost"],
         description = data["description"],
-        card_class = CardClass[data["card_class"]],
+        card_classes=[CardClass[cls] for cls in data["card_classes"]],
         card_type = CardType[data["card_type"]],
         card_rarity = Rarity[data["card_rarity"]],
         unit_race = Race[data["unit_race"]],

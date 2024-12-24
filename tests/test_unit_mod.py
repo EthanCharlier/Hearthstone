@@ -31,7 +31,7 @@ class TestUnit(unittest.TestCase):
         self.default_name = "Chillwind Yeti"
         self.default_cost = 4
         self.default_description = "A sturdy minion with no special abilities."
-        self.default_card_class = CardClass.NEUTRAL
+        self.default_card_classes = [CardClass.NEUTRAL]
         self.default_card_type = CardType.UNIT
         self.default_rarity = Rarity.COMMON
         self.default_race = Race.ALL
@@ -49,7 +49,7 @@ class TestUnit(unittest.TestCase):
             name=self.default_name,
             cost=self.default_cost,
             description=self.default_description,
-            card_class=self.default_card_class,
+            card_classes=self.default_card_classes,
             card_type=self.default_card_type,
             card_rarity=self.default_rarity,
             unit_race=self.default_race,
@@ -62,7 +62,7 @@ class TestUnit(unittest.TestCase):
         self.assertEqual(unit.name, self.default_name)
         self.assertEqual(unit.cost, self.default_cost)
         self.assertEqual(unit.description, self.default_description)
-        self.assertEqual(unit.card_class, self.default_card_class)
+        self.assertEqual(unit.card_classes, self.default_card_classes)
         self.assertEqual(unit.card_type, self.default_card_type)
         self.assertEqual(unit.card_rarity, self.default_rarity)
         self.assertEqual(unit.unit_race, self.default_race)
@@ -71,9 +71,9 @@ class TestUnit(unittest.TestCase):
         self.assertEqual(unit.armor, self.default_armor)
         self.assertEqual(unit.effects, self.default_effects)
 
-    def test_unit_creation_invalid_class(self) -> None:
+    def test_unit_creation_invalid_classes(self) -> None:
         """
-        Test that a ValueError is raised when an invalid card class is provided.
+        Test that a ValueError is raised when invalid card classes are provided.
         """
         with self.assertRaises(ValueError):
             Unit(
@@ -81,7 +81,7 @@ class TestUnit(unittest.TestCase):
                 name=self.default_name,
                 cost=self.default_cost,
                 description=self.default_description,
-                card_class="InvalidClass",  # Invalid card class
+                card_classes=["InvalidClass"],  # Invalid card class
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 unit_race=self.default_race,
@@ -101,7 +101,7 @@ class TestUnit(unittest.TestCase):
                 name=self.default_name,
                 cost=self.default_cost,
                 description=self.default_description,
-                card_class=self.default_card_class,
+                card_classes=self.default_card_classes,
                 card_type=CardType.SPELL,  # Invalid card type
                 card_rarity=self.default_rarity,
                 unit_race=self.default_race,
@@ -121,7 +121,7 @@ class TestUnit(unittest.TestCase):
                 name=self.default_name,
                 cost=self.default_cost,
                 description=self.default_description,
-                card_class=self.default_card_class,
+                card_classes=self.default_card_classes,
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 unit_race="InvalidRace",  # Invalid race
@@ -141,7 +141,7 @@ class TestUnit(unittest.TestCase):
                 name=self.default_name,
                 cost=self.default_cost,
                 description=self.default_description,
-                card_class=self.default_card_class,
+                card_classes=self.default_card_classes,
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 unit_race=self.default_race,
@@ -161,7 +161,7 @@ class TestUnit(unittest.TestCase):
                 name=self.default_name,
                 cost=self.default_cost,
                 description=self.default_description,
-                card_class=self.default_card_class,
+                card_classes=self.default_card_classes,
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 unit_race=self.default_race,
@@ -181,7 +181,7 @@ class TestUnit(unittest.TestCase):
                 name=self.default_name,
                 cost=self.default_cost,
                 description=self.default_description,
-                card_class=self.default_card_class,
+                card_classes=self.default_card_classes,
                 card_type=self.default_card_type,
                 card_rarity=self.default_rarity,
                 unit_race=self.default_race,
@@ -200,7 +200,7 @@ class TestUnit(unittest.TestCase):
             name=self.default_name,
             cost=self.default_cost,
             description=self.default_description,
-            card_class=self.default_card_class,
+            card_classes=self.default_card_classes,
             card_type=self.default_card_type,
             card_rarity=self.default_rarity,
             unit_race=self.default_race,
@@ -214,7 +214,7 @@ class TestUnit(unittest.TestCase):
             "name": self.default_name,
             "cost": self.default_cost,
             "description": self.default_description,
-            "card_class": self.default_card_class.value,
+            "card_classes": [cls.value for cls in self.default_card_classes],
             "card_type": self.default_card_type.value,
             "card_rarity": self.default_rarity.value,
             "unit_race": self.default_race.value,

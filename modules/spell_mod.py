@@ -26,7 +26,7 @@ class Spell(Card):
         name (str): Name of the card.
         cost (int): Mana or resource cost to play the card, cannot be negative, 10 is the maximum.
         description (str): Textual description of the card's effects or abilities.
-        card_class (CardClass): The class associated with the card (e.g., Mage, Warrior).
+        card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
         card_type (CardType): The type of the card (should always be `CardType.SPELL` for this class).
         card_rarity (Rarity): The rarity of the card (e.g., Common, Rare, Epic, Legendary).
         effects (list): A list of effects or abilities that the spell performs (default: empty list).
@@ -40,7 +40,7 @@ class Spell(Card):
                 name: str, 
                 cost: int, 
                 description: str, 
-                card_class: CardClass, 
+                card_classes: list[CardClass], 
                 card_type: CardType, 
                 card_rarity: Rarity, 
                 effects: list = []
@@ -53,7 +53,7 @@ class Spell(Card):
             name (str): The name of the spell card.
             cost (int): The mana or resource cost to play this card, cannot be negative, 10 is the maximum.
             description (str): A description of the spell's effects or abilities.
-            card_class (CardClass): The class associated with the card (e.g., Mage, Warrior).
+            card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
             card_type (CardType): The type of the card, which must be `CardType.SPELL`.
             card_rarity (Rarity): The rarity of the card, which must be a valid `Rarity` enum.
             effects (list): A list of special effects or abilities the spell performs (default: empty list).
@@ -61,7 +61,7 @@ class Spell(Card):
         Raises:
             ValueError: If `card_type` is not `CardType.SPELL`.
         """
-        super().__init__(id, name, cost, description, card_class, card_type, card_rarity)
+        super().__init__(id, name, cost, description, card_classes, card_type, card_rarity)
 
         if not isinstance(card_type, CardType) or card_type != CardType.SPELL:
             raise ValueError(f"Invalid card type: {card_type}. Must be CardType.SPELL.")
@@ -88,7 +88,7 @@ class Spell(Card):
                   - Name
                   - Cost
                   - Description
-                  - Card class
+                  - Card classes
                   - Card type
                   - Card rarity
                   - Effects
@@ -98,7 +98,7 @@ class Spell(Card):
             "name": self.name,
             "cost": self.cost,
             "description": self.description,
-            "card_class": self.card_class.value,
+            "card_classes": [cls.value for cls in self.card_classes],
             "card_type": self.card_type.value,
             "card_rarity": self.card_rarity.value,
             "effects": self.effects,

@@ -16,7 +16,7 @@ class Card():
         name (str): The name of the card.
         cost (int): The mana or resource cost to play the card, cannot be negative, 10 is the maximum.
         description (str): A textual description of the card's effects or abilities.
-        card_class (CardClass): The class associated with the card (e.g., Mage, Warrior).
+        card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
         card_type (CardType): The type of the card (e.g., Unit, Spell).
         card_rarity (Rarity): The rarity of the card (e.g., Common, Rare, Epic, Legendary).
 
@@ -33,7 +33,7 @@ class Card():
                 name: str, 
                 cost: int, 
                 description: str, 
-                card_class: CardClass, 
+                card_classes: list[CardClass], 
                 card_type: CardType, 
                 card_rarity: Rarity
                 ) -> None:
@@ -45,12 +45,12 @@ class Card():
             name (str): The name of the card.
             cost (int): The mana or resource cost required to play this card, cannot be negative, 10 is the maximum.
             description (str): A description of the card's effects or abilities.
-            card_class (CardClass): The class associated with the card (e.g., Mage, Warrior).
+            card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
             card_type (CardType): The type of the card, which should be one of the options defined in the CardType enum.
             card_rarity (Rarity): The rarity of the card, which should be one of the options defined in the Rarity enum.
 
         Raises:
-            ValueError: If `card_class` is not an instance of `CardClass`.
+            ValueError: If `card_classes` is not all elements in are instance of `CardClass`.
             ValueError: If `card_type` is not an instance of `CardType`.
             ValueError: If `card_rarity` is not an instance of `Rarity`.
             ValueError: If `cost` is negative.
@@ -67,9 +67,9 @@ class Card():
 
         self.description = description
 
-        if not isinstance(card_class, CardClass):
-            raise ValueError(f"Invalid card class: {card_class}. Must be a CardClass enum.")
-        self.card_class = card_class
+        if not all(isinstance(cls, CardClass) for cls in card_classes):
+            raise ValueError("Invalid card classes: All elements in card_classes must be instances of CardClass.")
+        self.card_classes = card_classes
 
         if not isinstance(card_type, CardType):
             raise ValueError(f"Invalid card type: {card_type}. Must be a CardType enum.")
@@ -89,7 +89,7 @@ class Card():
                   - Name
                   - Cost
                   - Description
-                  - Card class
+                  - Card classes
                   - Card type
                   - Card rarity
         """
@@ -98,7 +98,7 @@ class Card():
             "name": self.name,
             "cost": self.cost,
             "description": self.description,
-            "card_class": self.card_class.value,
+            "card_classes": [cls.value for cls in self.card_classes],
             "card_type": self.card_type.value,
             "card_rarity": self.card_rarity.value,
         }
