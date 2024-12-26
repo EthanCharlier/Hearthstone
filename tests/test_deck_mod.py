@@ -56,6 +56,7 @@ class TestDeck(unittest.TestCase):
         Test that the deck initializes with correct cards and statuses.
         """
         self.assertEqual(len(self.deck.cards), 2)
+        self.assertEqual(len(self.deck.board), 0)
         self.assertEqual(self.fireball.status, CardStatus.IN_DECK)
         self.assertEqual(self.yeti.status, CardStatus.IN_DECK)
 
@@ -84,6 +85,7 @@ class TestDeck(unittest.TestCase):
         self.deck.move_to_graveyard(card)
         self.assertEqual(card.status, CardStatus.IN_GRAVEYARD)
         self.assertIn(card, self.deck.graveyard)
+        self.assertNotIn(card, self.deck.board)
 
     def test_add_card(self) -> None:
         """
@@ -133,8 +135,8 @@ class TestDeck(unittest.TestCase):
         """
         Test that playing a card fails if the board already has BOARD_LIMIT cards.
         """
-        for _ in range(BOARD_LIMIT + 1):
-            self.deck.add_card(Spell(
+        for _ in range(BOARD_LIMIT):
+            card = Spell(
                 id = 100 + _,
                 name = f"Extra Spell {_}",
                 cost = 1,
@@ -142,18 +144,17 @@ class TestDeck(unittest.TestCase):
                 card_classes = [CardClass.MAGE],
                 card_type = CardType.SPELL,
                 card_rarity = Rarity.COMMON,
-            ))
+            )
+            self.deck.add_card(card)
+            drawn_card = self.deck.draw()
+            self.deck.play_card(drawn_card)
 
-        for _ in range(BOARD_LIMIT):
-            card = self.deck.draw()
-            self.deck.play_card(card)
-
-        sixth_card = self.deck.draw()
+        card = self.deck.draw()
         with self.assertRaises(ValueError) as context:
-            self.deck.play_card(sixth_card)
+            self.deck.play_card(card)
         self.assertEqual(
             str(context.exception),
-            f"Cannot play {sixth_card.name}. The board is full ({BOARD_LIMIT} cards maximum)."
+            f"Cannot play {card.name}. The board is full ({BOARD_LIMIT} cards maximum)."
         )
 
     def test_deck_limit(self):

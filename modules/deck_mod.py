@@ -20,6 +20,7 @@ class Deck:
     Attributes:
         cards (list[Card]): The list of cards in the deck.
         hand (list[Card]): Cards currently in the player's hand.
+        board (list[Card]): Cards currently on the board.
         graveyard (list[Card]): Cards that have been played or destroyed.
     """
 
@@ -29,6 +30,8 @@ class Deck:
 
         Args:
             cards (list[Card]): A list of cards to initialize the deck.
+            hand (list[Card]): Cards currently in the player's hand.
+            board (list[Card]): Cards currently on the board.
             graveyard (list[Card]): Cards that have been played or destroyed.
 
         Raises:
@@ -38,7 +41,7 @@ class Deck:
             raise ValueError("A deck cannot contain more than 30 cards.")
         self.cards = cards
         self.hand = hand or []
-        self.board = hand or []
+        self.board = board or []
         self.graveyard = graveyard or []
 
         for card in self.cards:
@@ -61,12 +64,12 @@ class Deck:
             Card: The top card of the deck.
 
         Raises:
-            ValueError: If the deck is empty.
+            ValueError: If the deck is empty or hand limit is reached.
         """
         if not self.cards:
             raise ValueError("Cannot draw from an empty deck.")
         if len(self.hand) >= HAND_LIMIT:
-             raise ValueError(f"Hand limit reached.")
+            raise ValueError(f"Hand limit reached.")
         card = self.cards.pop(0)
         card.status = CardStatus.IN_HAND
         self.hand.append(card)
@@ -80,7 +83,7 @@ class Deck:
             card (Card): The card to play.
 
         Raises:
-            ValueError: If the card is not in the player's hand.
+            ValueError: If the card is not in the player's hand or if the board is full.
         """
         if len(self.board) >= BOARD_LIMIT:
             raise ValueError(f"Cannot play {card.name}. The board is full ({BOARD_LIMIT} cards maximum).")
@@ -105,6 +108,8 @@ class Deck:
         card.status = CardStatus.IN_GRAVEYARD
         if card in self.hand:
             self.hand.remove(card)
+        elif card in self.board:
+            self.board.remove(card)
         self.graveyard.append(card)
 
     def add_card(self, card: Card) -> None:
@@ -148,6 +153,8 @@ class Deck:
         """
         if status == CardStatus.IN_HAND:
             return self.hand
+        if status == CardStatus.ON_BOARD:
+            return self.board
         return [card for card in self.cards + self.graveyard if card.status == status]
     
     def reset_deck(self) -> None:
@@ -155,6 +162,8 @@ class Deck:
         Reset the deck by returning all cards from the graveyard to the deck.
         """
         self.cards.extend(self.graveyard)
+        self.cards.extend(self.board)
         for card in self.cards:
             card.status = CardStatus.IN_DECK
         self.graveyard.clear()
+        self.board.clear()
