@@ -129,6 +129,46 @@ class Hero():
         Database.insert_data_to_table(heroes_db, "Heroes", [self.to_dict()])
         heroes_db.close()
 
+    @property
+    def get_maximum_attack(self) -> int:
+        """
+        Getter for the maximum attack allowed for the hero.
+
+        Returns:
+            HERO_MAXIMUM_ATTACK (int): The maximum attack of the hero.
+        """
+        return HERO_MAXIMUM_ATTACK
+
+    @property
+    def get_maximum_health(self) -> int:
+        """
+        Getter for the maximum health allowed for the hero.
+
+        Returns:
+            HERO_MAXIMUM_HEALTH (int): The maximum health of the hero.
+        """
+        return HERO_MAXIMUM_HEALTH
+    
+    @property
+    def get_maximum_mana(self) -> int:
+        """
+        Getter for the maximum mana allowed for the hero.
+
+        Returns:
+            HERO_MAXIMUM_MANA (int): The maximum mana of the hero.
+        """
+        return HERO_MAXIMUM_MANA
+    
+    @property
+    def get_maximum_armor(self) -> int:
+        """
+        Getter for the maximum armor allowed for the hero.
+
+        Returns:
+            HERO_MAXIMUM_ARMOR (int): The maximum armor of the hero.
+        """
+        return HERO_MAXIMUM_ARMOR
+
     def to_dict(self) -> dict:
         """
         Converts the Hero object into a dictionary for serialization or storage.
