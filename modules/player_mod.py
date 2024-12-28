@@ -183,4 +183,4 @@ class Player:
         Returns:
             str: Player's status as a string.
         """
-        return f"Player {self.name}, Hero: {self.hero.name}, Health: {self.health}/{self.hero.max_health}, Mana: {self.mana}/{self.hero.max_mana}"
+        return f"{self.name}, Hero: {self.hero.name}, Health: {self._health}/{self.max_health}, Mana: {self._mana}/{self.max_mana}"
