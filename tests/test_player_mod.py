@@ -65,9 +65,9 @@ class TestPlayer(unittest.TestCase):
         Test setting the player's health value.
         """
         self.player.health = 10
-        self.assertEqual(self.player.health, 40)
+        self.assertEqual(self.player.health, 30)
         self.player.health = -20
-        self.assertEqual(self.player.health, 20)
+        self.assertEqual(self.player.health, 10)
 
     def test_armor_setter(self) -> None:  #TODO: Add thing
         """

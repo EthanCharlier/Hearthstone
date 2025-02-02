@@ -21,3 +21,4 @@ class Race(Enum):
     ALL = "All"
     QUILBOAR = "Quilboar"
     NAGA = "Naga"
+    HUMAN = "Human"

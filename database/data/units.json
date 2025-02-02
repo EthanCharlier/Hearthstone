@@ -1,14 +1,2042 @@
-{
-  "DRUID": [],
-  "HUNTER": [],
-  "MAGE": [],
-  "PALADIN": [],
-  "PRIEST": [],
-  "ROGUE": [],
-  "SHAMAN": [],
-  "WARLOCK": [],
-  "WARRIOR": [],
-  "DEMON_HUNTER": [],
-  "DEATH_KNIGHT": [],
-  "NEUTRAL": []
-}
+[
+  {
+    "DRUID": [
+      {
+        "name": "Stormcaller",
+        "cost": 4,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 9,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 1,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 1,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 9,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 2,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 1,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 6,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 9,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 9,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 2,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 5,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 10,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 5,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 7,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 2,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 6,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 4,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 1,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 9,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 5,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 3,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 9,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 3,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      }
+    ]
+  },
+  {
+    "HUNTER": [
+      {
+        "name": "Dark Sorcerer",
+        "cost": 6,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 7,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 8,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 6,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 8,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 9,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 10,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 10,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 8,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 5,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 9,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 7,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 2,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 3,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 6,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 8,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 7,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 7,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 8,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 6,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 8,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 6,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 9,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 9,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 2,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      }
+    ]
+  },
+  {
+    "MAGE": [
+      {
+        "name": "Battle Mage",
+        "cost": 4,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 4,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 7,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 1,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 10,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 9,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 7,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 3,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 8,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 8,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 3,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 8,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 5,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 1,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 8,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 10,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 7,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 8,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 6,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 2,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 1,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 2,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 5,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 8,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      }
+    ]
+  },
+  {
+    "PALADIN": [
+      {
+        "name": "Warrior Champion",
+        "cost": 8,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 4,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 6,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 3,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 5,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 5,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 5,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 6,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 3,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 8,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 1,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 9,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 3,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 6,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 3,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 9,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 8,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 8,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 3,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 3,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 3,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 9,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 10,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 1,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      }
+    ]
+  },
+  {
+    "PRIEST": [
+      {
+        "name": "Warrior Champion",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 1,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 6,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 6,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 7,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 6,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 9,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 7,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 7,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 4,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 7,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 3,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 4,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 7,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 5,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 1,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 6,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 3,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 3,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 2,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 4,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 8,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 8,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      }
+    ]
+  },
+  {
+    "ROGUE": [
+      {
+        "name": "Holy Knight",
+        "cost": 1,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 2,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 6,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 5,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 6,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 10,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 7,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 7,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 8,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 1,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 6,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 8,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 1,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 4,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 3,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 4,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 8,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 8,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 9,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 9,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 7,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 2,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 2,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 8,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      }
+    ]
+  },
+  {
+    "SHAMAN": [
+      {
+        "name": "Mystic Healer",
+        "cost": 10,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 8,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 10,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 5,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 3,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 3,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 6,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 3,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 4,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 8,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 8,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 5,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 10,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 5,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 8,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 3,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 10,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 2,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 8,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 2,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 7,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 7,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 8,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      }
+    ]
+  },
+  {
+    "WARLOCK": [
+      {
+        "name": "Blazing Phoenix",
+        "cost": 7,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 8,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 3,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 7,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 2,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 10,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 6,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 2,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 10,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 7,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 3,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 9,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 5,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 5,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 6,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 3,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 9,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 7,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 2,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 8,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 9,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 3,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 5,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 9,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 4,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      }
+    ]
+  },
+  {
+    "WARRIOR": [
+      {
+        "name": "Stormcaller",
+        "cost": 10,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 2,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 8,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 5,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 8,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 8,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 6,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 4,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 10,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 7,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 5,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 5,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 2,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 7,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 9,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 2,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 3,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 9,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 7,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 6,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 7,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 8,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 10,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Dark Sorcerer",
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "type": "unit",
+        "race": "Undead"
+      }
+    ]
+  },
+  {
+    "DEMON_HUNTER": [
+      {
+        "name": "Holy Knight",
+        "cost": 8,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 4,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 7,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 2,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Mystic Healer",
+        "cost": 8,
+        "attack": 2,
+        "health": 6,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 3,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 4,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 2,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Stormcaller",
+        "cost": 4,
+        "attack": 4,
+        "health": 4,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 10,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 2,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 6,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 6,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 7,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 5,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Shadow Assassin",
+        "cost": 1,
+        "attack": 5,
+        "health": 2,
+        "type": "unit",
+        "race": "Demon"
+      },
+      {
+        "name": "Forest Guardian",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 7,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 9,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Arcane Dragon",
+        "cost": 8,
+        "attack": 7,
+        "health": 7,
+        "type": "unit",
+        "race": "Dragon"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 7,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Warrior Champion",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      },
+      {
+        "name": "Battle Mage",
+        "cost": 8,
+        "attack": 3,
+        "health": 3,
+        "type": "unit",
+        "race": "Elemental"
+      },
+      {
+        "name": "Blazing Phoenix",
+        "cost": 5,
+        "attack": 6,
+        "health": 4,
+        "type": "unit",
+        "race": "Beast"
+      },
+      {
+        "name": "Holy Knight",
+        "cost": 6,
+        "attack": 3,
+        "health": 5,
+        "type": "unit",
+        "race": "Human"
+      }
+    ]
+  }
+]

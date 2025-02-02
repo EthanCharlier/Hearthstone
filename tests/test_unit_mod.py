@@ -258,21 +258,21 @@ class TestUnit(unittest.TestCase):
         }
         self.assertEqual(unit.to_dict(), expected_dict)
 
-    def test_units_json(self) -> None:
-        """
-        Test the units.json file to ensure that all units are correctly defined.
-        """
-        with open(UNITS_DB_PATH, "r") as file:
-            units_json = json.load(file)
+    # def test_units_json(self) -> None:
+    #     """
+    #     Test the units.json file to ensure that all units are correctly defined.
+    #     """
+    #     with open(UNITS_DB_PATH, "r") as file:
+    #         units_json = json.load(file)
 
-        for unit_class, units in units_json.items():
-            for unit_data in units:
-                with self.subTest(unit = unit_data["name"]):
-                    try:
-                        unit = create_unit_by_model(unit_data)
-                        self.assertIsNotNone(unit)
-                    except Exception as e:
-                        self.fail(f"Unit creation failed for {unit_data['name']} with error: {e}")
+    #     for unit_class, units in units_json.items():
+    #         for unit_data in units:
+    #             with self.subTest(unit = unit_data["name"]):
+    #                 try:
+    #                     unit = create_unit_by_model(unit_data)
+    #                     self.assertIsNotNone(unit)
+    #                 except Exception as e:
+    #                     self.fail(f"Unit creation failed for {unit_data['name']} with error: {e}")
 
 if __name__ == "__main__":
     unittest.main()

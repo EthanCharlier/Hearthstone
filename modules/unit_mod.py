@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 # Imports
+from mimetypes import init
+from typing import Union
 
 # Constants Imports
 from utils.constants import DATABASE_PATH
@@ -48,11 +50,11 @@ class Unit(Card):
                 id: int, 
                 name: str, 
                 cost: int, 
-                description: str, 
                 card_classes: list[CardClass], 
                 card_type: CardType, 
                 card_rarity: Rarity, 
                 unit_race: Race, 
+                description: str = "", 
                 status: CardStatus = CardStatus.IN_DECK, 
                 attack: int = 0, 
                 health: int = 0, 
@@ -112,6 +114,32 @@ class Unit(Card):
         units_db = Database.initialize_database(DATABASE_PATH)
         Database.insert_data_to_table(units_db, "Spells", [self.to_dict()])
         units_db.close()
+
+    def take_damage(self, amount: int) -> None:
+        """
+        Apply damage to the player.
+
+        Args:
+            amount (int): The amount of damage to deal.
+        """
+        self.armor -= amount
+        if self.armor < 0:
+            self.health += self.armor
+            self.armor = 0
+
+    def attack_player_or_unit(self, target: object) -> None:
+        """
+        Attacks a target, reducing its health by the hero's attack value.
+
+        Args:
+            target: The target to attack. The target must have a `take_damage(amount)` method.
+
+        Raises:
+            ValueError: If the hero's attack value is zero or less.
+        """
+        if self.attack <= 0:
+            raise ValueError("The hero cannot attack because their attack value is zero or less.")
+        target.take_damage(self.attack)
 
     def to_dict(self) -> dict:
         """

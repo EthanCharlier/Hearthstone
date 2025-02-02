@@ -2,11 +2,13 @@
 
 # Imports
 from __future__ import annotations
+from typing import Union
 
 # Modules Imports
 from modules.deck_mod import Deck
 from modules.hero_mod import Hero
 from modules.card_mod import Card
+from modules.unit_mod import Unit
 
 # Class
 class Player:
@@ -32,9 +34,17 @@ class Player:
             hero (Hero): The hero associated with the player.
             deck (Deck): The player's deck of cards.
         """
-        self.name = name
-        self.hero = hero
-        self.deck = deck
+        if not isinstance(name, str):
+            raise TypeError(f"Expected 'name' to be a Player, got {type(name).__name__}")
+        self.name: str = name
+
+        if not isinstance(hero, Hero):
+            raise TypeError(f"Expected 'hero' to be a Player, got {type(hero).__name__}")
+        self.hero: Hero = hero
+
+        if not isinstance(deck, Deck):
+            raise TypeError(f"Expected 'deck' to be a Deck, got {type(deck).__name__}")
+        self.deck: Deck = deck
 
         self._attack = hero.attack
         self.max_attack = hero.get_maximum_attack
@@ -87,7 +97,7 @@ class Player:
             self._health += self._armor
             self._armor = 0
 
-    def attack_player(self, target: Player) -> None:  #TODO: Think about split or note attack player and attack unit
+    def attack_player_or_unit(self, target: Union[Player, Unit]) -> None:
         """
         Attacks a target, reducing its health by the hero's attack value.
 
@@ -113,7 +123,7 @@ class Player:
         """
         Sets the player's attack, ensuring it stays within valid bounds.
         """
-        self._attack += amount
+        self._attack = amount
         if self.max_attack is not None:
             self._attack = min(self._attack, self.max_attack)
 
@@ -129,7 +139,7 @@ class Player:
         """
         Sets the player's health, ensuring it stays within valid bounds.
         """
-        self._health += amount
+        self._health = amount
         if self.max_health is not None:
             self._health = min(self._health, self.max_health)
 
@@ -145,7 +155,7 @@ class Player:
         """
         Sets the player's mana, ensuring it stays within valid bounds.
         """
-        self._mana += amount
+        self._mana = amount
         if self.max_mana is not None:
             self._mana = min(self._mana, self.max_mana)
 
@@ -161,7 +171,7 @@ class Player:
         """
         Sets the player's armor, ensuring it stays within valid bounds.
         """
-        self._armor += amount
+        self._armor = amount
         if self.max_armor is not None:
             self._armor = min(self._armor, self.max_armor)
 

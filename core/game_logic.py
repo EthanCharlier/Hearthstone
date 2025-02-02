@@ -14,8 +14,13 @@ class GameLogic:
     def __init__(self, player_1: Player, player_2: Player = None):
         """
         """
-        self.player_1 = player_1
-        self.player_2 = player_2
+        if not isinstance(player_1, Player):
+            raise TypeError(f"Expected 'player_1' to be a Player, got {type(player_1).__name__}")
+        self.player_1: Player = player_1
+
+        if player_2 is not None and not isinstance(player_2, Player):
+            raise TypeError(f"Expected 'player_2' to be a Player or None, got {type(player_2).__name__}")
+        self.player_2: Player | None = player_2
 
     def choose_who_starts(self) -> tuple[Player, Player]:
         """
@@ -27,9 +32,13 @@ class GameLogic:
     def check_game_over(self) -> bool:
         """
         """
-        pass
+        return ((self.player_1.health == 0) or (self.player_2.health == 0))
 
     def get_winner(self) -> Player:
         """
         """
-        pass
+        if self.player_1.health == 0:
+            return self.player_2
+        else:
+            return self.player_1
+
