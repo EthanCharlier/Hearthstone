@@ -30,7 +30,9 @@ from utils.constants import (
      SPELLS_DB_PATH,
      UNITS_DB_PATH,
      UNITS_TABLE_NAME,
-     HERO_MAXIMUM_MANA
+     HERO_MAXIMUM_MANA,
+     HAND_LIMIT,
+     BOARD_LIMIT
 )
 from utils.database_utils import Database
 
@@ -96,6 +98,7 @@ class Game:
             if self.logic.check_game_over():
                 break
 
+        self.console.clear()
         winner = self.logic.get_winner()
         print(winner)
 
@@ -125,7 +128,8 @@ class Game:
 
         # Étape 2 : Pioche d’une carte
         try:
-            player.deck.draw()
+            if len(player.deck.hand) < HAND_LIMIT and len(player.deck.cards) >= 1:
+                player.deck.draw()
         except ValueError:
             raise
 
@@ -134,7 +138,7 @@ class Game:
             self.print_game(player)
             
             playable_cards = [card for card in player.deck.hand if card.cost <= player.mana]
-            if not playable_cards:
+            if not playable_cards or len(player.deck.board) == BOARD_LIMIT:
                 break
 
             playable_card_table = Table(title="\n[bold cyan]Playable cards[/bold cyan]")
@@ -161,8 +165,34 @@ class Game:
                 elif isinstance(card_to_play, Spell):
                     player.mana -= card_to_play.cost
                     player.deck.play_card(card_to_play)
-                    card_to_play.cast(player, opponent)
+                    
+                    choosable_card_table = Table(title="\n[bold cyan]Choosable cards[/bold cyan]")
+                    choosable_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
+                    choosable_card_table.add_column("Name", justify="left", style="yellow")
+                    choosable_card_table.add_column("Attack", justify="left", style="red")
+                    choosable_card_table.add_column("Health", justify="left", style="green")
+                    choosable_card_table.add_column("Armor", justify="left", style="white")
 
+                    choosable_card_table.add_row(str(0), player.name, str(player.attack), str(player.health), str(player.armor))
+                    for i, card in enumerate(list(filter(lambda card: card != card_to_play, player.deck.board))):
+                        choosable_card_table.add_row(str(i + 1), card.name, str(card.attack), str(card.health), str(card.armor))
+                    self.console.print(choosable_card_table)
+
+                    card_choices = ["0"] + [str(i + 1) for i in range(len(list(filter(lambda card: card != card_to_play, player.deck.board))))]
+                    card_choice = Prompt.ask("[yellow]Enter the number of the playing card: [/yellow]", choices=card_choices, default="0")
+
+                    if card_choice == '0':
+                        selected_card = player
+                    else:
+                        index = int(card_choice) - 1
+                        selected_card = player.deck.board[index]
+
+                    try:
+                        print(selected_card, card_to_play)
+                        selected_card.apply_effects(card_to_play)
+                        player.deck.move_to_graveyard(card_to_play)
+                    except Exception as e:
+                        raise
             except ValueError:
                 raise
 
@@ -213,12 +243,12 @@ class Game:
                 targetable_card_table.add_column("Name", justify="left", style="yellow")
                 targetable_card_table.add_column("Health", justify="left", style="green")
 
-                targetable_card_table.add_row(str(0), player.hero.name, str(player.hero.health))
-                for i, card in enumerate(player.deck.board):
+                targetable_card_table.add_row(str(0), opponent.name, str(opponent.health))
+                for i, card in enumerate(opponent.deck.board):
                     targetable_card_table.add_row(str(i + 1), card.name, str(card.health))
                 self.console.print(targetable_card_table)
 
-                card_choices = ["0"] + [str(i + 1) for i in range(len(player.deck.board))]
+                card_choices = ["0"] + [str(i + 1) for i in range(len(opponent.deck.board))]
                 card_choice = Prompt.ask("[yellow]Enter the target card number: [/yellow]", choices=card_choices, default="0")
 
                 try:
@@ -250,7 +280,7 @@ class Game:
                 target_card_table.add_column("Name", justify="left", style="yellow")
                 target_card_table.add_column("Health", justify="left", style="green")
 
-                target_card_table.add_row(str(0), opponent.hero.name, str(opponent.hero.health))
+                target_card_table.add_row(str(0), opponent.name, str(opponent.health))
                 for i, card in enumerate(opponent.deck.board):
                     target_card_table.add_row(str(i + 1), card.name, str(card.health))
                 self.console.print(target_card_table)

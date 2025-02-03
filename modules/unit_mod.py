@@ -1,14 +1,20 @@
 #!/usr/bin/python3
 
 # Imports
-from mimetypes import init
 from typing import Union
 
 # Constants Imports
-from utils.constants import DATABASE_PATH
+from utils.constants import (
+    DATABASE_PATH,
+    CARD_MAXIMUM_ATTACK,
+    CARD_MAXIMUM_ARMOR,
+    CARD_MAXIMUM_HEALTH,
+    HERO_MAXIMUM_MANA
+)
 
 # Modules Imports
 from modules.card_mod import Card
+from modules.player_mod import Player
 from utils.database_utils import Database
 
 # Enum Imports
@@ -28,38 +34,30 @@ class Unit(Card):
     Attributes:
         id (int): Unique identifier for the card.
         name (str): Name of the card.
-        cost (int): Mana or resource cost to play the card, cannot be negative, 10 is the maximum.
+        cost (int): Mana or resource cost to play the card.
         description (str): Textual description of the card's effects or abilities.
-        card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
+        card_classes (list[CardClass]): The classes associated with the card.
         card_type (CardType): The type of the card (should always be `CardType.UNIT` for this class).
-        card_rarity (Rarity): The rarity of the card (e.g., Common, Rare, Epic, Legendary).
-        unit_race (Race): The race of the unit, which must be a valid `Race` enum.
-            status (CardStatus): The current status of the card (e.g., IN_DECK, IN_HAND).
-        attack (int): The attack value of the unit (default: 0, cannot be negative).
-        health (int): The health value of the unit (default: 0, cannot be negative).
-        armor (int): The armor value of the unit (default: 0, cannot be negative).
-        effects (list): List of special effects or abilities the unit has (default: empty list).
-
-    Raises:
-        ValueError: If `card_type` is not `CardType.UNIT`.
-        ValueError: If `unit_race` is not an instance of `Race`.
-        ValueError: If `attack`, `health`, or `armor` is negative.
+        card_rarity (Rarity): The rarity of the card.
+        unit_race (Race): The race of the unit.
+        status (CardStatus): The current status of the card.
+        attack (int): The attack value of the unit.
+        health (int): The health value of the unit.
+        armor (int): The armor value of the unit.
     """
 
     def __init__(self, 
                 id: int, 
                 name: str, 
-                cost: int, 
+                cost: int,
+                description: str, 
                 card_classes: list[CardClass], 
-                card_type: CardType, 
                 card_rarity: Rarity, 
                 unit_race: Race, 
-                description: str = "", 
                 status: CardStatus = CardStatus.IN_DECK, 
                 attack: int = 0, 
                 health: int = 0, 
-                armor: int = 0, 
-                effects: list = [],
+                armor: int = 0
                 ) -> None:
         """
         Initializes a Unit card with its attributes.
@@ -67,43 +65,29 @@ class Unit(Card):
         Args:
             id (int): A unique identifier for the unit card.
             name (str): The name of the unit card.
-            cost (int): The mana or resource cost to play this card, cannot be negative, 10 is the maximum.
+            cost (int): The mana or resource cost to play this card.
             description (str): A description of the unit's effects or abilities.
-            card_classes (list[CardClass]): The classes associated with the card (e.g., Mage, Warrior).
-            card_type (CardType): The type of the card, which must be `CardType.UNIT`.
-            card_rarity (Rarity): The rarity of the card, which must be a valid `Rarity` enum.
-            unit_race (Race): The race of the unit, which must be a valid `Race` enum.
-            status (CardStatus): The current status of the card (e.g., IN_DECK, IN_HAND).
-            attack (int): The attack value of the unit (default: 0, cannot be negative).
-            health (int): The health value of the unit (default: 0, cannot be negative).
-            armor (int): The armor value of the unit (default: 0, cannot be negative).
-            effects (list): A list of special effects or abilities the unit has (default: empty list).
+            card_classes (list[CardClass]): The classes associated with the card.
+            card_rarity (Rarity): The rarity of the card.
+            unit_race (Race): The race of the unit.
+            status (CardStatus): The current status of the card.
+            attack (int): The attack value of the unit.
+            health (int): The health value of the unit.
+            armor (int): The armor value of the unit.
 
         Raises:
-            ValueError: If `card_type` is not `CardType.UNIT`.
             ValueError: If `unit_race` is not an instance of `Race`.
-            ValueError: If `attack`, `health`, or `armor` is negative.
         """
-        super().__init__(id, name, cost, description, card_classes, card_type, card_rarity, status)
+        super().__init__(id, name, cost, description, card_classes, CardType.UNIT, card_rarity, status, attack, health, armor)
 
-        if not isinstance(card_type, CardType) or card_type != CardType.UNIT:
-            raise ValueError(f"Invalid card type: {card_type}. Must be CardType.UNIT.")
-        
         if not isinstance(unit_race, Race):
             raise ValueError(f"Invalid race: {unit_race}. Must be a Race enum.")
         self.unit_race = unit_race
 
-        if attack < 0:
-            raise ValueError(f"Invalid attack: {attack}. Attack cannot be negative.")
-        if health < 0:
-            raise ValueError(f"Invalid health: {health}. Health cannot be negative.")
-        if armor < 0:
-            raise ValueError(f"Invalid armor: {armor}. Armor cannot be negative.")
-
-        self.attack = attack
-        self.health = health
-        self.armor = armor
-        self.effects = effects
+        self.cost = min(self.cost, HERO_MAXIMUM_MANA) if HERO_MAXIMUM_MANA is not None else self.cost
+        self.attack = min(self.attack, CARD_MAXIMUM_ATTACK) if CARD_MAXIMUM_ATTACK is not None else self.attack
+        self.health = min(self.health, CARD_MAXIMUM_HEALTH) if CARD_MAXIMUM_HEALTH is not None else self.health
+        self.armor = min(self.armor, CARD_MAXIMUM_ARMOR) if CARD_MAXIMUM_ARMOR is not None else self.armor
 
         self.save_to_table()
 
@@ -117,7 +101,7 @@ class Unit(Card):
 
     def take_damage(self, amount: int) -> None:
         """
-        Apply damage to the player.
+        Apply damage to the unit.
 
         Args:
             amount (int): The amount of damage to deal.
@@ -127,18 +111,22 @@ class Unit(Card):
             self.health += self.armor
             self.armor = 0
 
-    def attack_player_or_unit(self, target: object) -> None:
+    def attack_player_or_unit(self, target: Union[Card, "Unit", "Player"]) -> None:
         """
-        Attacks a target, reducing its health by the hero's attack value.
+        Attacks a target, reducing its health by the unit's attack value.
 
         Args:
-            target: The target to attack. The target must have a `take_damage(amount)` method.
+            target (Card or Unit): The target to attack.
 
         Raises:
-            ValueError: If the hero's attack value is zero or less.
+            ValueError: If the unit's attack value is zero or less.
         """
         if self.attack <= 0:
-            raise ValueError("The hero cannot attack because their attack value is zero or less.")
+            raise ValueError(f"{self.name} cannot attack because its attack value is zero or less.")
+        
+        if not hasattr(target, "take_damage"):
+            raise AttributeError(f"{target} does not have a `take_damage(amount)` method.")
+
         target.take_damage(self.attack)
 
     def to_dict(self) -> dict:
@@ -146,20 +134,7 @@ class Unit(Card):
         Converts the Unit object into a dictionary for serialization or storage.
 
         Returns:
-            dict: A dictionary representation of the unit, including:
-                  - ID
-                  - Name
-                  - Cost
-                  - Description
-                  - Card classes
-                  - Card type
-                  - Card rarity
-                  - Status
-                  - Unit race
-                  - Attack
-                  - Health
-                  - Armor
-                  - Effects
+            dict: A dictionary representation of the unit.
         """
         return {
             "id": self.id,
@@ -173,6 +148,5 @@ class Unit(Card):
             "unit_race": self.unit_race.value,
             "attack": self.attack,
             "health": self.health,
-            "armor" : self.armor,
-            "effects": self.effects,
+            "armor": self.armor,
         }

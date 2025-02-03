@@ -4,6 +4,13 @@
 from __future__ import annotations
 from typing import Union
 
+# Constants Imports
+from utils.constants import (
+    CARD_MAXIMUM_ATTACK,
+    CARD_MAXIMUM_ARMOR,
+    CARD_MAXIMUM_HEALTH
+)
+
 # Modules Imports
 from modules.deck_mod import Deck
 from modules.hero_mod import Hero
@@ -97,19 +104,37 @@ class Player:
             self._health += self._armor
             self._armor = 0
 
-    def attack_player_or_unit(self, target: Union[Player, Unit]) -> None:
+    def attack_player_or_unit(self, target: Union[Card, "Unit", "Player"]) -> None:
         """
-        Attacks a target, reducing its health by the hero's attack value.
+        Attacks a target, reducing its health by the unit's attack value.
 
         Args:
-            target: The target to attack. The target must have a `take_damage(amount)` method.
+            target (Card or Unit): The target to attack.
 
         Raises:
-            ValueError: If the hero's attack value is zero or less.
+            ValueError: If the unit's attack value is zero or less.
         """
         if self._attack <= 0:
-            raise ValueError("The hero cannot attack because their attack value is zero or less.")
-        target.take_damage(self._attack)
+            raise ValueError(f"{self.name} cannot attack because its attack value is zero or less.")
+        
+        if not hasattr(target, "take_damage"):
+            raise AttributeError(f"{target} does not have a `take_damage(amount)` method.")
+
+    def apply_effects(self, spell_card: object) -> None:
+        """
+        Apply the effects of a spell card to this card.
+        """
+        if spell_card.health > 0:
+            self._health = (min(self._health + spell_card.health, CARD_MAXIMUM_HEALTH)
+                           if CARD_MAXIMUM_HEALTH is not None else self._health + spell_card.health)
+
+        if spell_card.armor > 0:
+            self._armor = (min(self._armor + spell_card.armor, CARD_MAXIMUM_ARMOR)
+                          if CARD_MAXIMUM_ARMOR is not None else self._armor + spell_card.armor)
+
+        if spell_card.attack > 0:
+            self._attack = (min(self._attack + spell_card.attack, CARD_MAXIMUM_ATTACK)
+                           if CARD_MAXIMUM_ATTACK is not None else self._attack + spell_card.attack)
 
     @property
     def attack(self) -> int:

@@ -9,6 +9,7 @@ from rich.align import Align
 
 # Modules Imports
 from modules.player_mod import Player
+from modules.unit_mod import Unit
 
 # Class
 class GameLogic:
@@ -36,7 +37,7 @@ class GameLogic:
     def check_game_over(self) -> bool:
         """
         """
-        return ((self.player_1.health == 0) or (self.player_2.health == 0))
+        return ((self.player_1.health == 0) or (self.player_2.health == 0) or (self.player_1.deck.cards == 0) or (self.player_2.deck.cards == 0))
 
     def get_winner(self) -> Player:
         """
@@ -63,6 +64,13 @@ class GameLogic:
             expand=False
         )
 
+        armor_panel = Panel(
+            Text(f"{player.armor}", style="bold white"),
+            title="Armor",
+            border_style="white",
+            expand=False
+        )
+
         attack_panel = Panel(
             Text(f"{player.attack}", style="bold red"),
             title="Attack",
@@ -77,7 +85,7 @@ class GameLogic:
             expand=False
         )
 
-        return Columns([mana_panel, attack_panel, health_panel, deck_panel])
+        return Columns([mana_panel, attack_panel, health_panel, armor_panel, deck_panel])
     
     def print_player_in_hand_card(self, player: Player) -> Panel:
         """
@@ -98,6 +106,13 @@ class GameLogic:
                 expand=False
             )
 
+            armor_panel = Panel(
+                Text(f"{card.armor}", style="bold white"),
+                title="Armor",
+                border_style="white",
+                expand=False
+            )
+
             attack_panel = Panel(
                 Text(f"{card.attack}", style="bold red"),
                 title="Attack",
@@ -105,14 +120,14 @@ class GameLogic:
                 expand=False
             )
 
-            inner_panels = Columns([mana_panel, attack_panel, health_panel], expand=False, equal=True)
+            inner_panels = Columns([mana_panel, attack_panel, health_panel, armor_panel], expand=False, equal=True)
 
             card_panel = Panel(
                 Align.center(inner_panels),
                 title=f"{card.name}",
-                border_style="white",
+                border_style="white" if isinstance(card, Unit) else "yellow",
                 expand=False,
-                width=45
+                width=55
             )
 
             player_cards.append(card_panel)

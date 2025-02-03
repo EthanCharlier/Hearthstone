@@ -25,7 +25,6 @@ from utils.database_utils import Database
 from enums.card_class_enum import CardClass
 from enums.hero_power_enum import HeroPower
 from enums.race_enum import Race
-from enums.card_type_enum import CardType
 from enums.rarity_enum import Rarity
 from enums.card_status_enum import CardStatus
 
@@ -146,13 +145,14 @@ class PlayerChoiceInterface():
             for unit in class_units:
                 deck_cards.append(Unit(
                     id=len(deck_cards) + 1,
-                    name=unit["name"],
-                    cost=unit["cost"],
-                    attack=unit["attack"],
-                    health=unit["health"],
-                    unit_race=Race[unit["race"].upper()],
+                    name=unit.get("name", ""),
+                    cost=unit.get("cost", 0),
+                    description=unit.get("description", ""),
+                    attack=unit.get("attack", 0),
+                    health=unit.get("health", 0),
+                    armor=unit.get("armor", 0),
+                    unit_race=Race[unit.get("race", "ALL").upper()],
                     card_classes=[CardClass[hero_class.upper()]],
-                    card_type=CardType.UNIT,
                     card_rarity=Rarity.COMMON,
                     status=CardStatus.IN_DECK
                 ))
@@ -161,17 +161,20 @@ class PlayerChoiceInterface():
             for spell in class_spells:
                 deck_cards.append(Spell(
                     id=len(deck_cards) + 1,
-                    name=spell["name"],
-                    cost=spell["cost"],
-                    description=spell["description"],
+                    name=spell.get("name", ""),
+                    cost=spell.get("cost", 0),
+                    description=spell.get("description", ""),
+                    attack=spell.get("attack", 0),
+                    health=spell.get("health", 0),
+                    armor=spell.get("armor", 0),
                     card_classes=[CardClass[hero_class.upper()]],
-                    card_type=CardType.SPELL,
                     card_rarity=Rarity.COMMON,
                     status=CardStatus.IN_DECK
                 ))
                 progress.update(level_bar, advance=1)
 
             deck = Deck(cards=deck_cards)
+            deck.shuffle()
             progress.update(level_bar, advance=1)
 
         print(f"[green]Deck created with {len(deck_cards)} cards for {player_name}.[/green]")

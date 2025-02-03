@@ -5,30 +5,45 @@
         "name": "Shadow Strike",
         "cost": 6,
         "description": "Deal 4 damage and restore 4 Health to your hero.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Sacrificial Pact",
         "cost": 5,
         "description": "Destroy a friendly minion and gain 5 Health.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Nature's Wrath",
         "cost": 10,
         "description": "Deal 3 damage to all enemies.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Nature's Wrath",
         "cost": 6,
         "description": "Deal 3 damage to all enemies.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Divine Shield",
         "cost": 10,
         "description": "Give a minion Divine Shield.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
@@ -39,30 +54,45 @@
         "name": "Arcane Explosion",
         "cost": 3,
         "description": "Deal 2 damage to all enemy minions.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Thunderstorm",
         "cost": 3,
         "description": "Deal 5 damage to a random enemy minion.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Healing Light",
         "cost": 5,
         "description": "Restore 8 Health.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Arcane Explosion",
         "cost": 9,
         "description": "Deal 2 damage to all enemy minions.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Nature's Wrath",
         "cost": 4,
         "description": "Deal 3 damage to all enemies.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
@@ -73,30 +103,45 @@
         "name": "Nature's Wrath",
         "cost": 1,
         "description": "Deal 3 damage to all enemies.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Demonic Pact",
         "cost": 2,
         "description": "Draw 3 cards and take 2 damage.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Demonic Pact",
         "cost": 3,
         "description": "Draw 3 cards and take 2 damage.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Battle Roar",
         "cost": 1,
         "description": "Give all friendly minions +2 Attack this turn.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Arcane Explosion",
         "cost": 1,
         "description": "Deal 2 damage to all enemy minions.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
@@ -107,30 +152,45 @@
         "name": "Fireball",
         "cost": 1,
         "description": "Deal 6 damage.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Battle Roar",
         "cost": 8,
         "description": "Give all friendly minions +2 Attack this turn.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Demonic Pact",
         "cost": 9,
         "description": "Draw 3 cards and take 2 damage.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Shadow Strike",
         "cost": 5,
         "description": "Deal 4 damage and restore 4 Health to your hero.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Thunderstorm",
         "cost": 7,
         "description": "Deal 5 damage to a random enemy minion.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
@@ -141,30 +201,45 @@
         "name": "Healing Light",
         "cost": 9,
         "description": "Restore 8 Health.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Shadow Strike",
         "cost": 4,
         "description": "Deal 4 damage and restore 4 Health to your hero.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Fireball",
         "cost": 1,
         "description": "Deal 6 damage.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Shadow Strike",
         "cost": 3,
         "description": "Deal 4 damage and restore 4 Health to your hero.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Shadow Strike",
         "cost": 8,
         "description": "Deal 4 damage and restore 4 Health to your hero.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
@@ -175,30 +250,45 @@
         "name": "Thunderstorm",
         "cost": 8,
         "description": "Deal 5 damage to a random enemy minion.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Nature's Wrath",
         "cost": 3,
         "description": "Deal 3 damage to all enemies.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Battle Roar",
         "cost": 2,
         "description": "Give all friendly minions +2 Attack this turn.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Thunderstorm",
         "cost": 1,
         "description": "Deal 5 damage to a random enemy minion.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Arcane Explosion",
         "cost": 1,
         "description": "Deal 2 damage to all enemy minions.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
@@ -209,30 +299,45 @@
         "name": "Healing Light",
         "cost": 3,
         "description": "Restore 8 Health.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Thunderstorm",
         "cost": 2,
         "description": "Deal 5 damage to a random enemy minion.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Battle Roar",
         "cost": 6,
         "description": "Give all friendly minions +2 Attack this turn.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Healing Light",
         "cost": 8,
         "description": "Restore 8 Health.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Arcane Explosion",
         "cost": 1,
         "description": "Deal 2 damage to all enemy minions.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
@@ -243,30 +348,45 @@
         "name": "Demonic Pact",
         "cost": 6,
         "description": "Draw 3 cards and take 2 damage.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Sacrificial Pact",
         "cost": 1,
         "description": "Destroy a friendly minion and gain 5 Health.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Arcane Explosion",
         "cost": 9,
         "description": "Deal 2 damage to all enemy minions.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Divine Shield",
         "cost": 9,
         "description": "Give a minion Divine Shield.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Healing Light",
         "cost": 7,
         "description": "Restore 8 Health.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
@@ -277,30 +397,45 @@
         "name": "Divine Shield",
         "cost": 4,
         "description": "Give a minion Divine Shield.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Healing Light",
         "cost": 3,
         "description": "Restore 8 Health.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Battle Roar",
         "cost": 1,
         "description": "Give all friendly minions +2 Attack this turn.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Divine Shield",
         "cost": 1,
         "description": "Give a minion Divine Shield.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Battle Roar",
         "cost": 1,
         "description": "Give all friendly minions +2 Attack this turn.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
@@ -311,30 +446,45 @@
         "name": "Shadow Strike",
         "cost": 3,
         "description": "Deal 4 damage and restore 4 Health to your hero.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Battle Roar",
         "cost": 3,
         "description": "Give all friendly minions +2 Attack this turn.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Healing Light",
         "cost": 1,
         "description": "Restore 8 Health.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Fireball",
         "cost": 7,
         "description": "Deal 6 damage.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       },
       {
         "name": "Nature's Wrath",
         "cost": 9,
         "description": "Deal 3 damage to all enemies.",
+        "health": 4,
+        "armor": 4,
+        "attack": 4,
         "type": "spell"
       }
     ]
