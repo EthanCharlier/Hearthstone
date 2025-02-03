@@ -4,6 +4,14 @@
 from tinydb import TinyDB
 import json
 import os
+import time
+from rich import print
+from rich.panel import Panel
+from tinydb import TinyDB
+from rich.console import Console
+from rich.prompt import Prompt, IntPrompt
+from rich.table import Table
+from rich.progress import Progress
 
 # Core Imports
 from core.game_logic import GameLogic
@@ -37,6 +45,8 @@ class Game:
     def __init__(self) -> None:
         """
         """
+        self.console = Console()
+
         self.hearthstone_db = Database.initialize_database(DATABASE_PATH)
         self.init_database(self.hearthstone_db, HEROES_TABLE_NAME, HEROES_DB_PATH)
         self.init_database(self.hearthstone_db, SPELLS_TABLE_NAME, SPELLS_DB_PATH)
@@ -89,99 +99,130 @@ class Game:
         winner = self.logic.get_winner()
         print(winner)
 
+    def print_game(self, player: Player) -> None:
+        self.console.clear()
+        self.console.print(Panel(f"[bold cyan]{self.logic.player_1.name}[/bold cyan]", border_style="blue", expand=False))
+        self.console.print(self.logic.print_player_infos(self.logic.player_1))
+        self.console.print(self.logic.print_player_in_hand_card(self.logic.player_1))
+
+        self.console.print(self.logic.print_board())
+
+        self.console.print(self.logic.print_player_in_hand_card(self.logic.player_2))
+        self.console.print(self.logic.print_player_infos(self.logic.player_2))
+        self.console.print(Panel(f"[bold cyan]{self.logic.player_2.name}[/bold cyan]", border_style="blue", expand=False))
+
+        self.console.print()
+        self.console.print(Panel(f"[bold cyan]{player.name}'s turn[/bold cyan]", border_style="yellow", expand=False))
+
     def play_turn(self, player: Player, opponent: Player) -> None:
         """
         """
-        print(f"\n--- Tour de {player.name} ---")
+        self.console.clear()
 
         # Étape 1 : Gain de mana (max HERO_MAXIMUM_MANA)
         if player.mana < HERO_MAXIMUM_MANA:
             player.mana += 1
-        print(f"{player.name} gagne un cristal de mana. Mana total : {player.mana}/{HERO_MAXIMUM_MANA}")
 
         # Étape 2 : Pioche d’une carte
         try:
-            drawn_card = player.deck.draw()
-            print(f"{player.name} a pioché : {drawn_card.name}")
+            player.deck.draw()
         except ValueError:
-            print(f"{player.name} n'a plus de cartes à piocher.")
+            raise
 
         # Étape 3 : Jouer des cartes (Serviteurs et Sorts)
         while True:
+            self.print_game(player)
+            
             playable_cards = [card for card in player.deck.hand if card.cost <= player.mana]
             if not playable_cards:
-                print("Aucune carte jouable.")
                 break
 
-            print("\nCartes disponibles :")
-            for i, card in enumerate(playable_cards):
-                print(f"{i + 1}. {card.name} - Coût: {card.cost} - Type: {'Serviteur' if isinstance(card, Unit) else 'Sort'}")
+            playable_card_table = Table(title="\n[bold cyan]Playable cards[/bold cyan]")
+            playable_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
+            playable_card_table.add_column("Name", justify="left", style="yellow")
 
-            choix = input("Entrez le numéro de la carte à jouer (ou '0' pour passer) : ")
-            if choix == '0':
+            for i, card in enumerate(playable_cards):
+                playable_card_table.add_row(str(i + 1), card.name)
+            self.console.print(playable_card_table)
+
+            card_choices = ["0"] + [str(i + 1) for i in range(len(playable_cards))]
+            card_choice = Prompt.ask("[yellow]Enter the number of the playing card (or '0' to skip): [/yellow]", choices=card_choices, default="0")
+
+            if card_choice == '0':
                 break
 
             try:
-                index = int(choix) - 1
-                if index < 0 or index >= len(playable_cards):
-                    print("Choix invalide.")
-                    continue
-
+                index = int(card_choice) - 1
                 card_to_play = playable_cards[index]
 
-                if isinstance(card_to_play, Unit):  # Si c'est un serviteur
+                if isinstance(card_to_play, Unit):
                     player.mana -= card_to_play.cost
-                    player.deck.play_card(card_to_play)  # Ajoute l'unité au plateau via deck
-                    print(f"{player.name} a joué le serviteur : {card_to_play.name}")
-                elif isinstance(card_to_play, Spell):  # Si c'est un sort
+                    player.deck.play_card(card_to_play)
+                elif isinstance(card_to_play, Spell):
                     player.mana -= card_to_play.cost
                     player.deck.play_card(card_to_play)
                     card_to_play.cast(player, opponent)
-                    print(f"{player.name} a lancé le sort : {card_to_play.name}")
 
             except ValueError:
-                print("Entrée invalide, veuillez réessayer.")
+                raise
+
+        self.print_game(player)
 
         # Étape 4 : Pouvoir héroïque (coût : 2 mana)
-        if player.mana >= 2:
-            use_hero_power = input(f"Voulez-vous utiliser le pouvoir héroïque de {player.hero.name} ? (oui/non) : ").strip().lower()
-            if use_hero_power == "oui":
+        if player.mana >= 4:
+            answer_choices = ["o", "n"]
+            answer_choice = Prompt.ask(f"[yellow]Do you want to use {player.hero.name}'s hero power? [/yellow]", choices=answer_choices, default="n")
+
+            if answer_choice == "o":
                 try:
                     player.attack += 2
-                    player.mana -= 2
-                    print(f"{player.name} utilise son pouvoir héroïque : {player.hero.hero_power}")
+                    player.mana -= 4
+                    self.print_game(player)
                 except Exception as e:
-                    print(f"Impossible d'utiliser le pouvoir héroïque : {e}")
+                    raise
 
         # Étape 5 : Attaques (Serviteurs et Héros)
         while True:
+            self.print_game(player)
+            
             if not player.deck.board:
                 break
 
-            print("\nServiteurs en jeu :")
-            for i, unit in enumerate(player.deck.board):
-                print(f"{i + 1}. {unit.name} (ATK: {unit.attack}, PV: {unit.health})")
+            choosable_card_table = Table(title="\n[bold cyan]Choosable cards[/bold cyan]")
+            choosable_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
+            choosable_card_table.add_column("Name", justify="left", style="yellow")
+            choosable_card_table.add_column("Attack", justify="left", style="red")
+            choosable_card_table.add_column("Health", justify="left", style="green")
 
-            choix = input("Entrez le numéro du serviteur pour attaquer (ou '0' pour passer) : ")
-            if choix == '0':
+            for i, card in enumerate(player.deck.board):
+                choosable_card_table.add_row(str(i + 1), card.name, str(card.attack), str(card.health))
+            self.console.print(choosable_card_table)
+
+            card_choices = ["0"] + [str(i + 1) for i in range(len(player.deck.board))]
+            card_choice = Prompt.ask("[yellow]Enter the number of the playing card (or '0' to skip): [/yellow]", choices=card_choices, default="0")
+
+            if card_choice == '0':
                 break
 
             try:
-                index = int(choix) - 1
-                if index < 0 or index >= len(player.deck.board):
-                    print("Choix invalide.")
-                    continue
-
+                index = int(card_choice) - 1
                 attacker = player.deck.board[index]
 
-                print("\nCibles possibles :")
-                print(f"0. {opponent.name} (PV: {opponent.health})")
-                for j, enemy_unit in enumerate(opponent.deck.board):
-                    print(f"{j + 1}. {enemy_unit.name} (PV: {enemy_unit.health})")
+                targetable_card_table = Table(title="\n[bold cyan]Targetable cards[/bold cyan]")
+                targetable_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
+                targetable_card_table.add_column("Name", justify="left", style="yellow")
+                targetable_card_table.add_column("Health", justify="left", style="green")
 
-                target_choix = input(f"Entrez le numéro de la cible : ")
+                targetable_card_table.add_row(str(0), player.hero.name, str(player.hero.health))
+                for i, card in enumerate(player.deck.board):
+                    targetable_card_table.add_row(str(i + 1), card.name, str(card.health))
+                self.console.print(targetable_card_table)
+
+                card_choices = ["0"] + [str(i + 1) for i in range(len(player.deck.board))]
+                card_choice = Prompt.ask("[yellow]Enter the target card number: [/yellow]", choices=card_choices, default="0")
+
                 try:
-                    target_index = int(target_choix) - 1
+                    target_index = int(card_choice) - 1
                     if target_index == -1:
                         target = opponent
                         attacker.attack_player_or_unit(target)
@@ -190,31 +231,35 @@ class Game:
                         target = opponent.deck.board[target_index]
                         attacker.attack_player_or_unit(target)
                         player.deck.move_to_graveyard(attacker)
-                    else:
-                        print("Cible invalide.")
-                        continue
-                    
-                    print(f"{attacker.name} attaque {target.name} et inflige {attacker.attack} dégâts !")
-                    
-
+                        if target.health <= 0:
+                            opponent.deck.move_to_graveyard(target)
                 except ValueError:
-                    print("Entrée invalide, veuillez réessayer.")
+                    raise
 
             except ValueError:
-                print("Entrée invalide, veuillez réessayer.")
+                raise
 
         # Attaque du héros
         if player.attack > 0:
-            attack_choice = input(f"Voulez-vous attaquer avec votre héros ? (oui/non) : ").strip().lower()
-            if attack_choice == "oui":
-                print("\nCibles possibles :")
-                print(f"0. {opponent.name} (PV: {opponent.health})")
-                for j, enemy_unit in enumerate(opponent.deck.board):
-                    print(f"{j + 1}. {enemy_unit.name} (PV: {enemy_unit.health})")
+            answer_choices = ["o", "n"]
+            answer_choice = Prompt.ask(f"[yellow]Do you want to attack with {player.hero.name}? [/yellow]", choices=answer_choices, default="n")
 
-                target_choix = input(f"Entrez le numéro de la cible : ")
+            if answer_choice == "o":
+                target_card_table = Table(title="\n[bold cyan]Targetable cards[/bold cyan]")
+                target_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
+                target_card_table.add_column("Name", justify="left", style="yellow")
+                target_card_table.add_column("Health", justify="left", style="green")
+
+                target_card_table.add_row(str(0), opponent.hero.name, str(opponent.hero.health))
+                for i, card in enumerate(opponent.deck.board):
+                    target_card_table.add_row(str(i + 1), card.name, str(card.health))
+                self.console.print(target_card_table)
+
+                card_choices = ["0"] + [str(i + 1) for i in range(len(opponent.deck.board))]
+                card_choice = Prompt.ask("[yellow]Enter the target card number: [/yellow]", choices=card_choices, default="0")
+
                 try:
-                    target_index = int(target_choix) - 1
+                    target_index = int(card_choice) - 1
                     if target_index == -1:
                         target = opponent
                         player.attack_player_or_unit(target)
@@ -223,14 +268,7 @@ class Game:
                         player.attack_player_or_unit(target)
                         if target.health <= 0:
                             opponent.deck.move_to_graveyard(target)
-                    else:
-                        print("Cible invalide.")
-                        return
 
-                    print(f"{player.name} attaque {target.name} et inflige {player.attack} dégâts !")
                     player.attack = 0
                 except ValueError:
-                    print("Entrée invalide, veuillez réessayer.")
-
-        # Étape 6 : Fin du tour
-        print(f"Fin du tour de {player.name}. Mana restant : {player.mana}")
+                    raise
