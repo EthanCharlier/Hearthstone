@@ -37,7 +37,7 @@ class GameLogic:
     def check_game_over(self) -> bool:
         """
         """
-        return ((self.player_1.health == 0) or (self.player_2.health == 0) or (self.player_1.deck.cards == 0) or (self.player_2.deck.cards == 0))
+        return ((self.player_1.health == 0) or (self.player_2.health == 0))
 
     def get_winner(self) -> Player:
         """
