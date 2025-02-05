@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 
 # Imports
-import json
 import unittest
-from tests.models.hero_model import create_hero_by_model
 
 # Modules Imports
 from modules.hero_mod import Hero
@@ -200,22 +198,6 @@ class TestHero(unittest.TestCase):
             "armor": self.default_armor,
         }
         self.assertEqual(hero.to_dict(), expected_dict)
-
-    # def test_heroes_json(self) -> None:
-    #     """
-    #     Test the heroes.json file to ensure that all heroes a correctly define.
-    #     """
-    #     with open(HEROES_DB_PATH, "r") as file:
-    #         heroes_json = json.load(file)
-
-    #     for hero_class, heroes in heroes_json.items():
-    #         for hero_data in heroes:
-    #             with self.subTest(hero=hero_data["name"]):
-    #                 try:
-    #                     hero = create_hero_by_model(hero_data)
-    #                     self.assertIsNotNone(hero)
-    #                 except Exception as e:
-    #                     self.fail(f"Hero creation failed for {hero_data['name']} with error: {e}")
 
 if __name__ == "__main__":
     unittest.main()

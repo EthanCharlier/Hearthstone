@@ -80,6 +80,8 @@ class Spell(Card):
     def save_to_table(self) -> None:
         """
         Saves the current Spell instance to a single table within the hearthstone_database.json file.
+
+        This method accesses the database, adds the spell data as a new entry, and then closes the connection.
         """
         spells_db = Database.initialize_database(DATABASE_PATH)
         Database.insert_data_to_table(spells_db, "Spells", [self.to_dict()])
@@ -90,7 +92,7 @@ class Spell(Card):
         Converts the Spell object into a dictionary for serialization or storage.
 
         Returns:
-            dict: A dictionary representation of the spell.
+            dict: A dictionary representation of the spell, including its attributes and values.
         """
         return {
             "id": self.id,

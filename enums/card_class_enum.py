@@ -6,6 +6,10 @@ from enum import Enum
 # Class
 class CardClass(Enum):
     """
+    Represents the different hero classes available in the game.
+
+    Each class corresponds to a specific type of hero and determines 
+    which cards a player can use in their deck.
     """
     DRUID = "Druid"
     HUNTER = "Hunter"

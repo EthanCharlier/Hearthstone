@@ -4,14 +4,12 @@
 from tinydb import TinyDB
 import json
 import os
-import time
 from rich import print
 from rich.panel import Panel
 from tinydb import TinyDB
 from rich.console import Console
-from rich.prompt import Prompt, IntPrompt
+from rich.prompt import Prompt
 from rich.table import Table
-from rich.progress import Progress
 
 # Core Imports
 from core.game_logic import GameLogic
@@ -42,10 +40,28 @@ from interfaces.player_choice_interface import PlayerChoiceInterface
 # Class
 class Game:
     """
+    Represents the main game logic, including setting up the players, handling turns, and the flow of the game.
+
+    This class coordinates all interactions between the game state, players, actions, and database.
+
+    Attributes:
+        console (Console): Rich console used for displaying game output.
+        hearthstone_db (TinyDB): The database containing the game data (e.g., cards, players).
+        logic (GameLogic): The game logic to handle game rules and state.
+    
+    Methods:
+        __init__: Initializes the game, sets up the database, and prepares the players.
+        init_database: Initializes the database with the necessary tables and data.
+        start: Starts the game loop, alternating between players and checking for a winner.
+        print_game: Displays the current game state including player information, board, and turn.
+        play_turn: Handles the actions for one player's turn (drawing cards, playing cards, using hero power, attacking).
     """
 
     def __init__(self) -> None:
         """
+        Initializes the game, sets up the database, and prepares the players.
+
+        It connects to the database, loads the card data, sets up the players, and starts the game.
         """
         self.console = Console()
 
@@ -62,6 +78,16 @@ class Game:
 
     def init_database(self, hearthstone_db: TinyDB, table_name: str, table_path: str) -> None:
         """
+        Initializes a database table by loading data from a JSON file.
+
+        Args:
+            hearthstone_db (TinyDB): The TinyDB instance where the table resides.
+            table_name (str): The name of the table to initialize.
+            table_path (str): The path to the JSON file containing the data.
+        
+        Raises:
+            TypeError: If the database or table name is not the expected type.
+            ValueError: If the table path does not exist.
         """
         if not isinstance(hearthstone_db, TinyDB):
             raise TypeError(f"Expected 'hearthstone_db' to be a TinyDB, got {type(hearthstone_db).__name__}")
@@ -84,6 +110,10 @@ class Game:
 
     def start(self) -> Player:
         """
+        Starts the game loop where players alternate turns until the game ends.
+
+        The game alternates between players, checking for game over conditions after each turn.
+        Once the game ends, the winner is displayed.
         """
         turn_order = self.logic.choose_who_starts()
         
@@ -103,6 +133,12 @@ class Game:
         print(winner)
 
     def print_game(self, player: Player) -> None:
+        """
+        Prints the current game state including player stats, hand, board, and the active player's turn.
+
+        Args:
+            player (Player): The player whose turn is being printed.
+        """
         self.console.clear()
         self.console.print(Panel(f"[bold cyan]{self.logic.player_1.name}[/bold cyan]", border_style="blue", expand=False))
         self.console.print(self.logic.print_player_infos(self.logic.player_1))
@@ -119,21 +155,26 @@ class Game:
 
     def play_turn(self, player: Player, opponent: Player) -> None:
         """
+        Executes the actions for one player's turn, including drawing cards, playing units/spells, using hero power, and attacking.
+
+        Args:
+            player (Player): The player whose turn it is.
+            opponent (Player): The opponent player.
+        
+        Raises:
+            ValueError: If an invalid input is given during the turn actions.
         """
         self.console.clear()
 
-        # Étape 1 : Gain de mana (max HERO_MAXIMUM_MANA)
         if player.mana < HERO_MAXIMUM_MANA:
             player.mana += 1
 
-        # Étape 2 : Pioche d’une carte
         try:
             if len(player.deck.hand) < HAND_LIMIT and len(player.deck.cards) >= 1:
                 player.deck.draw()
         except ValueError:
             raise
 
-        # Étape 3 : Jouer des cartes (Serviteurs et Sorts)
         while True:
             self.print_game(player)
             
@@ -188,7 +229,6 @@ class Game:
                         selected_card = player.deck.board[index]
 
                     try:
-                        print(selected_card, card_to_play)
                         selected_card.apply_effects(card_to_play)
                         player.deck.move_to_graveyard(card_to_play)
                     except Exception as e:
@@ -198,7 +238,6 @@ class Game:
 
         self.print_game(player)
 
-        # Étape 4 : Pouvoir héroïque (coût : 2 mana)
         if player.mana >= 4:
             answer_choices = ["o", "n"]
             answer_choice = Prompt.ask(f"[yellow]Do you want to use {player.hero.name}'s hero power? [/yellow]", choices=answer_choices, default="n")
@@ -211,7 +250,6 @@ class Game:
                 except Exception as e:
                     raise
 
-        # Étape 5 : Attaques (Serviteurs et Héros)
         while True:
             self.print_game(player)
             
@@ -269,7 +307,8 @@ class Game:
             except ValueError:
                 raise
 
-        # Attaque du héros
+        self.print_game(player)
+
         if player.attack > 0:
             answer_choices = ["o", "n"]
             answer_choice = Prompt.ask(f"[yellow]Do you want to attack with {player.hero.name}? [/yellow]", choices=answer_choices, default="n")

@@ -6,6 +6,10 @@ from enum import Enum
 # Class
 class Race(Enum):
     """
+    Represents the different races available in the game.
+
+    Some cards belong to specific races, which may affect gameplay interactions, synergies, 
+    and special abilities.
     """
     DRAENEI = "Draenei"
     ORC = "Orc"

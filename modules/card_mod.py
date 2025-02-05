@@ -18,7 +18,7 @@ from enums.card_status_enum import CardStatus
 class Card():
     """
     Represents a generic card in a card game. This class serves as the base class
-    for other specific types of cards like Unit cards or Spell cards.
+    for other specific types of cards, such as Unit cards or Spell cards.
 
     Attributes:
         id (int): Unique identifier for the card.
@@ -28,7 +28,7 @@ class Card():
         card_classes (list[CardClass]): The classes associated with the card.
         card_type (CardType): The type of the card.
         card_rarity (Rarity): The rarity of the card.
-        status (CardStatus): The status of the card.
+        status (CardStatus): The current status of the card (e.g., in deck, in hand).
         attack (int): The attack value of the card (0 to MAX_CARD_ATTACK if defined).
         health (int): The health value of the card (0 to MAX_CARD_HEALTH if defined).
         armor (int): The armor value of the card (0 to MAX_CARD_ARMOR if defined).
@@ -55,16 +55,16 @@ class Card():
             name (str): Name of the card.
             cost (int): The mana cost (0-10).
             description (str): Description of the card.
-            card_classes (list[CardClass]): Associated classes.
-            card_type (CardType): The card type.
-            card_rarity (Rarity): The card rarity.
-            status (CardStatus): The current status.
+            card_classes (list[CardClass]): List of associated classes for the card.
+            card_type (CardType): The type of the card (e.g., Spell, Unit).
+            card_rarity (Rarity): The rarity of the card (e.g., Common, Rare).
+            status (CardStatus): The current status of the card (default is IN_DECK).
             attack (int): The attack value (0 to MAX_CARD_ATTACK if defined).
             health (int): The health value (0 to MAX_CARD_HEALTH if defined).
             armor (int): The armor value (0 to MAX_CARD_ARMOR if defined).
 
         Raises:
-            ValueError: If any value is invalid.
+            ValueError: If any value is invalid (e.g., negative cost, attack, health, etc.).
         """
         self.id = id
         self.name = name
@@ -105,10 +105,10 @@ class Card():
 
     def take_damage(self, amount: int) -> None:
         """
-        Apply damage to the card.
+        Applies damage to the card, reducing its armor and potentially its health.
 
         Args:
-            amount (int): The amount of damage to deal.
+            amount (int): The amount of damage to apply.
         """
         self.armor -= amount
         if self.armor < 0:
@@ -117,7 +117,10 @@ class Card():
 
     def apply_effects(self, spell_card: object) -> None:
         """
-        Apply the effects of a spell card to this card.
+        Applies the effects of a spell card to this card, modifying its health, armor, and attack values.
+
+        Args:
+            spell_card (object): The spell card whose effects will be applied to this card.
         """
         if spell_card.health > 0:
             self.health = (min(self.health + spell_card.health, CARD_MAXIMUM_HEALTH)

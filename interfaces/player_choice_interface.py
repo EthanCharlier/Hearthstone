@@ -31,10 +31,16 @@ from enums.card_status_enum import CardStatus
 # Class
 class PlayerChoiceInterface():
     """
+    Handles the player's choice interface, allowing them to select a game mode, 
+    choose a hero, and set up their deck.
     """
 
     def __init__(self, hearthstone_db: TinyDB):
         """
+        Initializes the PlayerChoiceInterface.
+
+        Args:
+            hearthstone_db (TinyDB): The database containing the game data.
         """
         self.hearthstone_db = hearthstone_db
         self.console = Console()
@@ -51,7 +57,10 @@ class PlayerChoiceInterface():
 
     def choose_game_mode(self) -> str:
         """
-        Affichage amélioré du choix du mode de jeu.
+        Displays an enhanced interface for selecting the game mode.
+
+        Returns:
+            str: The selected game mode ("PVP" or "PVAI").
         """
         self.console.clear()
         time.sleep(1)
@@ -70,6 +79,14 @@ class PlayerChoiceInterface():
 
     def setup_player(self, player_number: int) -> Player:
         """
+        Sets up a player by asking for their name, selecting a hero, 
+        and creating their deck.
+
+        Args:
+            player_number (int): The number of the player (1 or 2).
+
+        Returns:
+            Player: The initialized Player object.
         """
         self.console.clear()
 
@@ -184,6 +201,10 @@ class PlayerChoiceInterface():
     
     def setup_players(self) -> tuple[Player, Player | None]:
         """
+        Initializes both players based on the selected game mode.
+
+        Returns:
+            tuple[Player, Player | None]: The two players (or one if AI is chosen).
         """
         game_mode = self.choose_game_mode()
 

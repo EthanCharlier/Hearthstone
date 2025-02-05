@@ -14,10 +14,17 @@ from modules.unit_mod import Unit
 # Class
 class GameLogic:
     """
+    Class responsible for handling the core game logic such as turn order, game-over conditions, 
+    player and board state management, and printing of the game's visual elements.
     """
 
     def __init__(self, player_1: Player, player_2: Player = None):
         """
+        Initializes the game logic with two players.
+
+        Args:
+            player_1 (Player): The first player.
+            player_2 (Player, optional): The second player. Defaults to None.
         """
         if not isinstance(player_1, Player):
             raise TypeError(f"Expected 'player_1' to be a Player, got {type(player_1).__name__}")
@@ -29,6 +36,10 @@ class GameLogic:
 
     def choose_who_starts(self) -> tuple[Player, Player]:
         """
+        Randomly selects which player will start the game.
+
+        Returns:
+            tuple[Player, Player]: A tuple containing the first player and second player (or None if only one player).
         """
         if self.player_2 is None:
             return self.player_1, None
@@ -36,11 +47,19 @@ class GameLogic:
     
     def check_game_over(self) -> bool:
         """
+        Checks if the game is over by evaluating the health of both players.
+
+        Returns:
+            bool: True if either player has 0 health, indicating the game is over; False otherwise.
         """
         return ((self.player_1.health == 0) or (self.player_2.health == 0))
 
     def get_winner(self) -> Player:
         """
+        Determines the winner of the game.
+
+        Returns:
+            Player: The player who has won the game (the one whose health is not 0).
         """
         if self.player_1.health == 0:
             return self.player_2
@@ -49,6 +68,14 @@ class GameLogic:
         
     def print_player_infos(self, player: Player) -> Columns:
         """
+        Creates and returns the visual representation of a player's information including their mana, 
+        health, armor, attack, and remaining deck cards.
+
+        Args:
+            player (Player): The player whose information is to be displayed.
+
+        Returns:
+            Columns: A Rich Columns object containing panels for the player's stats.
         """
         mana_panel = Panel(
             Text(f"{player.mana}", style="bold cyan"),
@@ -89,6 +116,14 @@ class GameLogic:
     
     def print_player_in_hand_card(self, player: Player) -> Panel:
         """
+        Creates and returns the visual representation of the player's hand, including the cards they are holding 
+        with relevant details like cost, attack, health, and armor.
+
+        Args:
+            player (Player): The player whose hand is to be displayed.
+
+        Returns:
+            Panel: A Rich Panel object containing all the cards in the player's hand.
         """
         player_cards = []
         for card in player.deck.hand:
@@ -141,6 +176,10 @@ class GameLogic:
 
     def print_board(self) -> Panel:
         """
+        Creates and returns the visual representation of the game board, showing both players' units (cards) in play.
+
+        Returns:
+            Panel: A Rich Panel object containing both players' boards.
         """
         player_1_cards = []
         for card in self.player_1.deck.board:

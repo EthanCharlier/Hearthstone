@@ -53,34 +53,34 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(self.player.mana, 1)
         self.assertEqual(self.player.armor, 0)
 
-    def test_attack_setter(self) -> None:  #TODO: Add thing
+    def test_attack_setter(self) -> None:
         """
         Test setting the player's attack value.
         """
         self.player.attack = 3
         self.assertEqual(self.player.attack, 3)
 
-    def test_health_setter(self) -> None:  #TODO: Add thing
+    def test_health_setter(self) -> None:
         """
         Test setting the player's health value.
         """
-        self.player.health = 10
+        self.player.health += 10
         self.assertEqual(self.player.health, 30)
-        self.player.health = -20
+        self.player.health -= 20
         self.assertEqual(self.player.health, 10)
 
-    def test_armor_setter(self) -> None:  #TODO: Add thing
+    def test_armor_setter(self) -> None:
         """
         Test setting the player's armor value.
         """
-        self.player.armor = 3
+        self.player.armor += 3
         self.assertEqual(self.player.armor, 3)
 
-    def test_mana_setter(self) -> None:  #TODO: Add thing
+    def test_mana_setter(self) -> None:
         """
         Test setting the player's mana value.
         """
-        self.player.mana = 5
+        self.player.mana += 5
         self.assertEqual(self.player.mana, 6)
 
     def test_take_damage(self) -> None:
@@ -105,14 +105,12 @@ class TestPlayer(unittest.TestCase):
             cost = 4,
             card_classes = [CardClass.MAGE],
             description = "Deal 6 damage.",
-            card_type = CardType.UNIT,
             card_rarity = Rarity.COMMON,
             unit_race = Race.ALL,
             status = CardStatus.IN_DECK,
             attack = 4,
             health = 5,
             armor = 0,
-            effects = [],
         )
         self.deck.add_card(unit_card)
 
@@ -131,19 +129,17 @@ class TestPlayer(unittest.TestCase):
             cost = 4,
             card_classes = [CardClass.MAGE],
             description = "Deal 6 damage.",
-            card_type = CardType.UNIT,
             card_rarity = Rarity.COMMON,
             unit_race = Race.ALL,
             status = CardStatus.IN_DECK,
             attack = 4,
             health = 5,
             armor = 0,
-            effects = [],
         )
         self.deck.add_card(unit_card)
         self.player.draw_card()
 
-        self.player.mana = 3
+        self.player.mana += 3
         self.assertEqual(self.player.mana, 4)
         self.player.play_card(unit_card)
         self.assertEqual(self.player.mana, 0)

@@ -96,7 +96,7 @@ class Unit(Card):
         Saves the current Unit instance to a single table within the hearthstone_database.json file.
         """
         units_db = Database.initialize_database(DATABASE_PATH)
-        Database.insert_data_to_table(units_db, "Spells", [self.to_dict()])
+        Database.insert_data_to_table(units_db, "Units", [self.to_dict()])
         units_db.close()
 
     def take_damage(self, amount: int) -> None:
@@ -111,7 +111,7 @@ class Unit(Card):
             self.health += self.armor
             self.armor = 0
 
-    def attack_player_or_unit(self, target: Union[Card, "Unit", "Player"]) -> None:
+    def attack_player_or_unit(self, target: Union[Card, "Player"]) -> None:
         """
         Attacks a target, reducing its health by the unit's attack value.
 

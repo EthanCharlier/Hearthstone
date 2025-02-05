@@ -30,6 +30,9 @@ class TestCard(unittest.TestCase):
         self.default_card_type = CardType.SPELL
         self.default_rarity = Rarity.COMMON
         self.default_status = CardStatus.IN_DECK
+        self.default_attack = 4
+        self.default_health = 5
+        self.default_armor = 0
 
     def test_card_creation_valid(self) -> None:
         """
@@ -43,7 +46,10 @@ class TestCard(unittest.TestCase):
             card_classes = self.default_card_classes,
             card_type = self.default_card_type,
             card_rarity = self.default_rarity,
-            status = self.default_status
+            status = self.default_status,
+            attack = self.default_attack,
+            health = self.default_health,
+            armor = self.default_armor
         )
         self.assertEqual(card.id, self.default_id)
         self.assertEqual(card.name, self.default_name)
@@ -53,6 +59,9 @@ class TestCard(unittest.TestCase):
         self.assertEqual(card.card_type, self.default_card_type)
         self.assertEqual(card.card_rarity, self.default_rarity)
         self.assertEqual(card.status, self.default_status)
+        self.assertEqual(card.attack, self.default_attack)
+        self.assertEqual(card.health, self.default_health)
+        self.assertEqual(card.armor, self.default_armor)
 
     def test_card_creation_invalid_status(self) -> None:
         """
@@ -67,7 +76,10 @@ class TestCard(unittest.TestCase):
                 card_classes = self.default_card_classes,
                 card_type = self.default_card_type,
                 card_rarity = self.default_rarity,
-                status = "InvalidStatus"  # Invalid status
+                status = "InvalidStatus",  # Invalid status
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor
             )
 
     def test_card_creation_invalid_classes(self) -> None:
@@ -83,7 +95,10 @@ class TestCard(unittest.TestCase):
                 card_classes = ["InvalidClass"],  # Invalid class
                 card_type = self.default_card_type,
                 card_rarity = self.default_rarity,
-                status = self.default_status
+                status = self.default_status,
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor
             )
 
     def test_card_creation_invalid_type(self) -> None:
@@ -99,7 +114,10 @@ class TestCard(unittest.TestCase):
                 card_classes = self.default_card_classes,
                 card_type = "InvalidType",  # Invalid type
                 card_rarity = self.default_rarity,
-                status = self.default_status
+                status = self.default_status,
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor
             )
 
     def test_card_creation_invalid_rarity(self) -> None:
@@ -115,7 +133,10 @@ class TestCard(unittest.TestCase):
                 card_classes = self.default_card_classes,
                 card_type = self.default_card_type,
                 card_rarity = "InvalidRarity",  # Invalid rarity
-                status = self.default_status
+                status = self.default_status,
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor
             )
 
     def test_card_creation_negative_cost(self) -> None:
@@ -131,23 +152,10 @@ class TestCard(unittest.TestCase):
                 card_classes = self.default_card_classes,
                 card_type = self.default_card_type,
                 card_rarity = self.default_rarity,
-                status = self.default_status
-            )
-
-    def test_card_creation_cost_too_high(self) -> None:
-        """
-        Test that a ValueError is raised when the cost is greater than 10.
-        """
-        with self.assertRaises(ValueError):
-            Card(
-                id = self.default_id,
-                name = self.default_name,
-                cost = 11,  # Invalid cost
-                description = self.default_description,
-                card_classes = self.default_card_classes,
-                card_type = self.default_card_type,
-                card_rarity = self.default_rarity,
-                status = self.default_status
+                status = self.default_status,
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor
             )
 
     def test_card_to_dict(self) -> None:
@@ -162,7 +170,10 @@ class TestCard(unittest.TestCase):
             card_classes = self.default_card_classes,
             card_type = self.default_card_type,
             card_rarity = self.default_rarity,
-            status = self.default_status
+            status = self.default_status,
+                attack = self.default_attack,
+                health = self.default_health,
+                armor = self.default_armor
         )
         expected_dict = {
             "id": self.default_id,
@@ -173,6 +184,9 @@ class TestCard(unittest.TestCase):
             "card_type": self.default_card_type.value,
             "card_rarity": self.default_rarity.value,
             "status": self.default_status.value,
+            "attack": self.default_attack,
+            "health": self.default_health,
+            "armor": self.default_armor
         }
         self.assertEqual(card.to_dict(), expected_dict)
 

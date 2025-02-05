@@ -34,8 +34,10 @@ class TestDeck(unittest.TestCase):
             cost = 4,
             description = "Deal 6 damage.",
             card_classes = [CardClass.MAGE],
-            card_type = CardType.SPELL,
             card_rarity = Rarity.COMMON,
+            attack = 5,
+            health = 5,
+            armor = 5
         )
         self.yeti = Unit(
             id = 2,
@@ -43,7 +45,6 @@ class TestDeck(unittest.TestCase):
             cost = 4,
             description = "A sturdy minion.",
             card_classes = [CardClass.NEUTRAL],
-            card_type = CardType.UNIT,
             card_rarity = Rarity.COMMON,
             unit_race = Race.ALL,
             attack = 4,
@@ -97,8 +98,10 @@ class TestDeck(unittest.TestCase):
             cost = 4,
             description = "Transform a minion into a 1/1 Sheep.",
             card_classes = [CardClass.MAGE],
-            card_type = CardType.SPELL,
             card_rarity = Rarity.COMMON,
+            attack = 5,
+            health = 5,
+            armor = 5
         )
         self.deck.add_card(new_card)
         self.assertIn(new_card, self.deck.cards)
@@ -142,8 +145,10 @@ class TestDeck(unittest.TestCase):
                 cost = 1,
                 description = "Extra card for testing.",
                 card_classes = [CardClass.MAGE],
-                card_type = CardType.SPELL,
                 card_rarity = Rarity.COMMON,
+                attack = 5,
+                health = 5,
+                armor = 5
             )
             self.deck.add_card(card)
             drawn_card = self.deck.draw()
@@ -168,8 +173,10 @@ class TestDeck(unittest.TestCase):
                 cost = 1,
                 description = "Extra card for testing.",
                 card_classes = [CardClass.MAGE],
-                card_type = CardType.SPELL,
                 card_rarity = Rarity.COMMON,
+                attack = 5,
+                health = 5,
+                armor = 5
             ))
         with self.assertRaises(ValueError):
             self.deck.add_card(self.fireball)

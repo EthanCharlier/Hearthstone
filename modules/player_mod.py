@@ -15,7 +15,6 @@ from utils.constants import (
 from modules.deck_mod import Deck
 from modules.hero_mod import Hero
 from modules.card_mod import Card
-from modules.unit_mod import Unit
 
 # Class
 class Player:
@@ -40,6 +39,9 @@ class Player:
             name (str): The name of the player.
             hero (Hero): The hero associated with the player.
             deck (Deck): The player's deck of cards.
+        
+        Raises:
+            TypeError: If `name`, `hero`, or `deck` is not of the correct type.
         """
         if not isinstance(name, str):
             raise TypeError(f"Expected 'name' to be a Player, got {type(name).__name__}")
@@ -104,7 +106,7 @@ class Player:
             self._health += self._armor
             self._armor = 0
 
-    def attack_player_or_unit(self, target: Union[Card, "Unit", "Player"]) -> None:
+    def attack_player_or_unit(self, target: Union[Card, "Player"]) -> None:
         """
         Attacks a target, reducing its health by the unit's attack value.
 
@@ -113,16 +115,22 @@ class Player:
 
         Raises:
             ValueError: If the unit's attack value is zero or less.
+            AttributeError: If the target doesn't have a `take_damage` method.
         """
         if self._attack <= 0:
             raise ValueError(f"{self.name} cannot attack because its attack value is zero or less.")
         
         if not hasattr(target, "take_damage"):
             raise AttributeError(f"{target} does not have a `take_damage(amount)` method.")
+        
+        target.take_damage(self._attack)
 
     def apply_effects(self, spell_card: object) -> None:
         """
         Apply the effects of a spell card to this card.
+
+        Args:
+            spell_card (object): The spell card whose effects to apply.
         """
         if spell_card.health > 0:
             self._health = (min(self._health + spell_card.health, CARD_MAXIMUM_HEALTH)
@@ -140,6 +148,9 @@ class Player:
     def attack(self) -> int:
         """
         Getter for the player's attack.
+
+        Returns:
+            int: The player's current attack value.
         """
         return self._attack
 
@@ -147,6 +158,9 @@ class Player:
     def attack(self, amount: int) -> None:
         """
         Sets the player's attack, ensuring it stays within valid bounds.
+
+        Args:
+            amount (int): The new attack value to set.
         """
         self._attack = amount
         if self.max_attack is not None:
@@ -156,6 +170,9 @@ class Player:
     def health(self) -> int:
         """
         Getter for the player's health.
+
+        Returns:
+            int: The player's current health value.
         """
         return self._health
 
@@ -163,6 +180,9 @@ class Player:
     def health(self, amount: int) -> None:
         """
         Sets the player's health, ensuring it stays within valid bounds.
+
+        Args:
+            amount (int): The new health value to set.
         """
         self._health = amount
         if self.max_health is not None:
@@ -172,6 +192,9 @@ class Player:
     def mana(self) -> int:
         """
         Getter for the player's mana.
+
+        Returns:
+            int: The player's current mana value.
         """
         return self._mana
 
@@ -179,6 +202,9 @@ class Player:
     def mana(self, amount: int) -> None:
         """
         Sets the player's mana, ensuring it stays within valid bounds.
+
+        Args:
+            amount (int): The new mana value to set.
         """
         self._mana = amount
         if self.max_mana is not None:
@@ -188,6 +214,9 @@ class Player:
     def armor(self) -> int:
         """
         Getter for the player's armor.
+
+        Returns:
+            int: The player's current armor value.
         """
         return self._armor
 
@@ -195,6 +224,9 @@ class Player:
     def armor(self, amount: int) -> None:
         """
         Sets the player's armor, ensuring it stays within valid bounds.
+
+        Args:
+            amount (int): The new armor value to set.
         """
         self._armor = amount
         if self.max_armor is not None:
@@ -203,6 +235,8 @@ class Player:
     def reset(self) -> None:  #TODO
         """
         Reset the player's state for a new game.
+
+        Resets the player's health, mana, deck, and clears hand, board, and graveyard.
         """
         self.health = self.hero.health
         self.mana = self.hero.mana
@@ -216,6 +250,6 @@ class Player:
         String representation of the player.
 
         Returns:
-            str: Player's status as a string.
+            str: A string representing the player's name, hero, health, and mana.
         """
         return f"{self.name}, Hero: {self.hero.name}, Health: {self._health}/{self.max_health}, Mana: {self._mana}/{self.max_mana}"

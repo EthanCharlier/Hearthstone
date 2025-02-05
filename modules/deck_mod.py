@@ -15,24 +15,35 @@ from enums.card_status_enum import CardStatus
 # Class
 class Deck:
     """
-    Represents a deck of cards in the game.
+    Represents a deck of cards in a card game, managing cards in the deck, hand, board, and graveyard.
 
     Attributes:
         cards (list[Card]): The list of cards in the deck.
-        hand (list[Card]): Cards currently in the player's hand.
-        board (list[Card]): Cards currently on the board.
-        graveyard (list[Card]): Cards that have been played or destroyed.
+        hand (list[Card]): The cards currently in the player's hand.
+        board (list[Card]): The cards currently on the board.
+        graveyard (list[Card]): The cards that have been played or destroyed.
+
+    Methods:
+        __init__: Initializes the deck with a given list of cards, and optional lists for hand, board, and graveyard.
+        shuffle: Shuffles the deck randomly.
+        draw: Draws the top card from the deck and adds it to the hand.
+        play_card: Plays a card from the hand to the board.
+        move_to_graveyard: Moves a card from the hand or board to the graveyard.
+        add_card: Adds a card to the deck (bottom of the deck).
+        remove_card: Removes a card from the deck.
+        get_cards_by_status: Retrieves all cards with a specific status (e.g., in hand, on board, etc.).
+        reset_deck: Resets the deck by moving all cards from the graveyard and board back into the deck.
     """
 
     def __init__(self, cards: list[Card], hand: list[Card] = None, board: list[Card] = None, graveyard: list[Card] = None) -> None:
         """
-        Initialize the Deck.
+        Initializes the deck with the provided list of cards and optional hand, board, and graveyard.
 
         Args:
             cards (list[Card]): A list of cards to initialize the deck.
-            hand (list[Card]): Cards currently in the player's hand.
-            board (list[Card]): Cards currently on the board.
-            graveyard (list[Card]): Cards that have been played or destroyed.
+            hand (list[Card]): Cards currently in the player's hand (default is an empty list).
+            board (list[Card]): Cards currently on the board (default is an empty list).
+            graveyard (list[Card]): Cards that have been played or destroyed (default is an empty list).
 
         Raises:
             ValueError: If the deck contains more than 30 cards.
@@ -52,19 +63,19 @@ class Deck:
 
     def shuffle(self) -> None:
         """
-        Shuffle the deck randomly.
+        Shuffles the cards in the deck randomly.
         """
         random.shuffle(self.cards)
 
     def draw(self) -> Card:
         """
-        Draw the top card from the deck.
+        Draws the top card from the deck and adds it to the player's hand.
 
         Returns:
-            Card: The top card of the deck.
+            Card: The card drawn from the deck.
 
         Raises:
-            ValueError: If the deck is empty or hand limit is reached.
+            ValueError: If the deck is empty or if the player has reached the hand limit.
         """
         if not self.cards:
             raise ValueError("Cannot draw from an empty deck.")
@@ -77,10 +88,10 @@ class Deck:
 
     def play_card(self, card: Card) -> None:
         """
-        Play a card from the player's hand, moving it to the board.
+        Plays a card from the player's hand and moves it to the board.
 
         Args:
-            card (Card): The card to play.
+            card (Card): The card to be played from the hand to the board.
 
         Raises:
             ValueError: If the card is not in the player's hand or if the board is full.
@@ -95,13 +106,13 @@ class Deck:
 
     def move_to_graveyard(self, card: Card) -> None:
         """
-        Move a card to the graveyard.
+        Moves a card from the hand or board to the graveyard.
 
         Args:
             card (Card): The card to move to the graveyard.
 
         Raises:
-            ValueError: If the card is not on the board or in the hand.
+            ValueError: If the card is not in the hand or on the board.
         """
         if card.status not in [CardStatus.ON_BOARD, CardStatus.IN_HAND]:
             raise ValueError("The card must be on the board or in hand to move to the graveyard.")
@@ -114,13 +125,13 @@ class Deck:
 
     def add_card(self, card: Card) -> None:
         """
-        Add a card to the deck (at the bottom).
+        Adds a card to the deck (at the bottom).
 
         Args:
-            card (Card): The card to add.
+            card (Card): The card to add to the deck.
 
         Raises:
-            ValueError: If adding the card would exceed the deck limit.
+            ValueError: If adding the card would exceed the deck limit of 30 cards.
         """
         if len(self.cards) >= 30:
             raise ValueError("Cannot add more cards to the deck; maximum is 30.")
@@ -129,13 +140,13 @@ class Deck:
 
     def remove_card(self, card: Card) -> None:
         """
-        Remove a card from the deck.
+        Removes a card from the deck.
 
         Args:
-            card (Card): The card to remove.
+            card (Card): The card to remove from the deck.
 
         Raises:
-            ValueError: If the card is not in the deck.
+            ValueError: If the card is not found in the deck.
         """
         if card not in self.cards:
             raise ValueError("The card is not in the deck.")
@@ -143,13 +154,13 @@ class Deck:
 
     def get_cards_by_status(self, status: CardStatus) -> list[Card]:
         """
-        Get all cards with a specific status.
+        Retrieves all cards that have a specific status (e.g., in hand, on board, etc.).
 
         Args:
             status (CardStatus): The status to filter cards by.
 
         Returns:
-            list[Card]: A list of cards matching the given status.
+            list[Card]: A list of cards matching the specified status.
         """
         if status == CardStatus.IN_HAND:
             return self.hand
@@ -159,7 +170,10 @@ class Deck:
     
     def reset_deck(self) -> None:
         """
-        Reset the deck by returning all cards from the graveyard to the deck.
+        Resets the deck by moving all cards from the graveyard and board back to the deck.
+
+        This method will return all cards from the graveyard and board to the deck 
+        and reset their status to "IN_DECK". It clears the graveyard and the board.
         """
         self.cards.extend(self.graveyard)
         self.cards.extend(self.board)
