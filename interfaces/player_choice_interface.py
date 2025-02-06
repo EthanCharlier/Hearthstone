@@ -67,7 +67,7 @@ class PlayerChoiceInterface():
         self.console.print(Panel("[bold cyan]Choose Your Game Mode[/bold cyan]", border_style="blue", expand=False))
         game_mode = Prompt.ask(
             "[yellow]Select Game Mode[/yellow]",
-            choices=["PVP", "PVAI"],
+            choices=["PVP"],
             default="PVP"
         )
         self.console.clear()
@@ -211,8 +211,6 @@ class PlayerChoiceInterface():
         if game_mode == "PVP":
             player_1 = self.setup_player(player_number=1)
             player_2 = self.setup_player(player_number=2)
-        elif game_mode == "PVAI":
-            print("[yellow]Work in progress.[/yellow]")
         else:
             raise ValueError("Invalid game mode")
         return player_1, player_2

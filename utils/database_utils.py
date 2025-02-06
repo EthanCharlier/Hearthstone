@@ -74,6 +74,7 @@ class Database:
 
         table = db.table(table_name)
         table.insert_multiple(data)
+        # db.storage.flush()
 
     @staticmethod
     def fetch_all_from_table(db: TinyDB, table_name: str) -> list:

@@ -52,7 +52,7 @@ class GameLogic:
         Returns:
             bool: True if either player has 0 health, indicating the game is over; False otherwise.
         """
-        return ((self.player_1.health == 0) or (self.player_2.health == 0))
+        return ((self.player_1.health <= 0) or (self.player_2.health <= 0))
 
     def get_winner(self) -> Player:
         """
@@ -61,10 +61,29 @@ class GameLogic:
         Returns:
             Player: The player who has won the game (the one whose health is not 0).
         """
-        if self.player_1.health == 0:
+        if self.player_1.health <= 0:
             return self.player_2
         else:
             return self.player_1
+        
+    def print_winner(self, winner: Player) -> Columns:
+        """
+        Create and return a formatted panel displaying the winner's name.
+
+        Args:
+            winner (Player): The player who won the game.
+
+        Returns:
+            Columns: A Rich Columns object containing a panel with the winner's name.
+        """
+        winner_panel = Panel(
+            Text(f"{winner.name}", style="bold yellow"),
+            title="Winner",
+            border_style="yellow",
+            expand=False
+        )
+
+        return Columns([winner_panel])
         
     def print_player_infos(self, player: Player) -> Columns:
         """

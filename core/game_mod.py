@@ -4,7 +4,6 @@
 from tinydb import TinyDB
 import json
 import os
-from rich import print
 from rich.panel import Panel
 from tinydb import TinyDB
 from rich.console import Console
@@ -75,7 +74,6 @@ class Game:
         self.logic = GameLogic(player_1, player_2)
         self.start()
 
-
     def init_database(self, hearthstone_db: TinyDB, table_name: str, table_path: str) -> None:
         """
         Initializes a database table by loading data from a JSON file.
@@ -130,8 +128,14 @@ class Game:
 
         self.console.clear()
         winner = self.logic.get_winner()
-        print(winner)
+        self.stop(winner)
 
+    def stop(self, winner: Player) -> None:
+        """
+        """
+        self.console.clear()
+        self.console.print(self.logic.print_winner(winner))
+        
     def print_game(self, player: Player) -> None:
         """
         Prints the current game state including player stats, hand, board, and the active player's turn.
@@ -160,27 +164,69 @@ class Game:
         Args:
             player (Player): The player whose turn it is.
             opponent (Player): The opponent player.
-        
-        Raises:
-            ValueError: If an invalid input is given during the turn actions.
         """
         self.console.clear()
 
-        if player.mana < HERO_MAXIMUM_MANA:
-            player.mana += 1
+        self.add_mana(player)
+        self.draw_card(player)
+        played_card: bool = self.play_cards(player)
+        played_hero_power: bool = self.ask_hero_power(player)
 
+        if not played_card:
+            self.use_cards(player, opponent)
+
+        if not played_hero_power:
+            self.use_hero_power(player, opponent)
+
+    def add_mana(self, player: Player) -> None:
+        """
+        Increase the player's mana by 1 if it is below the maximum limit.
+
+        Args:
+            player (Player): The player whose mana will be increased.
+
+        Returns:
+            None
+        """
+        try:
+            if player.mana < HERO_MAXIMUM_MANA:
+                player.mana += 1
+        except ValueError:
+            raise
+
+    def draw_card(self, player: Player) -> None:
+        """
+        Draw a card from the player's deck if they have space in their hand.
+
+        Args:
+            player (Player): The player drawing a card.
+
+        Returns:
+            None
+        """
         try:
             if len(player.deck.hand) < HAND_LIMIT and len(player.deck.cards) >= 1:
                 player.deck.draw()
         except ValueError:
             raise
 
-        while True:
+    def play_cards(self, player: Player) -> bool:
+        """
+        Allows the player to play a card from their hand if they have enough mana.
+        Displays available cards and prompts the player for their choice.
+
+        Args:
+            player (Player): The player attempting to play a card.
+
+        Returns:
+            bool: True if a card was successfully played, False otherwise.
+        """
+        try:
             self.print_game(player)
             
             playable_cards = [card for card in player.deck.hand if card.cost <= player.mana]
             if not playable_cards or len(player.deck.board) == BOARD_LIMIT:
-                break
+                return False
 
             playable_card_table = Table(title="\n[bold cyan]Playable cards[/bold cyan]")
             playable_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
@@ -194,7 +240,7 @@ class Game:
             card_choice = Prompt.ask("[yellow]Enter the number of the playing card (or '0' to skip): [/yellow]", choices=card_choices, default="0")
 
             if card_choice == '0':
-                break
+                return False
 
             try:
                 index = int(card_choice) - 1
@@ -203,6 +249,7 @@ class Game:
                 if isinstance(card_to_play, Unit):
                     player.mana -= card_to_play.cost
                     player.deck.play_card(card_to_play)
+                    return True
                 elif isinstance(card_to_play, Spell):
                     player.mana -= card_to_play.cost
                     player.deck.play_card(card_to_play)
@@ -227,117 +274,163 @@ class Game:
                     else:
                         index = int(card_choice) - 1
                         selected_card = player.deck.board[index]
-
                     try:
                         selected_card.apply_effects(card_to_play)
                         player.deck.move_to_graveyard(card_to_play)
+                        return True
                     except Exception as e:
                         raise
             except ValueError:
                 raise
+        except ValueError:
+            raise
 
-        self.print_game(player)
+    def ask_hero_power(self, player: Player) -> bool:
+        """
+        Prompts the player to use their hero power if they have enough mana.
 
-        if player.mana >= 4:
-            answer_choices = ["o", "n"]
-            answer_choice = Prompt.ask(f"[yellow]Do you want to use {player.hero.name}'s hero power? [/yellow]", choices=answer_choices, default="n")
+        Args:
+            player (Player): The player considering using their hero power.
 
-            if answer_choice == "o":
+        Returns:
+            None
+        """
+        try:
+            if player.mana >= 4:
+                self.print_game(player)
+                answer_choices = ["o", "n"]
+                answer_choice = Prompt.ask(f"[yellow]Do you want to use {player.hero.name}'s hero power? [/yellow]", choices=answer_choices, default="n")
+
+                if answer_choice == "o":
+                    try:
+                        player.attack += 2
+                        player.mana -= 4
+                        self.print_game(player)
+                        return True
+                    except Exception as e:
+                        raise
+                else:
+                    return False
+            else:
+                return False
+        except ValueError:
+            raise
+
+    def use_cards(self, player: Player, opponent: Player) -> None:
+        """
+        Prompts the player to use their hero power if they have enough mana.
+
+        Args:
+            player (Player): The player considering using their hero power.
+
+        Returns:
+            bool: True if the hero power was used, False otherwise.
+        """
+        try:
+            while True:
+                self.print_game(player)
+                
+                if not player.deck.board:
+                    break
+
+                choosable_card_table = Table(title="\n[bold cyan]Choosable cards[/bold cyan]")
+                choosable_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
+                choosable_card_table.add_column("Name", justify="left", style="yellow")
+                choosable_card_table.add_column("Attack", justify="left", style="red")
+                choosable_card_table.add_column("Health", justify="left", style="green")
+
+                for i, card in enumerate(player.deck.board):
+                    choosable_card_table.add_row(str(i + 1), card.name, str(card.attack), str(card.health))
+                self.console.print(choosable_card_table)
+
+                card_choices = ["0"] + [str(i + 1) for i in range(len(player.deck.board))]
+                card_choice = Prompt.ask("[yellow]Enter the number of the playing card (or '0' to skip): [/yellow]", choices=card_choices, default="0")
+
+                if card_choice == '0':
+                    break
+
                 try:
-                    player.attack += 2
-                    player.mana -= 4
-                    self.print_game(player)
-                except Exception as e:
-                    raise
+                    index = int(card_choice) - 1
+                    attacker = player.deck.board[index]
 
-        while True:
-            self.print_game(player)
-            
-            if not player.deck.board:
-                break
+                    targetable_card_table = Table(title="\n[bold cyan]Targetable cards[/bold cyan]")
+                    targetable_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
+                    targetable_card_table.add_column("Name", justify="left", style="yellow")
+                    targetable_card_table.add_column("Health", justify="left", style="green")
 
-            choosable_card_table = Table(title="\n[bold cyan]Choosable cards[/bold cyan]")
-            choosable_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
-            choosable_card_table.add_column("Name", justify="left", style="yellow")
-            choosable_card_table.add_column("Attack", justify="left", style="red")
-            choosable_card_table.add_column("Health", justify="left", style="green")
+                    targetable_card_table.add_row(str(0), opponent.name, str(opponent.health))
+                    for i, card in enumerate(opponent.deck.board):
+                        targetable_card_table.add_row(str(i + 1), card.name, str(card.health))
+                    self.console.print(targetable_card_table)
 
-            for i, card in enumerate(player.deck.board):
-                choosable_card_table.add_row(str(i + 1), card.name, str(card.attack), str(card.health))
-            self.console.print(choosable_card_table)
+                    card_choices = ["0"] + [str(i + 1) for i in range(len(opponent.deck.board))]
+                    card_choice = Prompt.ask("[yellow]Enter the target card number: [/yellow]", choices=card_choices, default="0")
 
-            card_choices = ["0"] + [str(i + 1) for i in range(len(player.deck.board))]
-            card_choice = Prompt.ask("[yellow]Enter the number of the playing card (or '0' to skip): [/yellow]", choices=card_choices, default="0")
-
-            if card_choice == '0':
-                break
-
-            try:
-                index = int(card_choice) - 1
-                attacker = player.deck.board[index]
-
-                targetable_card_table = Table(title="\n[bold cyan]Targetable cards[/bold cyan]")
-                targetable_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
-                targetable_card_table.add_column("Name", justify="left", style="yellow")
-                targetable_card_table.add_column("Health", justify="left", style="green")
-
-                targetable_card_table.add_row(str(0), opponent.name, str(opponent.health))
-                for i, card in enumerate(opponent.deck.board):
-                    targetable_card_table.add_row(str(i + 1), card.name, str(card.health))
-                self.console.print(targetable_card_table)
-
-                card_choices = ["0"] + [str(i + 1) for i in range(len(opponent.deck.board))]
-                card_choice = Prompt.ask("[yellow]Enter the target card number: [/yellow]", choices=card_choices, default="0")
-
-                try:
-                    target_index = int(card_choice) - 1
-                    if target_index == -1:
-                        target = opponent
-                        attacker.attack_player_or_unit(target)
-                        player.deck.move_to_graveyard(attacker)
-                    elif 0 <= target_index < len(opponent.deck.board):
-                        target = opponent.deck.board[target_index]
-                        attacker.attack_player_or_unit(target)
-                        player.deck.move_to_graveyard(attacker)
-                        if target.health <= 0:
-                            opponent.deck.move_to_graveyard(target)
+                    try:
+                        target_index = int(card_choice) - 1
+                        if target_index == -1:
+                            target = opponent
+                            attacker.attack_player_or_unit(target)
+                            player.deck.move_to_graveyard(attacker)
+                        elif 0 <= target_index < len(opponent.deck.board):
+                            target = opponent.deck.board[target_index]
+                            attacker.attack_player_or_unit(target)
+                            player.deck.move_to_graveyard(attacker)
+                            if target.health <= 0:
+                                opponent.deck.move_to_graveyard(target)
+                        self.print_game(player)
+                    except ValueError:
+                        raise
                 except ValueError:
                     raise
+        except ValueError:
+            raise
 
-            except ValueError:
-                raise
+    def use_hero_power(self, player: Player, opponent: Player) -> None:
+        """
+        Allows the player to use their hero power to attack an opponent or their units, if they have attack points.
 
-        self.print_game(player)
+        Args:
+            player (Player): The player using their hero power.
+            opponent (Player): The opponent who may be attacked.
 
-        if player.attack > 0:
-            answer_choices = ["o", "n"]
-            answer_choice = Prompt.ask(f"[yellow]Do you want to attack with {player.hero.name}? [/yellow]", choices=answer_choices, default="n")
+        Returns:
+            None
+        """
+        try:
+            if player.attack > 0:
+                self.print_game(player)
+                answer_choices = ["o", "n"]
+                answer_choice = Prompt.ask(f"[yellow]Do you want to attack with {player.hero.name}? [/yellow]", choices=answer_choices, default="n")
 
-            if answer_choice == "o":
-                target_card_table = Table(title="\n[bold cyan]Targetable cards[/bold cyan]")
-                target_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
-                target_card_table.add_column("Name", justify="left", style="yellow")
-                target_card_table.add_column("Health", justify="left", style="green")
+                if answer_choice == "o":
+                    target_card_table = Table(title="\n[bold cyan]Targetable cards[/bold cyan]")
+                    target_card_table.add_column("Index", justify="center", style="magenta", no_wrap=True)
+                    target_card_table.add_column("Name", justify="left", style="yellow")
+                    target_card_table.add_column("Health", justify="left", style="green")
 
-                target_card_table.add_row(str(0), opponent.name, str(opponent.health))
-                for i, card in enumerate(opponent.deck.board):
-                    target_card_table.add_row(str(i + 1), card.name, str(card.health))
-                self.console.print(target_card_table)
+                    target_card_table.add_row(str(0), opponent.name, str(opponent.health))
+                    for i, card in enumerate(opponent.deck.board):
+                        target_card_table.add_row(str(i + 1), card.name, str(card.health))
+                    self.console.print(target_card_table)
 
-                card_choices = ["0"] + [str(i + 1) for i in range(len(opponent.deck.board))]
-                card_choice = Prompt.ask("[yellow]Enter the target card number: [/yellow]", choices=card_choices, default="0")
+                    card_choices = ["0"] + [str(i + 1) for i in range(len(opponent.deck.board))]
+                    card_choice = Prompt.ask("[yellow]Enter the target card number: [/yellow]", choices=card_choices, default="0")
 
-                try:
-                    target_index = int(card_choice) - 1
-                    if target_index == -1:
-                        target = opponent
-                        player.attack_player_or_unit(target)
-                    elif 0 <= target_index < len(opponent.deck.board):
-                        target = opponent.deck.board[target_index]
-                        player.attack_player_or_unit(target)
-                        if target.health <= 0:
-                            opponent.deck.move_to_graveyard(target)
+                    try:
+                        target_index = int(card_choice) - 1
+                        if target_index == -1:
+                            target = opponent
+                            player.attack_player_or_unit(target)
+                        elif 0 <= target_index < len(opponent.deck.board):
+                            target = opponent.deck.board[target_index]
+                            player.attack_player_or_unit(target)
+                            if target.health <= 0:
+                                opponent.deck.move_to_graveyard(target)
 
-                    player.attack = 0
-                except ValueError:
-                    raise
+                        player.attack = 0
+                        self.print_game(player)
+                    except ValueError:
+                        raise
+        except ValueError:
+            raise
