@@ -35,16 +35,3 @@ Lancer les tests unitaires :
 ```
 python -m unittest discover -s tests -p "test_*.py"
 ```
-
-## Structure du projet
-
-```
-Hearthstone/
-│── src/
-│   ├── Hearthstone.py      # Gestion des cartes et du jeu
-│   ├── main.py             # Point d'entrée du programme
-│── data/                   # Ressources et données du jeu
-│── tests/                  # Tests unitaires
-│── requirements.txt        # Dépendances du projet
-│── README.md               # Documentation
-```
