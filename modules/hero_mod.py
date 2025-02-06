@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-# Imports
-
 # Modules Imports
 from utils.database_utils import Database
 from enums.hero_power_enum import HeroPower, HERO_CLASS_TO_POWER
@@ -80,48 +78,57 @@ class Hero():
             ValueError: If `hero_power` does not match the expected value for `hero_class`.
             ValueError: If `attack`, `health`, `mana`, or `armor` are negative or exceed their maximum limits.
         """
-        self.id = id
-        self.name = name
-        self.description = description
+        self.id = id  # Set unique hero identifier
+        self.name = name  # Set hero name
+        self.description = description  # Set hero's description
 
+        # Check if the provided hero class is valid
         if not isinstance(hero_class, CardClass):
             raise ValueError(f"Invalid hero class: {hero_class}. Must be a CardClass enum.")
         self.hero_class = hero_class
 
+        # Check if the provided hero power is valid
         if not isinstance(hero_power, HeroPower):
             raise ValueError(f"Invalid hero power: {hero_power}. Must be a HeroPower enum.")
+        
+        # Ensure the hero power matches the class
         if HERO_CLASS_TO_POWER.get(hero_class) != hero_power:
             raise ValueError(
                 f"Invalid hero power: {hero_power} for class {hero_class}. "
                 f"Expected power: {HERO_CLASS_TO_POWER[hero_class]}."
             )
-        self.hero_power = hero_power
+        self.hero_power = hero_power  # Set the hero power
 
+        # Validate and set attack, ensuring it does not exceed the maximum allowed
         if attack < 0:
             raise ValueError(f"Invalid attack: {attack}. Attack cannot be negative.")
         elif HERO_MAXIMUM_ATTACK is not None and attack > HERO_MAXIMUM_ATTACK:
             raise ValueError(f"Invalid attack: {attack}. Attack cannot be greater than {HERO_MAXIMUM_ATTACK}.")
         
+        # Validate and set health, ensuring it does not exceed the maximum allowed
         if health < 0:
             raise ValueError(f"Invalid health: {health}. Health cannot be negative.")
         elif HERO_MAXIMUM_HEALTH is not None and health > HERO_MAXIMUM_HEALTH:
             raise ValueError(f"Invalid health: {health}. Health cannot be greater than {HERO_MAXIMUM_HEALTH}.")
         
+        # Validate and set mana, ensuring it does not exceed the maximum allowed
         if mana < 0:
             raise ValueError(f"Invalid mana: {mana}. Mana cannot be negative.")
         elif HERO_MAXIMUM_MANA is not None and mana > HERO_MAXIMUM_MANA:
             raise ValueError(f"Invalid mana: {mana}. Mana cannot be greater than {HERO_MAXIMUM_MANA}.")
         
+        # Validate and set armor, ensuring it does not exceed the maximum allowed
         if armor < 0:
             raise ValueError(f"Invalid armor: {armor}. Armor cannot be negative.")
         elif HERO_MAXIMUM_ARMOR is not None and armor > HERO_MAXIMUM_ARMOR:
             raise ValueError(f"Invalid armor: {armor}. Armor cannot be greater than {HERO_MAXIMUM_ARMOR}.")
 
-        self.attack = attack
-        self.health = health
-        self.mana = mana
-        self.armor = armor
+        self.attack = attack  # Set the attack value
+        self.health = health  # Set the health value
+        self.mana = mana  # Set the mana value
+        self.armor = armor  # Set the armor value
 
+        # Save the hero's information to the database
         self.save_to_table()
 
     def save_to_table(self) -> None:
@@ -130,9 +137,9 @@ class Hero():
 
         This method stores the hero in the `Heroes` table of the database defined by `DATABASE_PATH`.
         """
-        heroes_db = Database.initialize_database(DATABASE_PATH)
-        Database.insert_data_to_table(heroes_db, "Heroes", [self.to_dict()])
-        heroes_db.close()
+        heroes_db = Database.initialize_database(DATABASE_PATH)  # Initialize the database
+        Database.insert_data_to_table(heroes_db, "Heroes", [self.to_dict()])  # Insert hero data into the database
+        heroes_db.close()  # Close the database connection
 
     @property
     def get_maximum_attack(self) -> int:
@@ -142,7 +149,7 @@ class Hero():
         Returns:
             int: The maximum attack value (from `HERO_MAXIMUM_ATTACK`).
         """
-        return HERO_MAXIMUM_ATTACK
+        return HERO_MAXIMUM_ATTACK  # Return the maximum attack value
 
     @property
     def get_maximum_health(self) -> int:
@@ -152,7 +159,7 @@ class Hero():
         Returns:
             int: The maximum health value (from `HERO_MAXIMUM_HEALTH`).
         """
-        return HERO_MAXIMUM_HEALTH
+        return HERO_MAXIMUM_HEALTH  # Return the maximum health value
     
     @property
     def get_maximum_mana(self) -> int:
@@ -162,7 +169,7 @@ class Hero():
         Returns:
             int: The maximum mana value (from `HERO_MAXIMUM_MANA`).
         """
-        return HERO_MAXIMUM_MANA
+        return HERO_MAXIMUM_MANA  # Return the maximum mana value
     
     @property
     def get_maximum_armor(self) -> int:
@@ -172,7 +179,7 @@ class Hero():
         Returns:
             int: The maximum armor value (from `HERO_MAXIMUM_ARMOR`).
         """
-        return HERO_MAXIMUM_ARMOR
+        return HERO_MAXIMUM_ARMOR  # Return the maximum armor value
 
     def to_dict(self) -> dict:
         """
@@ -187,8 +194,8 @@ class Hero():
             "id": self.id,
             "name": self.name,
             "description": self.description,
-            "hero_class": self.hero_class.value,
-            "hero_power": self.hero_power.value,
+            "hero_class": self.hero_class.value,  # Convert hero class to its string value
+            "hero_power": self.hero_power.value,  # Convert hero power to its string value
             "attack": self.attack,
             "health": self.health,
             "mana": self.mana,

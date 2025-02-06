@@ -43,18 +43,22 @@ class Player:
         Raises:
             TypeError: If `name`, `hero`, or `deck` is not of the correct type.
         """
+        # Ensure 'name' is a string
         if not isinstance(name, str):
             raise TypeError(f"Expected 'name' to be a Player, got {type(name).__name__}")
         self.name: str = name
 
+        # Ensure 'hero' is an instance of Hero class
         if not isinstance(hero, Hero):
             raise TypeError(f"Expected 'hero' to be a Player, got {type(hero).__name__}")
         self.hero: Hero = hero
 
+        # Ensure 'deck' is an instance of Deck class
         if not isinstance(deck, Deck):
             raise TypeError(f"Expected 'deck' to be a Deck, got {type(deck).__name__}")
         self.deck: Deck = deck
 
+        # Initialize attack, health, mana, and armor based on the hero's values
         self._attack = hero.attack
         self.max_attack = hero.get_maximum_attack
 
@@ -78,7 +82,7 @@ class Player:
             ValueError: If the deck is empty or hand limit is reached.
         """
         return self.deck.draw()
-    
+
     def play_card(self, card: Card) -> None:
         """
         Play a card from the player's hand to the board.
@@ -89,8 +93,11 @@ class Player:
         Raises:
             ValueError: If the player does not have enough mana or if the board is full.
         """
+        # Check if the player has enough mana to play the card
         if card.cost > self._mana:
             raise ValueError(f"Not enough mana to play {card.name}. Requires {card.cost} mana, but you have {self._mana}.")
+        
+        # Deduct the mana for playing the card and play it
         self._mana -= card.cost
         self.deck.play_card(card)
 
@@ -101,49 +108,56 @@ class Player:
         Args:
             amount (int): The amount of damage to deal.
         """
-        self._armor -= amount
-        if self._armor < 0:
-            self._health += self._armor
-            self._armor = 0
+        self._armor -= amount  # First, damage the armor
+        if self._armor < 0:  # If armor is depleted, damage health
+            self._health += self._armor  # Armor might make health go below zero
+            self._armor = 0  # Reset armor to zero after it is depleted
 
     def attack_player_or_unit(self, target: Union[Card, "Player"]) -> None:
         """
         Attacks a target, reducing its health by the unit's attack value.
 
         Args:
-            target (Card or Unit): The target to attack.
+            target (Card or Player): The target to attack.
 
         Raises:
             ValueError: If the unit's attack value is zero or less.
             AttributeError: If the target doesn't have a `take_damage` method.
         """
+        # Ensure the player has a positive attack value
         if self._attack <= 0:
             raise ValueError(f"{self.name} cannot attack because its attack value is zero or less.")
         
+        # Ensure the target has the method `take_damage`
         if not hasattr(target, "take_damage"):
             raise AttributeError(f"{target} does not have a `take_damage(amount)` method.")
         
+        # Apply damage to the target
         target.take_damage(self._attack)
 
     def apply_effects(self, spell_card: object) -> None:
         """
-        Apply the effects of a spell card to this card.
+        Apply the effects of a spell card to this player.
 
         Args:
             spell_card (object): The spell card whose effects to apply.
         """
+        # Apply health, ensuring it doesn't exceed the maximum value
         if spell_card.health > 0:
             self._health = (min(self._health + spell_card.health, CARD_MAXIMUM_HEALTH)
                            if CARD_MAXIMUM_HEALTH is not None else self._health + spell_card.health)
 
+        # Apply armor, ensuring it doesn't exceed the maximum value
         if spell_card.armor > 0:
             self._armor = (min(self._armor + spell_card.armor, CARD_MAXIMUM_ARMOR)
                           if CARD_MAXIMUM_ARMOR is not None else self._armor + spell_card.armor)
 
+        # Apply attack, ensuring it doesn't exceed the maximum value
         if spell_card.attack > 0:
             self._attack = (min(self._attack + spell_card.attack, CARD_MAXIMUM_ATTACK)
                            if CARD_MAXIMUM_ATTACK is not None else self._attack + spell_card.attack)
 
+    # Properties for attack, health, mana, and armor with getters and setters
     @property
     def attack(self) -> int:
         """
@@ -232,20 +246,20 @@ class Player:
         if self.max_armor is not None:
             self._armor = min(self._armor, self.max_armor)
 
-    def reset(self) -> None:  #TODO
+    def reset(self) -> None:
         """
         Reset the player's state for a new game.
 
         Resets the player's health, mana, deck, and clears hand, board, and graveyard.
         """
-        self.health = self.hero.health
-        self.mana = self.hero.mana
-        self.deck.reset_deck()
-        self.deck.hand.clear()
-        self.deck.board.clear()
-        self.deck.graveyard.clear()
+        self.health = self.hero.health  # Reset health to hero's base health
+        self.mana = self.hero.mana  # Reset mana to hero's base mana
+        self.deck.reset_deck()  # Reset the deck
+        self.deck.hand.clear()  # Clear the hand
+        self.deck.board.clear()  # Clear the board
+        self.deck.graveyard.clear()  # Clear the graveyard
 
-    def __str__(self) -> str:  #TODO
+    def __str__(self) -> str:
         """
         String representation of the player.
 
